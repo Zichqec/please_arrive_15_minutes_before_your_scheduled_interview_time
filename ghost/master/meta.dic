@@ -1,47 +1,47 @@
 //This file handles a couple little QOL functions you may want. But these are not necessary! If you don't care for them just erase them. If you don't want to set up network updates, you can comment or remove the update functions too. If you're not interested in any of these, just remove the whole file!
 
-//—————————————————————————————— Installing something ——————————————————————————————
-OnInstallComplete
-{
-	"\0\s[0]Installed a %(reference0),\w4 called %(reference1)."
-	--
-	if "ghost" _in_ reference0 //A little menu to open or change to the ghost that was installed immediately
-	{
-		"\n\n\_q"
-		--
-		"\![*]\__q[OnInstallComplete.Action,call]Call %(reference0)\__q  \![*]\__q[OnInstallComplete.Action,change]Change to %(reference0)\__q\n\n"
-		--
-		"\![*]\q[Thanks,blank]"
-	}
-}
+// //—————————————————————————————— Installing something ——————————————————————————————
+// OnInstallComplete
+// {
+	// "\0\s[0]Installed a %(reference0),\w4 called %(reference1)."
+	// --
+	// if "ghost" _in_ reference0 //A little menu to open or change to the ghost that was installed immediately
+	// {
+		// "\n\n\_q"
+		// --
+		// "\![*]\__q[OnInstallComplete.Action,call]Call %(reference0)\__q  \![*]\__q[OnInstallComplete.Action,change]Change to %(reference0)\__q\n\n"
+		// --
+		// "\![*]\q[Thanks,blank]"
+	// }
+// }
 
-OnInstallComplete.Action
-{
-	if reference0 == "change"
-	{
-		"\![change,ghost,lastinstalled]"
-	}
-	else //call
-	{
-		"\![call,ghost,lastinstalled]"
-	}
-}
+// OnInstallComplete.Action
+// {
+	// if reference0 == "change"
+	// {
+		// "\![change,ghost,lastinstalled]"
+	// }
+	// else //call
+	// {
+		// "\![call,ghost,lastinstalled]"
+	// }
+// }
 
 
-//—————————————————————————————— Creating a .nar file ——————————————————————————————
-OnNarCreated
-{
-	_nar = "\_a[OnNarLocation,""%(reference1)""]%(reference0)\_a" //Makes a clickable link that'll open the location of the file they just made
+// //—————————————————————————————— Creating a .nar file ——————————————————————————————
+// OnNarCreated
+// {
+	// _nar = "\_a[OnNarLocation,""%(reference1)""]%(reference0)\_a" //Makes a clickable link that'll open the location of the file they just made
 	
-	"\0\s[0]Successfully created %(_nar)."
-}
+	// "\0\s[0]Successfully created %(_nar)."
+// }
 
-OnNarLocation
-{	
-	_path = SPLITPATH(reference0)[0] + SPLITPATH(reference0)[1]
+// OnNarLocation
+// {	
+	// _path = SPLITPATH(reference0)[0] + SPLITPATH(reference0)[1]
 	
-	"\![open,file,""%(_path)""]"
-}
+	// "\![open,file,""%(_path)""]"
+// }
 
 
 //—————————————————————————————— Network Update ——————————————————————————————
@@ -68,11 +68,11 @@ OnUpdateComplete
 {
 	if reference0 == "none"
 	{
-		"\0\s[0]There are no new files."
+		"\0\b[0]\s[0]There are no new files."
 	}
 	else
 	{
-		"\0\s[0]Update complete."
+		"\0\b[0]\s[0]Update complete."
 	}
 }
 
@@ -81,20 +81,20 @@ OnUpdateFailure //If the update fails
 {
 	if reference0 == "timeout" //If it timed out
 	{
-		"\0\s[0]Connection timed out."
+		"\0\b[0]\s[0]Connection timed out."
 	}
 	elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
 	{
 		_file = SPLITPATH(reference1)[2] + SPLITPATH(reference1)[3] //This gets the name and extension of the offending file
 		
-		"\0\s[0]The MD5 values don't match.\w8 Contact the ghost author and let them know that '%(_file)' is giving an MD5 error."
+		"\0\b[0]\s[0]The MD5 values don't match.\w8 Contact the ghost author and let them know that '%(_file)' is giving an MD5 error."
 	}
 	elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 	{
-		"\0\s[0]Update cancelled."
+		"\0\b[0]\s[0]Update cancelled."
 	}
 	else //Any other errors
 	{
-		"\0\s[0]Error while updating:\w4 ""%(reference0)""."
+		"\0\b[0]\s[0]Error while updating:\w4 ""%(reference0)""."
 	}
 }

@@ -9,7 +9,6 @@ dicdir, yaya_base
 
 dic, aitalk.dic
 dic, boot.dic
-dic, kero_menu.dic
 dic, mouse.dic
 dic, meta.dic
 dic, other.dic

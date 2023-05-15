@@ -8,6 +8,46 @@ OnTranslate
 		_talk = EVAL('"' + REPLACE(_talk,'"','""') + '"')
 	}
 	
+	_available_balloons = IARRAY
+	for _i = 0; _i < ARRAYSIZE(BalloonColors); _i++
+	{
+		if BalloonColors[_i]; _available_balloons ,= _i
+	}
+	if ARRAYSIZE(_available_balloons) == 0; _available_balloons ,= 10
+	
+	if SHIORI3FW.BalloonName == "Stuck to a Filing Cabinet"
+	{
+		LOGGING("====================================================================")
+		while "\0\b[0]" _in_ _talk
+		{
+			LOGGING("_talk: %(_talk)")
+			_talk = REPLACE(_talk,"\0\b[0]","\0\b[%(ANY(_available_balloons))0]",1)
+			LOGGING("_test: %(_test)")
+		}
+		
+		while "\0\b[2]" _in_ _talk
+		{
+			_2 = "2"
+			if _available_balloons[0] == 10; _2 = "0"
+			_talk = REPLACE(_talk,"\0\b[2]","\0\b[%(ANY(_available_balloons))%(_2),--fallback=2]",1)
+		}
+		
+		while "\0\b[4]" _in_ _talk
+		{
+			_4 = "4"
+			if _available_balloons[0] == 10; _2 = "0"
+			_talk = REPLACE(_talk,"\0\b[4]","\0\b[%(ANY(_available_balloons))%(_4)]",1)
+		}
+		
+		while "__InPuT%(C_BYTE1)BaLlOoN__" _in_ _talk
+		{
+			_talk = REPLACE(_talk,"__InPuT%(C_BYTE1)BaLlOoN__","%(ANY(_available_balloons))0",1)
+		}
+		
+		//TODO make sure input boxes also get randomized
+	}
+	
+	
 	//If you want to add anything to OnTranslate, like text replacement, I would put it after this point, generally. Just make sure it's before the TOSTR(_talk)
 	
 	TOSTR(_talk)
@@ -30,27 +70,18 @@ OnKeyPress
 //Happens about 30 seconds after a script ends, by default, to bring them back to normal poses
 OnSurfaceRestore
 {
-	"\1\s[10]\0\s[0]"
+	"\1\s[-1]\0\s[0]"
 }
 
 //Happens when the ghost is unminimized. You *can* include dialogue, but you don't *have* to. I have included this event because if you don't, it defaults to \0\s[0]\1\s[10], which you don't want in some cases, such as if your ghost uses different surfaces or has a different number of characters.
 OnWindowStateRestore
 {
-	"\1\s[10]\0\s[0]"
+	OnSurfaceRestore
 }
 
-//Network update url. Make sure you have a / on the end of the url or it will give a warning every time users try to update! If you don't plan to use network updates you can remove this
-//IF YOU'RE USING GITHUB FOR NETWORK UPDATES: DO NOT USE github.io URLS! It will cause you pain and suffering. USE raw.githubusercontent!!!
-//To get the raw.githubusercontent link super easy:
-//• Open your ghost's repo online
-//• navigate to the ghost's folder (the top level one, with install.txt, readme.txt, etc)
-//• Click on install.txt, or another text file on that level
-//• Once on that page, click the "raw" button. You should see the url now starts with raw.githubusercontent
-//• Copy that url exactly as is, but *leave off the "install.txt" or whatever file name at the end.*
-//Tada! That's your url! Make sure you test it! The dev palette and script/network log can help with that
 On_homeurl
 {
-	""
+	"https://raw.githubusercontent.com/Zichqec/please_arrive_15_minutes_before_your_scheduled_interview_time/main/"
 }
 
 

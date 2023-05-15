@@ -4,8 +4,9 @@ OnFirstBoot
 	//Note - I haven't added anything about username or pronouns here because it's all handled by the SSP prefs
 	stroke = 0
 	LastTalk = ""
+	BalloonColors = (1,1,1,1,1,1,0,0,0,0)
 	
-	"\1\s[10]\0\s[0]Hello, and welcome to the Simplicity Template, %(username).\w8 As the name implies, this template is very simple.\w8 You will notice there is not much here.\w8 That's on purpose!\w8 This template's primary goal is to make ghost creation less intimidating.\w8 You really need almost nothing to make a ghost;\w4 a basic shell with some interesting randomtalk can be an incredible and fun experience.\w8 So all those boring functions to do with email checking and such?\w8 Not here, unless you decide you want to add them.\w8 Don't let tedious functions tire you out before you can finish your ghost!\w8 Make something simple and fun, or start small and expand upon it later!\w8 Embrace the freedom of simplicity!"
+	"\1\s[-1]\0\s[0]Hello, and welcome to the Simplicity Template, %(username).\w8 As the name implies, this template is very simple.\w8 You will notice there is not much here.\w8 That's on purpose!\w8 This template's primary goal is to make ghost creation less intimidating.\w8 You really need almost nothing to make a ghost;\w4 a basic shell with some interesting randomtalk can be an incredible and fun experience.\w8 So all those boring functions to do with email checking and such?\w8 Not here, unless you decide you want to add them.\w8 Don't let tedious functions tire you out before you can finish your ghost!\w8 Make something simple and fun, or start small and expand upon it later!\w8 Embrace the freedom of simplicity!"
 }
 
 OnInitialize
@@ -13,9 +14,7 @@ OnInitialize
 	//If you want some variables to reset on boot, put them here. This event will happen even if you add other events like OnGhostChanged
 	//OnInitialize is a NOTIFY event! That means it cannot return scripts. This event is only meant for things like variable changes. See this page on Ukadoc for more info: https://ukagakadreamteam.github.io/ukadoc/manual/spec_shiori3.html
 	
-	//If you add new variables in updates, I recommend initializing them like so:
-	//if !ISVAR("NewVariable"); NewVariable = 0
-	//This means that it will only set the new variable if the user doesn't already have it, so that their variables don't get overwritten
+	if !ISVAR("BalloonColors"); BalloonColors = (1,1,1,1,1,1,0,0,0,0)
 	
 	if reference0 != "reload" //For things you want to reset EXCEPT when just reloading; a convenience for you the dev, basically
 	{
@@ -26,10 +25,10 @@ OnInitialize
 OnBoot
 {
 	_temp = SPLIT(SHIORI3FW.UserBirthday,":")
-	_user_birthday = "%(_temp)[1]/%(_temp[2])" //M/D, if you want it D/M you can switch it around
+	_user_birthday = "%(_temp[1])/%(_temp[2])" //M/D, if you want it D/M you can switch it around
 	_today = "%(_month)/%(_day)" //Again, switch this around if using D/M
 	
-	"\1\s[10]\0\s[0]"
+	"\1\s[-1]\0\b[0]\s[0]"
 	--
 	if _today == _user_birthday
 	{
@@ -48,8 +47,8 @@ OnBoot
 
 OnClose
 {
-	"\0\s[0]Farewell."
-	"\0\s[0]Goodbye."
+	"\0\b[0]\s[0]Farewell."
+	"\0\b[0]\s[0]Goodbye."
 	--
 	"\w8\w8\-" //This is what makes the ghost close (after a short pause), do not remove the \- , and MAKE SURE you don't use a \e before this point or it won't work
 }

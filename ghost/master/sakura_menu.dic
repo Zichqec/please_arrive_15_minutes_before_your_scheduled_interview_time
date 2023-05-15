@@ -7,16 +7,23 @@ SakuraMenuGreetings : nonoverlap
 //Because there is an all modifier here, you don't need to write -- between menu options
 OnSakuraMenu : all
 {
-	"\0\s[0]\b2\![set,autoscroll,disable]"
+	"\0\b[2]\s[0]\![set,autoscroll,disable]"
 	if SHIORI3FW.Eventid == "OnMouseDoubleClick"; SakuraMenuGreetings //The check here is so they won't comment if you click the back button. Remove if you prefer
 	
 	"\n\n\_q"
 	
-	"\![*]\q[Talk to me,OnAiTalk]"
-	if LastTalk != ""; "  \![*]\q[Say that again,OnLastTalk]"
+	"\![*]\q[So...,OnAiTalk]"
+	if LastTalk != ""; "  \![*]\__q[OnLastTalk]I'm sorry, what was that?\__q"
 	"\n\n"
 	
-	"\![*]\q[Change talk rate,OnTalkRateMenu]\n\n"
+	"\![*]\__q[OnAskQuestion]Can I ask you something?\__q"
+	
+	"\n\n"
+	
+	if SHIORI3FW.BalloonName == "Stuck to a Filing Cabinet"; "\![*]\__q[OnCustomizeBalloon]About those stickynotes...\__q\n"
+	else; "\n"
+	
+	"\![*]\__q[OnTalkRateMenu]Can we change the pace?\__q\n\n"
 	
 	"\![*]\q[Nevermind,blank]"	
 }
@@ -24,6 +31,73 @@ OnSakuraMenu : all
 OnLastTalk
 {
 	LastTalk
+}
+
+OnCustomizeBalloon : all
+{
+	_colors = ("yellow","pink","blue","orange","green","purple","notary","inkwell","shimmer","starlight")
+	_b = ""
+	if reference0 == "off"; _b = "100"
+	elseif reference0 != ""; _b = reference0 + "2"
+	else; _b = "2"
+	
+	
+	"\C\![lock,balloonrepaint]\c\0\s[0]\b[%(_b),--fallback=2]\![set,autoscroll,disable]\_q\*"
+	/*
+	
+		Need some sort of setup to tell which colors are on vs off
+		Probably just an array of 0 and 1 tbqh... that would be easy
+		Need a preview button that switches to the color you want to see
+		All on and all off should be easy with the array being 0s and 1s
+		Defaults will be a preset
+		and........
+	
+	*/
+	"\f[align,center]— Color rotation —\n\f[align,left]\n"
+	for _i = 0; _i < ARRAYSIZE(_colors); _i++
+	{
+		_name = _colors[_i]
+		
+		"\![*]"
+		switch BalloonColors[_i]
+		{
+			"\f[color,disable]\q[%(_name),OnToggleBalloonColor,%(_i),1]\f[color,default]"
+			"\q[%(_name),OnToggleBalloonColor,%(_i),0]"
+		}
+		
+		if _i % 2 == 0; "\n \n[-100]\f[align,right]"
+		else; "\n\f[align,left]"
+	}
+	
+	"\n\f[align,center]"
+	"\![*]\q[All on,OnToggleAllBalloons,on]  \![*]\q[Defaults,OnToggleAllBalloons,default]  \![*]\q[All off,OnToggleAllBalloons,off]"
+	
+	"\n\n\f[align,center]"
+	"\![*]\q[Back,OnSakuraMenu]  \![*]\q[Nevermind,blank]"
+	"\![unlock,balloonrepaint]"
+}
+
+OnToggleBalloonColor
+{
+	BalloonColors[TOINT(reference0)] = TOINT(reference1)
+	"\C\![raise,OnCustomizeBalloon,%(reference0)]"
+}
+
+OnToggleAllBalloons
+{
+	if reference0 == "on"
+	{
+		BalloonColors = (1,1,1,1,1,1,1,1,1,1)
+	}
+	elseif reference0 == "off"
+	{
+		BalloonColors = (0,0,0,0,0,0,0,0,0,0)
+	}
+	else //default
+	{
+		BalloonColors = (1,1,1,1,1,1,0,0,0,0)
+	}
+	"\C\![raise,OnCustomizeBalloon]"
 }
 
 OnTalkRateMenu : all
@@ -36,7 +110,7 @@ OnTalkRateMenu : all
 	elseif aitalkinterval == 300; _talkrate = "5 minutes"
 	elseif aitalkinterval == 600; _talkrate = "10 minutes"
 	
-	"\0\s[0]\b2\![set,autoscroll,disable]\_q"
+	"\0\b[0]\s[0]\![set,autoscroll,disable]\_q"
 	"Current interval: %(_talkrate)\n\n"
 	
 	"\![*]\q[Off,OnTalkRateChange,0]\n"
@@ -52,4 +126,71 @@ OnTalkRateMenu : all
 OnTalkRateChange
 {
 	aitalkinterval = TOINT(reference0)
+}
+
+OnAskQuestion
+{
+	"\![open,inputbox,OnAskQuestion.Input,-1,--balloon=__InPuT%(C_BYTE1)BaLlOoN__]"
+	--
+	"\0\b[0]oh sure sure sure sure whats up"
+	--
+	"\_q\n\n\![*]\__q[OnCancelQuestion]Actually, nevermind...\__q"
+}
+
+OnCancelQuestion
+{
+	"\![close,inputbox,OnAskQuestion.Input]"
+	--
+	"oh ok"
+}
+
+OnAskQuestion.Input
+{
+	"\0\b[0]You asked: %(reference0)\n\nOutput: %(ProcessQuestion(reference0))"
+}
+
+//Here is where we process the question text and determine what sort of tone Boss thinks the user is taking/what topics they might be talking about
+ProcessQuestion
+{
+	_input = TOLOWER(_argv[0])
+	_len = STRLEN(_input)
+	_output = IARRAY
+	
+	if LetterCount(_input,"g") + LetterCount(_input,"r") >= 10; _output ,= "growl"
+	
+	if LetterCount(_input,"h") >= 10; _output ,= "hiss"
+	
+	if _input == _argv[0]; _output ,= "soft" //All lowercase
+	
+	if TOUPPER(_input) == _argv[0]; _output ,= "loud" //All uppercase
+	
+	if RepeatedLetters(_input,"a") || RepeatedLetters(_input,"e"); _output ,= "repeating"
+	
+	_output
+}
+
+//Count the amount of a specific character in a string
+//You CAN put multiple letters in at once, but it will only count each instance it finds once, without overlapping.
+//Argument 0: The string to check
+//Argument 1: The letter(s) to search for (case sensitive)
+//Examples:
+//LetterCount("Ukagaka","a") //Returns 3
+//LetterCount("Ukagaka","ka") //Returns 2
+LetterCount
+{
+	_input = _argv[0]
+	_let = _argv[1]
+	_replaced = REPLACE(_input,_let,"")
+	_num = STRLEN(_input) - STRLEN(_replaced)
+	if STRLEN(_let) > 1; _num /= STRLEN(_let)
+	_num
+}
+
+RepeatedLetters
+{
+	_input = _argv[0]
+	_let = _argv[1]
+	_replaced = REPLACE(_input,_let,"")
+	_num = STRLEN(_input) - STRLEN(_replaced)
+	_num >= 3
 }

@@ -1,0 +1,4 @@
+charset,UTF-8
+type,balloon
+name,Stuck to a Filing Cabinet
+directory,stuck_to_a_filing_cabinet

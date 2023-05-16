@@ -208,3 +208,20 @@ OnNotifyUserInfo : void
 	}
 	SHIORI3FW.UserSex = reference[3]
 }
+
+Capitalize
+{
+	_f = TOUPPER(SUBSTR(_argv[0],0,1))
+	_l = SUBSTR(_argv[0],1,STRLEN(_argv[0]))
+	_f + _l
+}
+
+//Sorry I am not going to try to deal with letter hats for this. Also sorry Y you're a consonant here
+IsVowel
+{
+	case TOLOWER(_argv[0])
+	{
+		when "a", "e", "i", "o", "u"; 1
+		others; 0
+	}
+}

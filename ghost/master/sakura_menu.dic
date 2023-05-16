@@ -329,3 +329,251 @@ RepeatedWords
 	}
 	else; 0
 }
+
+
+
+NameMangler
+{
+	/*
+		Mangler.DragonNoises
+		Mangler.Backwards / Mangler.LengthenPalindrome
+		Mangler.Stuttering
+		Mangler.ConsonantVowel
+		Mangler.VowelConsonant
+		Mangler.CaseChange
+		Mangler.LengthenDoubles
+		Mangler.ShortenDoubles
+		
+		Mangler.RepeatSingle - special case if you put a single letter as your name
+		
+		So the plan is, start at the top of this list, try the first mangle. If nothing in your name changes, skip and go to the next.
+		I will needle a global to track at what point in the mangle list you are...
+		Once you make it to the end of the list! They got it right! Yay!
+		If somehow you get through all these options without a single mangle happening. ....... damn, impressive, let me know what your name is so i can make another special case
+	*/
+}
+
+Mangler.VowelConsonant
+{
+	_input = _argv[0]
+	
+	_lastletter = ""
+	_pairs = IARRAY
+	for _i = 0; _i <= STRLEN(_input) - 1; _i++
+	{
+		_currentletter = SUBSTR(_input,_i,1)
+		if IsVowel(_lastletter) && !IsVowel(_currentletter) && _lastletter != ""; _pairs ,= _lastletter + _currentletter
+		_lastletter = _currentletter
+	}
+	
+	_pairs = ARRAYDEDUP(_pairs)
+	LOGGING("_pairs: %(_pairs)")
+	foreach _pairs; _pair
+	{
+		_rand = RAND(2) + 2
+		_str = ""
+		for _i = 0; _i < _rand; _i++
+		{
+			_str += _pair
+		}
+		_input = REPLACE(_input,"%(_pair)","%(_str)")
+	}
+	
+	_input
+}
+
+Mangler.ConsonantVowel
+{
+	_input = _argv[0]
+	
+	_lastletter = ""
+	_pairs = IARRAY
+	for _i = 0; _i <= STRLEN(_input) - 1; _i++
+	{
+		_currentletter = SUBSTR(_input,_i,1)
+		if IsVowel(_currentletter) && !IsVowel(_lastletter) && _lastletter != ""; _pairs ,= _lastletter + _currentletter
+		_lastletter = _currentletter
+	}
+	
+	_pairs = ARRAYDEDUP(_pairs)
+	
+	foreach _pairs; _pair
+	{
+		_rand = RAND(2) + 2
+		_str = ""
+		for _i = 0; _i < _rand; _i++
+		{
+			_str += _pair
+		}
+		_input = REPLACE(_input,"%(_pair)","%(_str)")
+	}
+	
+	_input
+}
+
+Mangler.LengthenDoubles
+{
+	_input = _argv[0]
+	
+	_lastletter = ""
+	_doubles = IARRAY
+	for _i = 0; _i <= STRLEN(_input); _i++
+	{
+		_currentletter = SUBSTR(_input,_i,1)
+		if _currentletter == _lastletter; _doubles ,= _currentletter
+		_lastletter = _currentletter
+	}
+	
+	_doubles = ARRAYDEDUP(_doubles)
+	
+	foreach _doubles; _double
+	{
+		_rand = RAND(5) + 4
+		_str = ""
+		for _i = 0; _i < _rand; _i++
+		{
+			_str += _double
+		}
+		_input = REPLACE(_input,"%(_double)%(_double)","%(_str)")
+	}
+	
+	_input
+}
+
+Mangler.ShortenDoubles
+{
+	_input = _argv[0]
+	
+	_lastletter = ""
+	_doubles = IARRAY
+	for _i = 0; _i <= STRLEN(_input); _i++
+	{
+		_currentletter = SUBSTR(_input,_i,1)
+		if _currentletter == _lastletter; _doubles ,= _currentletter
+		_lastletter = _currentletter
+	}
+	
+	_doubles = ARRAYDEDUP(_doubles)
+	
+	foreach _doubles; _double
+	{
+		_input = REPLACE(_input,"%(_double)%(_double)","%(_double)")
+	}
+	
+	_input
+}
+
+Mangler.Backwards
+{
+	_input = _argv[0]
+	_output = ""
+	
+	for _i = STRLEN(_input); _i >= 0 ; _i--
+	{
+		_output += TOLOWER(SUBSTR(_input,_i,1))
+	}
+	
+	Capitalize(_output)
+}
+
+Mangler.Stuttering
+{
+	_input = _argv[0]
+	_output = ""
+	
+	for _i = 1; _i <= STRLEN(_input); _i++
+	{
+		if _i > 1; _output += "-"
+		_output += SUBSTR(_input,0,_i)
+	}
+	
+	_output
+}
+
+Mangler.DragonNoises
+{
+	DragonNoisePrefix + TOLOWER(_argv[0]) + DragonNoiseSuffix
+}
+
+DragonNoisePrefix
+{
+	"Grrrrrrr"
+	"Rrrrararrr"
+}
+
+DragonNoiseSuffix
+{
+	"rrrrrrrr"
+	"rggrgrgr"
+}
+
+
+// Mangler.Uppercase
+// {
+	// _input = _argv[0]
+	// _output = ""
+	
+	// _output
+// }
+
+Mangler.CaseChange
+{
+	_input = _argv[0]
+	_output = ""
+	
+	for _i = 0; _i < STRLEN(_input); _i++
+	{
+		_str = SUBSTR(_input,_i,1)
+		if _i == 0; _output += _str
+		elseif RAND(2); _output += TOUPPER(_str)
+		else; _output += TOLOWER(_str)
+	}
+	
+	_output
+}
+
+Mangler.RepeatSingle
+{
+	_input = _argv[0]
+	_output = ""
+	_rand = RAND(10) + 3
+	
+	for _i = 0; _i < _rand; _i++
+	{
+		if _i == 0; _output += _input
+		elseif RAND(2); _output += TOUPPER(_input)
+		else; _output += TOLOWER(_input)
+	}
+	
+	_output
+}
+
+Mangler.LengthenPalindrome
+{
+	_input = _argv[0]
+	_output = ""
+	_middlenum = (STRLEN(_input) / 2)
+	_middle = SUBSTR(_input,_middlenum,1)
+	_isodd = STRLEN(_input) % 2
+	
+	_first = ""
+	_last = ""
+	
+	_first = SUBSTR(_input,0,_middlenum - 1)
+	if _isodd; _first = SUBSTR(_input,0,_middlenum)
+	else; _first = SUBSTR(_input,0,_middlenum - 1)
+	
+	if _isodd; _last = SUBSTR(_input,_middlenum + 1,_middlenum)
+	else; _last = SUBSTR(_input,_middlenum,_middlenum)
+	
+	_mid = ""
+	_rand = RAND(10) + 3
+	for _i = 0; _i < _rand; _i++
+	{
+		_mid += _middle
+	}
+	
+	_first + _mid + _last
+	
+	//_output
+}

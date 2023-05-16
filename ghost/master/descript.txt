@@ -13,3 +13,5 @@ sakura.name,Boss
 icon,icon.ico
 
 sstp.allowunspecifiedsend,0
+
+balloon,Stuck to a Filing Cabinet

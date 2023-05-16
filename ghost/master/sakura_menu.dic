@@ -12,8 +12,8 @@ OnSakuraMenu : all
 	
 	"\n\n\_q"
 	
-	"\![*]\q[So...,OnAiTalk]"
-	if LastTalk != ""; "  \![*]\__q[OnLastTalk]I'm sorry, what was that?\__q"
+	"\![*]\q[So...,OnAiTalk]\n"
+	if LastTalk != ""; "\![*]\__q[OnLastTalk]I'm sorry, what was that?\__q"
 	"\n\n"
 	
 	"\![*]\__q[OnAskQuestion]Can I ask you something?\__q"
@@ -130,7 +130,7 @@ OnTalkRateChange
 
 OnAskQuestion
 {
-	"\![open,inputbox,OnAskQuestion.Input,-1,--balloon=__InPuT%(C_BYTE1)BaLlOoN__]"
+	"\![open,inputbox,OnAskQuestion.Input,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]\t\*"
 	--
 	"\0\b[0]oh sure sure sure sure whats up"
 	--
@@ -146,7 +146,81 @@ OnCancelQuestion
 
 OnAskQuestion.Input
 {
-	"\0\b[0]You asked: %(reference0)\n\nOutput: %(ProcessQuestion(reference0))"
+	/*
+		Possible intents:
+		
+		growl
+		hiss
+		screaming
+		excited
+		interested
+		stressed
+		thoughtful
+		confused
+		inquisitive
+		hesitant
+		repeating
+		soft
+		loud
+		long
+		short
+		one word
+		definitive
+		demanding
+		
+		Repeated letter reference:
+		
+		aaa - screaming
+		eee - excited (also triggered by multiple scattered !s)
+		ooo - interested
+		hhh - stressed
+		mmm - thoughtful
+		sss - hiss (also triggered by multiple scattered Hs)
+		rrr - growl (also triggered by multiple scattered Gs)
+		?? - confused
+	*/
+	
+	_input = TOLOWER(reference0)
+	_intents = ProcessQuestion(_input)
+	
+	"\_q\0\b[0]You asked: %(reference0)\n\nOutput: %(ProcessQuestion(reference0))\n\n"
+	--
+	if Intent("soft,growl",_intents)
+	{
+		"oh is that a threat? hmmmmmmmm"
+	}
+	elseif Intent("screaming,loud",_intents)
+	{
+		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA WHY ARE WE SCREAMING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	}
+	elseif "gold" _in_ _input
+	{
+		"gold!!! my gold"
+	}
+	elseif _input == ""
+	{
+		"oh, uh, nothing to say, oh no"
+	}
+	else //Didn't match any intents
+	{
+		"Mysterious..."
+	}
+	--
+	"\n\n%(REPLACE(OnAskQuestion,'\_q',''))"
+}
+
+Intent
+{
+	_search = _argv[0]
+	_input = _argv
+	_input[0] = IARRAY //erase search term(s)
+	if "," _in_ _search; _search = SPLIT(_search,",")
+	
+	foreach _search; _term
+	{
+		if ASEARCH(_term,_input) == -1; {0; return}
+	}
+	1
 }
 
 //Here is where we process the question text and determine what sort of tone Boss thinks the user is taking/what topics they might be talking about
@@ -156,15 +230,59 @@ ProcessQuestion
 	_len = STRLEN(_input)
 	_output = IARRAY
 	
-	if LetterCount(_input,"g") + LetterCount(_input,"r") >= 10; _output ,= "growl"
+	/*
+		Possible intents:
+		
+		growl
+		hiss
+		screaming
+		excited
+		interested
+		stressed
+		thoughtful
+		confused
+		inquisitive
+		hesitant
+		repeating
+		soft
+		loud
+		long
+		short
+		one word
+		definitive
+		demanding
+		
+		Repeated letter reference:
+		
+		aaa - screaming
+		eee - excited (also triggered by multiple scattered !s)
+		ooo - interested
+		hhh - stressed
+		mmm - thoughtful
+		sss - hiss (also triggered by multiple scattered Hs)
+		rrr - growl (also triggered by multiple scattered Gs)
+		?? - confused
+	*/
 	
-	if LetterCount(_input,"h") >= 10; _output ,= "hiss"
-	
+	if LetterCount(_input,"g") + LetterCount(_input,"r") >= 10 || "rrr" _in_ _input; _output ,= "growl"
+	if LetterCount(_input,"h") >= 10 || "sss" _in_ _input; _output ,= "hiss"
+	if "aaa" _in_ _input; _output ,= "screaming"
+	if "eee" _in_ _input; _output ,= "excited" //same as ! but i think that's ok...
+	if "ooo" _in_ _input; _output ,= "interested"
+	if "hhh" _in_ _input; _output ,= "stressed"
+	if "mmm" _in_ _input; _output ,= "thoughtful"
+	if "??" _in_ _input; _output ,= "confused"
+	elseif LetterCount(_input,"?") >= 3 || SUBSTR(_input,_len - 1,1) == "?"; _output ,= "inquisitive"
+	if LetterCount(_input,"!") >= 2; _output ,= "excited"
+	if LetterCount(_input,"...") >= 2; _output ,= "hesitant"
+	if RepeatedWords(_input); _output ,= "repeating" //right now works with 2 or more words, do we want this to be 3 or more?
 	if _input == _argv[0]; _output ,= "soft" //All lowercase
-	
 	if TOUPPER(_input) == _argv[0]; _output ,= "loud" //All uppercase
-	
-	if RepeatedLetters(_input,"a") || RepeatedLetters(_input,"e"); _output ,= "repeating"
+	if STRLEN(_input) >= 100; _output ,= "long"
+	if STRLEN(_input) <= 10; _output ,= "short"
+	if ARRAYSIZE(SPLIT(_input," ")) == 1; _output ,= "one word"
+	if SUBSTR(_input,_len - 1,1) == "." && SUBSTR(_input,_len - 2,1) != "."; _output ,= "definitive"
+	if "!?" _in_ _input || "?!" _in_ _input; _output ,= "demanding"
 	
 	_output
 }
@@ -186,11 +304,28 @@ LetterCount
 	_num
 }
 
-RepeatedLetters
+//idk why i made this, this is silly and doesn't work
+// RepeatedLetters
+// {
+	// _input = _argv[0]
+	// _let = _argv[1]
+	// _replaced = REPLACE(_input,_let,"")
+	// _num = STRLEN(_input) - STRLEN(_replaced)
+	// _num >= 3
+// }
+
+RepeatedWords
 {
 	_input = _argv[0]
-	_let = _argv[1]
-	_replaced = REPLACE(_input,_let,"")
-	_num = STRLEN(_input) - STRLEN(_replaced)
-	_num >= 3
+	if " " _in_ _input
+	{
+		_input = SPLIT(_input," ")
+		_first = _input[0]
+		foreach _input; _word
+		{
+			if _word != _first; {0; return}
+		}
+		1
+	}
+	else; 0
 }

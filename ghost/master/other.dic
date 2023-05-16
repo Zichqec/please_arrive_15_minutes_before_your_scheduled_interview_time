@@ -15,6 +15,8 @@ OnTranslate
 	}
 	if ARRAYSIZE(_available_balloons) == 0; _available_balloons ,= 10
 	
+	if SHIORI3FW.BalloonName != "Stuck to a Filing Cabinet"; _talk = REPLACE(_talk,"—","\f[name,calibri]—\f[name,default]")
+	
 	if SHIORI3FW.BalloonName == "Stuck to a Filing Cabinet"
 	{
 		LOGGING("====================================================================")
@@ -39,9 +41,9 @@ OnTranslate
 			_talk = REPLACE(_talk,"\0\b[4]","\0\b[%(ANY(_available_balloons))%(_4)]",1)
 		}
 		
-		while "__InPuT%(C_BYTE1)BaLlOoN__" _in_ _talk
+		while "__INPUT%(C_BYTE1)BALLOON__" _in_ _talk
 		{
-			_talk = REPLACE(_talk,"__InPuT%(C_BYTE1)BaLlOoN__","%(ANY(_available_balloons))0",1)
+			_talk = REPLACE(_talk,"__INPUT%(C_BYTE1)BALLOON__","%(ANY(_available_balloons))0",1)
 		}
 		
 		//TODO make sure input boxes also get randomized

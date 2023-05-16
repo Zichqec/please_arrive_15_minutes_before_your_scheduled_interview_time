@@ -12,6 +12,7 @@ dic, boot.dic
 dic, mouse.dic
 dic, meta.dic
 dic, other.dic
+dic, responses.dic
 dic, sakura_menu.dic
 dic, word.dic
 

@@ -16,7 +16,8 @@ OnSakuraMenu : all
 	if LastTalk != ""; "\![*]\__q[OnLastTalk]I'm sorry, what was that?\__q"
 	"\n\n"
 	
-	"\![*]\__q[OnAskQuestion]Can I ask you something?\__q"
+	"\![*]\__q[OnAskMeAQuestion]Do you have more questions for me?\__q\n"
+	"\![*]\__q[OnAskBossAQuestion]Can I ask you something?\__q"
 	
 	"\n\n"
 	
@@ -37,12 +38,14 @@ OnCustomizeBalloon : all
 {
 	_colors = ("yellow","pink","blue","orange","green","purple","notary","inkwell","shimmer","starlight")
 	_b = ""
-	if reference0 == "off"; _b = "100"
-	elseif reference0 != ""; _b = reference0 + "2"
-	else; _b = "2"
+	if MAX(BalloonColors) == 0; _b = "100"
+	elseif TOSTR(TOINT(reference0)) != reference0; _b = "0"
+	elseif reference0 != ""; _b = reference0 + "0"
+	else; _b = "0"
 	
 	
-	"\C\![lock,balloonrepaint]\c\0\s[0]\b[%(_b),--fallback=2]\![set,autoscroll,disable]\_q\*"
+	"\C\![lock,balloonrepaint]\c\0\s[0]\b[%(_b),--fallback=2]\_q\*\![set,autoscroll,disable]"
+	
 	/*
 	
 		Need some sort of setup to tell which colors are on vs off
@@ -70,9 +73,10 @@ OnCustomizeBalloon : all
 	}
 	
 	"\n\f[align,center]"
-	"\![*]\q[All on,OnToggleAllBalloons,on]  \![*]\q[Defaults,OnToggleAllBalloons,default]  \![*]\q[All off,OnToggleAllBalloons,off]"
+	"\![*]\q[Defaults,OnToggleAllBalloons,default]  \![*]\q[Random selection,OnToggleAllBalloons,random]\n"
+	"\![*]\q[All on,OnToggleAllBalloons,on]  \![*]\q[All off,OnToggleAllBalloons,off]"
 	
-	"\n\n\f[align,center]"
+	"\n\n[75]\f[align,center]"
 	"\![*]\q[Back,OnSakuraMenu]  \![*]\q[Nevermind,blank]"
 	"\![unlock,balloonrepaint]"
 }
@@ -93,11 +97,18 @@ OnToggleAllBalloons
 	{
 		BalloonColors = (0,0,0,0,0,0,0,0,0,0)
 	}
+	elseif reference0 == "random"
+	{
+		for _i = 0; _i < ARRAYSIZE(BalloonColors); _i++
+		{
+			BalloonColors[_i] = RAND(2)
+		}
+	}
 	else //default
 	{
 		BalloonColors = (1,1,1,1,1,1,0,0,0,0)
 	}
-	"\C\![raise,OnCustomizeBalloon]"
+	"\C\![raise,OnCustomizeBalloon,%(reference0)]"
 }
 
 OnTalkRateMenu : all
@@ -110,7 +121,7 @@ OnTalkRateMenu : all
 	elseif aitalkinterval == 300; _talkrate = "5 minutes"
 	elseif aitalkinterval == 600; _talkrate = "10 minutes"
 	
-	"\0\b[0]\s[0]\![set,autoscroll,disable]\_q"
+	"\C\![lock,balloonrepaint]\c\0\b[2]\s[0]\![set,autoscroll,disable]\_q"
 	"Current interval: \f[color,default.anchor]%(_talkrate)\f[color,default]\n\n"
 	
 	"\![*]\q[Off,OnTalkRateChange,0]\n"
@@ -120,17 +131,30 @@ OnTalkRateMenu : all
 	"\![*]\q[5 minutes,OnTalkRateChange,300]\n"
 	"\![*]\q[10 minutes,OnTalkRateChange,600]\n"
 	"\n"
+	"Talk about: \f[color,default.anchor]%(TalkTopic)\f[color,default]\n\n"
+	"\![*]\q[Interview questions,OnTalkTopicChange,questions]\n"
+	"\![*]\q[Idle chatter,OnTalkTopicChange,chatter]\n"
+	"\![*]\q[Questions & chatter,OnTalkTopicChange,both]\n"
+	"\n"
 	"\![*]\q[Back,OnSakuraMenu]  \![*]\q[Nevermind,blank]"
+	"\![unlock,balloonrepaint]"
 }
 
 OnTalkRateChange
 {
 	aitalkinterval = TOINT(reference0)
+	"\C\![raise,OnTalkRateMenu]"
 }
 
-OnAskQuestion
+OnTalkTopicChange
 {
-	"\![open,inputbox,OnAskQuestion.Input,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]\t\*"
+	TalkTopic = reference0
+	"\C\![raise,OnTalkRateMenu]"
+}
+
+OnAskBossAQuestion
+{
+	"\![open,inputbox,OnAskQuestion,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]\t\*"
 	--
 	"\0\b[0]oh sure sure sure sure whats up"
 	--
@@ -139,74 +163,9 @@ OnAskQuestion
 
 OnCancelQuestion
 {
-	"\![close,inputbox,OnAskQuestion.Input]"
+	"\![close,inputbox,OnAskQuestion]"
 	--
 	"oh ok"
-}
-
-OnAskQuestion.Input
-{
-	/*
-		Possible intents:
-		
-		growl
-		hiss
-		screaming
-		excited
-		interested
-		stressed
-		thoughtful
-		confused
-		inquisitive
-		hesitant
-		repeating
-		soft
-		loud
-		long
-		short
-		one word
-		definitive
-		demanding
-		
-		Repeated letter reference:
-		
-		aaa - screaming
-		eee - excited (also triggered by multiple scattered !s)
-		ooo - interested
-		hhh - stressed
-		mmm - thoughtful
-		sss - hiss (also triggered by multiple scattered Hs)
-		rrr - growl (also triggered by multiple scattered Gs)
-		?? - confused
-	*/
-	
-	_input = TOLOWER(reference0)
-	_intents = ProcessQuestion(_input)
-	
-	"\_q\0\b[0]You asked: %(reference0)\n\nOutput: %(ProcessQuestion(reference0))\n\n"
-	--
-	if Intent("soft,growl",_intents)
-	{
-		"oh is that a threat? hmmmmmmmm"
-	}
-	elseif Intent("screaming,loud",_intents)
-	{
-		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA WHY ARE WE SCREAMING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-	}
-	elseif "gold" _in_ _input
-	{
-		"gold!!! my gold"
-	}
-	elseif _input == ""
-	{
-		"oh, uh, nothing to say, oh no"
-	}
-	else //Didn't match any intents
-	{
-		"Mysterious..."
-	}
-	--
-	"\n\n%(REPLACE(OnAskQuestion,'\_q',''))"
 }
 
 Intent
@@ -330,7 +289,17 @@ RepeatedWords
 	else; 0
 }
 
-
+OnTestMangler : all
+{
+	_name = _argv[0]
+	LOGGING("====================================================================")
+	LOGGING("_name: %(_name)")
+	for _i = 7; _i >= 0; _i--
+	{
+		LOGGING("_i: %(_i)")
+		NameMangler(_name,_i) + "\n"
+	}
+}
 
 NameMangler
 {
@@ -351,6 +320,29 @@ NameMangler
 		Once you make it to the end of the list! They got it right! Yay!
 		If somehow you get through all these options without a single mangle happening. ....... damn, impressive, let me know what your name is so i can make another special case
 	*/
+	
+	_input = _argv[0]
+	_index = TOINT(_argv[1])
+	
+	if STRLEN(_input) == 1
+	{
+		Mangler.RepeatSingle(_input)
+		return
+	}
+	
+	switch _index
+	{
+		Mangler.ShortenDoubles(_input)
+		Mangler.LengthenDoubles(_input)
+		Mangler.CaseChange(_input)
+		Mangler.VowelConsonant(_input)
+		Mangler.ConsonantVowel(_input)
+		Mangler.Stuttering(_input)
+		Mangler.DragonNoises(_input)
+		if ReverseString(TOLOWER(_input)) == TOLOWER(_input); Mangler.LengthenPalindrome(_input)
+		else; Mangler.Backwards(_input)
+	}
+	
 }
 
 Mangler.VowelConsonant
@@ -468,12 +460,21 @@ Mangler.Backwards
 	_input = _argv[0]
 	_output = ""
 	
+	_output = ReverseString(_input)
+	
+	Capitalize(_output)
+}
+
+ReverseString
+{
+	_input = _argv[0]
+	_output = ""
+	
 	for _i = STRLEN(_input); _i >= 0 ; _i--
 	{
 		_output += TOLOWER(SUBSTR(_input,_i,1))
 	}
-	
-	Capitalize(_output)
+	_output
 }
 
 Mangler.Stuttering

@@ -2,7 +2,13 @@ OnAiTalk
 {
 	if CHAIN.IDName == ""
 	{
-		LastTalk = RandomTalk
+		if TalkTopic == "questions"; LastTalk = QuestionTalk
+		elseif TalkTopic == "chatter"; LastTalk = RandomTalk
+		else //Both
+		{
+			if RAND(2); LastTalk = OnAskMeAQuestion
+			else; LastTalk = RandomTalk
+		}
 	}
 	else
 	{
@@ -11,7 +17,18 @@ OnAiTalk
 	LastTalk
 }
 
-RandomTalk : nonoverlap_pool
+OnAskMeAQuestion
+{
+	"%(input)" + QuestionTalk
+}
+
+QuestionTalk : nonoverlap_pool
 {
 	"\0\b[0]interview question"
 }
+
+RandomTalk : nonoverlap_pool
+{
+	"\0\b[0]idle chatter"
+}
+

@@ -225,3 +225,8 @@ IsVowel
 		others; 0
 	}
 }
+
+input
+{
+	"\![open,inputbox,OnAnswerQuestion,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]"
+}

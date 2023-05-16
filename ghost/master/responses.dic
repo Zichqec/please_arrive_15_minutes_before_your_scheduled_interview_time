@@ -1,0 +1,76 @@
+/*
+	Possible intents:
+	
+	growl
+	hiss
+	screaming
+	excited
+	interested
+	stressed
+	thoughtful
+	confused
+	inquisitive
+	hesitant
+	repeating
+	soft
+	loud
+	long
+	short
+	one word
+	definitive
+	demanding
+	
+	Repeated letter reference:
+	
+	aaa - screaming
+	eee - excited (also triggered by multiple scattered !s)
+	ooo - interested
+	hhh - stressed
+	mmm - thoughtful
+	sss - hiss (also triggered by multiple scattered Hs)
+	rrr - growl (also triggered by multiple scattered Gs)
+	?? - confused
+*/
+
+//User's response to Boss asking a question
+OnAnswerQuestion
+{
+	_input = TOLOWER(reference0)
+	_intents = ProcessQuestion(_input)
+	
+	//This can be set up like the if/else structure in OnAskQuestion below
+}
+
+//Boss's response to the user asking a question
+OnAskQuestion
+{
+	_input = TOLOWER(reference0)
+	_intents = ProcessQuestion(_input)
+	
+	//The top line here and the line at the bottom can be commented if you want to get rid of the debug info
+	"\_q\0\b[0]You asked: %(reference0)\n\nOutput: %(ProcessQuestion(reference0))\n\n"
+	--
+	if Intent("soft,growl",_intents)
+	{
+		"oh is that a threat? hmmmmmmmm"
+	}
+	elseif Intent("screaming,loud",_intents)
+	{
+		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA WHY ARE WE SCREAMING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	}
+	elseif "gold" _in_ _input
+	{
+		"gold!!! my gold"
+	}
+	elseif _input == ""
+	{
+		"oh, uh, nothing to say, oh no"
+	}
+	else //Didn't match any intents
+	{
+		"Mysterious..."
+	}
+	--
+	"\n\n%(REPLACE(OnAskBossAQuestion,'\_q',''))"
+}
+

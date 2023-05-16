@@ -12,7 +12,7 @@ overlay_outside_balloon,1
 
 origin.y,24
 
-wordwrappoint.x,-30
+wordwrappoint.x,-32
 wordwrappoint.y,0
 
 font.name,Lucida Console
@@ -21,15 +21,30 @@ font.color.r,0
 font.color.g,0
 font.color.b,0
 
-cursor.blendmethod,none
-cursor.style,underline
-cursor.pen.color.r,255
-cursor.pen.color.g,164
-cursor.pen.color.b,006
+disable.font.color.r,90
+disable.font.color.g,90
+disable.font.color.b,90
 
-anchor.font.color.r,255
-anchor.font.color.g,164
-anchor.font.color.b,006
+cursor.blendmethod,none
+cursor.style,square
+cursor.pen.color.r,255
+cursor.pen.color.g,233
+cursor.pen.color.b,127
+cursor.brush.color.r,255
+cursor.brush.color.g,233
+cursor.brush.color.b,127
+
+anchor.blendmethod,none
+anchor.style,square
+anchor.pen.color.r,255
+anchor.pen.color.g,233
+anchor.pen.color.b,127
+anchor.brush.color.r,255
+anchor.brush.color.g,233
+anchor.brush.color.b,127
+anchor.font.color.r,210
+anchor.font.color.g,000
+anchor.font.color.b,000
 
 number.font.color.r,0
 number.font.color.g,0
@@ -63,7 +78,7 @@ validrect.right,-21
 validrect.bottom,-34
 
 communicatebox.x,6
-communicatebox.y,52
+communicatebox.y,53
 communicatebox.width,480
 communicatebox.height,18
 

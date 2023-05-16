@@ -1,0 +1,13 @@
+cursor.pen.color.r,208
+cursor.pen.color.g,170
+cursor.pen.color.b,255
+cursor.brush.color.r,208
+cursor.brush.color.g,170
+cursor.brush.color.b,255
+
+anchor.pen.color.r,208
+anchor.pen.color.g,170
+anchor.pen.color.b,255
+anchor.brush.color.r,208
+anchor.brush.color.g,170
+anchor.brush.color.b,255

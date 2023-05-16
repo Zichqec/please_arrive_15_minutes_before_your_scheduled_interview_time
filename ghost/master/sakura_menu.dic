@@ -111,7 +111,7 @@ OnTalkRateMenu : all
 	elseif aitalkinterval == 600; _talkrate = "10 minutes"
 	
 	"\0\b[0]\s[0]\![set,autoscroll,disable]\_q"
-	"Current interval: %(_talkrate)\n\n"
+	"Current interval: \f[color,default.anchor]%(_talkrate)\f[color,default]\n\n"
 	
 	"\![*]\q[Off,OnTalkRateChange,0]\n"
 	"\![*]\q[30 seconds,OnTalkRateChange,30]\n"

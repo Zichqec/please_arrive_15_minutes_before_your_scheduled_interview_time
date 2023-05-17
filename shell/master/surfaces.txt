@@ -11,12 +11,54 @@ surface0
 	element0,overlay,surface100.png,0,0
 }
 
+surface700
+{
+	element0,overlay,surface0.png,0,0
+	
+	animation0.interval,runonce
+	animation0.pattern0,overlay,5,0,0,0
+	animation0.pattern1,overlay,6,700,0,0
+	animation0.pattern2,overlay,5,700,0,0
+	
+	//desk
+	animation1.interval,runonce
+	animation1.pattern0,overlay,1,0,0,0
+	animation1.option,background
+	
+	animation3.interval,runonce
+	animation3.pattern0,overlay,3,0,0,0
+	animation3.pattern1,start,59999,0,0,0
+	
+	//dark overlay
+	animation59900.interval,bind
+	animation59900.pattern0,overlayfast,99,0,0,0
+	
+	animation59999.interval,bind + never
+	animation59999.pattern0,overlay,599,0,0,0
+}
+
 surface.append0,100-104
 {
 	//desk
 	animation1.interval,runonce
 	animation1.pattern0,overlay,1,0,0,0
 	animation1.option,background
+	
+	animation2.interval,runonce
+	animation2.pattern0,overlay,2,0,0,0
+	
+	animation3.interval,runonce
+	animation3.pattern0,overlay,3,0,0,0
+	animation3.pattern1,start,59999,0,0,0
+	
+	animation4.interval,never
+	animation4.pattern0,stop,2
+	animation4.pattern1,overlay,4,0,0,0
+	animation4.pattern2,overlay,-1,100,0,0,0
+	
+	animation105.interval,never
+	animation105.pattern0,overlay,105,0,0,0
+	animation105.option,background
 	
 	//heads
 	
@@ -106,11 +148,24 @@ surface.append0,100-104
 	animation214.pattern1,overlay,214,0,0,0
 	animation214.pattern2,start,60014
 	
+	//
+	animation500.interval,never
+	animation500.pattern0,stop,200
+	animation500.pattern1,overlay,500,0,0,0
+	animation500.pattern2,start,501
+	
+	animation501.interval,never
+	animation501.pattern0,overlay,501,0,0,0
+	animation501.option,background
+	
 	
 	
 	//dark overlay
 	animation59900.interval,bind
 	animation59900.pattern0,overlayfast,99,0,0,0
+	
+	animation59999.interval,bind + never
+	animation59999.pattern0,overlay,599,0,0,0
 	
 	//eyes - skip 210, 212, and 213
 	animation60000.interval,bind + never

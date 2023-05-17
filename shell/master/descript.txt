@@ -11,6 +11,7 @@ seriko.use_self_alpha,1
 //sakura.menu,hidden
 
 sakura.bindgroup59900.name,Lights,Off
+sakura.bindgroup59900.addid,59999
 sakura.bindgroup59900.addid,60000
 sakura.bindgroup59900.addid,60001
 sakura.bindgroup59900.addid,60002

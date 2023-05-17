@@ -109,7 +109,7 @@ slime
 	"blood"
 	"silent"
 	"probably edible"
-	"%(metal)
+	"%(metal)"
 }
 
 TempNames

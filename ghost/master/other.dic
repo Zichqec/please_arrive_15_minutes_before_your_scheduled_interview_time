@@ -315,106 +315,111 @@ boldoff
 //Bodies
 neutral
 {
-	
+	"\s[100]"
 }
 
 paper
 {
-	
+	"\s[101]"
 }
 
 speak
 {
-	
+	"\s[102]"
 }
 
 tie
 {
-	
+	"\s[103]"
 }
 
 agitated
 {
-	
+	"\s[104]"
+}
+
+wings
+{
+	"\i[105]"
 }
 
 //Expressions
 forward
 {
-	
+	"\i[200]"
 }
 
 read
 {
-	
+	"\i[201]"
 }
 
 squint
 {
-	
+	"\i[202]"
 }
 
 threaten
 {
-	
+	"\i[203]"
 }
 
 ceiling
 {
-	
+	"\i[204]"
 }
 
 plead
 {
-	
+	"\i[205]"
 }
 
 nervous
 {
-	
+	"\i[206]"
 }
 
 scowl
 {
-	
+	"\i[207]"
 }
 
 smile
 {
-	
+	"\i[208]"
 }
 
 look
 {
-	
+	"\i[209]"
 }
 
 happy
 {
-	
+	"\i[210]"
 }
 
 serious
 {
-	
+	"\i[211]"
 }
 
 pet
 {
-	
+	"\i[212]"
 }
 
 behind
 {
-	
+	"\i[213]"
 }
 
 processing
 {
-	
+	"\i[214]"
 }
 
 tired
 {
-	
+	"\i[500]"
 }

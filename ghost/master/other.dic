@@ -285,3 +285,29 @@ OnNotifyDressupInfo
 		if _dressup[1,C_BYTE1] == "Tie"; TiesAvailable ,= _dressup[2,C_BYTE1]
 	}
 }
+
+narration
+{
+	if SHIORI3FW.BalloonName == "Stuck to a Filing Cabinet"; "\f[name,wingdings]\f[height,+4]\f[valign,top]!\f[height,default]\f[name,default]\n \n[-100]\f[valign,bottom]\![quicksection,true]  \![quicksection,false] "
+	else; "\f[name,wingdings]!\f[name,default] "
+}
+
+italic
+{
+	"\f[italic,1]"
+}
+
+italicoff
+{
+	"\f[italic,0]"
+}
+
+bold
+{
+	"\f[bold,1]"
+}
+
+boldoff
+{
+	"\f[bold,0]"
+}

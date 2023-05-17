@@ -31,4 +31,3 @@ RandomTalk : nonoverlap_pool
 {
 	"\0\b[0]idle chatter"
 }
-

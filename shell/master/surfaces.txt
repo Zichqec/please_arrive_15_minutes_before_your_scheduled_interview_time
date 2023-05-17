@@ -1,10 +1,3 @@
-//Some quick notes:
-//1: SERIKO does NOT support same line comments. If you want to write a comment, ALWAYS PUT IT ON ITS OWN LINE. If you put comments after other bits of code in the same line, it may seem to work at first, but it can cause cryptic errors down the line. Save yourself the trouble. Always put comments on their own lines in here. Additionally, it doesn't do block comments with /* and */
-//2: The example blink code is set up with the new definition, which I recommend you use. Here is my guide to what that means: https://zichqec.github.io/s-the-skeleton/olddef_vs_newdef
-//If you want to use old definition, make sure to erase that 'version,1' bit.
-//3: It is very common for people to feel stuck on how to start, because they don't know what expressions to make without having dialogue, but they don't know what dialogue to write without having expressions. If you're feeling that way, I highly suggest using emoji as substitutes just to get you started! That may sound weird if you're not fond of emoji, but seriously, just give it a try. I've found that just writing a few messages in Discord and using the emoji to signify surface changes is a great help to get me past that initial hump where it feels impossible.
-
-
 descript
 {
 	version,1
@@ -12,20 +5,147 @@ descript
 
 //—————————————————————————————— Sakura surfaces ——————————————————————————————
 
+//idk if i want this here..... but idk i guess i should
 surface0
 {
-	collision,0,0,130,65,head
-	
-	//Example code for blink animation - uncomment if you want it
-	//animation0.interval,random,4
-	//animation0.pattern1,overlay,101,0,0,0
-	//animation0.pattern2,overlay,102,100,0,0
-	//animation0.pattern3,overlay,-1,50,0,0
+	element0,overlay,surface100.png,0,0
 }
 
-//—————————————————————————————— Kero surfaces ——————————————————————————————
-
-surface10
+surface.append0,100-104
 {
-	collision,0,0,130,65,head
+	//desk
+	animation1.interval,runonce
+	animation1.pattern0,overlay,1,0,0,0
+	animation1.option,background
+	
+	//heads
+	
+	//Neutral
+	animation200.interval,runonce
+	animation200.pattern0,overlay,200,0,0,0
+	animation200.pattern1,start,60000
+	
+	//
+	animation201.interval,never
+	animation201.pattern0,stop,200
+	animation201.pattern1,overlay,201,0,0,0
+	animation201.pattern2,start,60001
+	
+	//
+	animation202.interval,never
+	animation202.pattern0,stop,200
+	animation202.pattern1,overlay,202,0,0,0
+	animation202.pattern2,start,60002
+	
+	//
+	animation203.interval,never
+	animation203.pattern0,stop,200
+	animation203.pattern1,overlay,203,0,0,0
+	animation203.pattern2,start,60003
+	
+	//
+	animation204.interval,never
+	animation204.pattern0,stop,200
+	animation204.pattern1,overlay,204,0,0,0
+	animation204.pattern2,start,60004
+	
+	//
+	animation205.interval,never
+	animation205.pattern0,stop,200
+	animation205.pattern1,overlay,205,0,0,0
+	animation205.pattern2,start,60005
+	
+	//
+	animation206.interval,never
+	animation206.pattern0,stop,200
+	animation206.pattern1,overlay,206,0,0,0
+	animation206.pattern2,start,60006
+	
+	//
+	animation207.interval,never
+	animation207.pattern0,stop,200
+	animation207.pattern1,overlay,207,0,0,0
+	animation207.pattern2,start,60007
+	
+	//
+	animation208.interval,never
+	animation208.pattern0,stop,200
+	animation208.pattern1,overlay,208,0,0,0
+	animation208.pattern2,start,60008
+	
+	//
+	animation209.interval,never
+	animation209.pattern0,stop,200
+	animation209.pattern1,overlay,209,0,0,0
+	animation209.pattern2,start,60009
+	
+	//
+	animation210.interval,never
+	animation210.pattern0,stop,200
+	animation210.pattern1,overlay,210,0,0,0
+	
+	//
+	animation211.interval,never
+	animation211.pattern0,stop,200
+	animation211.pattern1,overlay,211,0,0,0
+	animation211.pattern2,start,60011
+	
+	//
+	animation212.interval,never
+	animation212.pattern0,stop,200
+	animation212.pattern1,overlay,212,0,0,0
+	
+	//
+	animation213.interval,never
+	animation213.pattern0,stop,200
+	animation213.pattern1,overlay,213,0,0,0
+	
+	//
+	animation214.interval,never
+	animation214.pattern0,stop,200
+	animation214.pattern1,overlay,214,0,0,0
+	animation214.pattern2,start,60014
+	
+	
+	
+	//dark overlay
+	animation59900.interval,bind
+	animation59900.pattern0,overlayfast,99,0,0,0
+	
+	//eyes - skip 210, 212, and 213
+	animation60000.interval,bind + never
+	animation60000.pattern0,overlay,600,0,0,0
+	
+	animation60001.interval,bind + never
+	animation60001.pattern0,overlay,601,0,0,0
+	
+	animation60002.interval,bind + never
+	animation60002.pattern0,overlay,602,0,0,0
+	
+	animation60003.interval,bind + never
+	animation60003.pattern0,overlay,603,0,0,0
+	
+	animation60004.interval,bind + never
+	animation60004.pattern0,overlay,604,0,0,0
+	
+	animation60005.interval,bind + never
+	animation60005.pattern0,overlay,605,0,0,0
+	
+	animation60006.interval,bind + never
+	animation60006.pattern0,overlay,606,0,0,0
+	
+	animation60007.interval,bind + never
+	animation60007.pattern0,overlay,607,0,0,0
+	
+	animation60008.interval,bind + never
+	animation60008.pattern0,overlay,608,0,0,0
+	
+	animation60009.interval,bind + never
+	animation60009.pattern0,overlay,609,0,0,0
+	
+	animation60011.interval,bind + never
+	animation60011.pattern0,overlay,611,0,0,0
+	
+	animation60014.interval,bind + never
+	animation60014.pattern0,overlay,614,0,0,0
 }

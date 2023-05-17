@@ -301,6 +301,34 @@ OnTestMangler : all
 	}
 }
 
+ProgressMangler
+{
+	LOGGING("====================================================================")
+	if !ISVAR("NameIndex"); NameIndex = 7
+	_input = SavedUsername
+	_output = ""
+	
+	if _input == ""
+	{
+		NameIndex = 0
+		TempNames
+		return
+	}
+	
+	while _output == _input || _output == ""
+	{
+		_output = NameMangler(_input,NameIndex)
+		if NameIndex <= 0
+		{
+			_output = username
+			break
+		}
+		else; NameIndex--
+	}
+	
+	CurrentName = _output
+}
+
 NameMangler
 {
 	/*

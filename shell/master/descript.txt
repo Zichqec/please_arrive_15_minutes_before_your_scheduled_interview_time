@@ -7,3 +7,5 @@ craftmanurl,
 
 seriko.alignmenttodesktop,bottom
 seriko.use_self_alpha,1
+
+sakura.menu,hidden

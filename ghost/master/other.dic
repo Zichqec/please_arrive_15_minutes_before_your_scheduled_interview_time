@@ -208,17 +208,10 @@ With this function, you can quickly customize words that need to change based on
 
 */
 
-//Copied from the base SHIORI files, but with the username variable added
-OnNotifyUserInfo : void
+//why didn't i do this in the first place tho........
+username
 {
-	SHIORI3FW.UserName = reference[0]
-	username = reference[0]
-	SHIORI3FW.UserNameFull = reference[1]
-	SHIORI3FW.UserBirthday = SPLIT(reference[2],',',3)
-	for _i = 0 ; _i < 3 ; _i++ {
-		SHIORI3FW.UserBirthday[_i] = TOINT(SHIORI3FW.UserBirthday[_i])
-	}
-	SHIORI3FW.UserSex = reference[3]
+	SHIORI3FW.UserName
 }
 
 Capitalize
@@ -241,4 +234,54 @@ IsVowel
 input
 {
 	"\![open,inputbox,OnAnswerQuestion,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]"
+}
+
+name
+{
+	_name = TempNames
+	if NameDiscovered
+	{
+		_name = CurrentName
+		"\_a[OnQuestionName]%(_name)\_a"
+	}
+	else; _name
+}
+
+OnQuestionName
+{
+	_index = NameIndex
+	if SavedUsername != username //New name
+	{
+		NameIndex = 7
+		SavedUsername = username
+		ProgressMangler
+		"Oh? Name changed? Ok! Let me see here, it's....... %(CurrentName)! Yes!"
+	}
+	elseif NameIndex > 0
+	{
+		ProgressMangler
+		
+		if _index == 1 //Saying it right for the first time
+		{
+			"%(CurrentName)? %(CurrentName)! %(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName)~!!"
+		}
+		else //Getting it wrong in a new way
+		{
+			"oh oh ok! i got it, it's %(CurrentName)."
+		}
+	}
+	elseif NameIndex == 0 //Already had it right
+	{
+		"Yes yes, I remember, %(CurrentName)! %(CurrentName) %(CurrentName) %(CurrentName)~"
+	}
+}
+
+OnNotifyDressupInfo
+{
+	TiesAvailable = IARRAY
+	// [character ID, category name, part name, option, on-1/off-0, thumbnail path]
+	foreach reference; _dressup
+	{
+		if _dressup[1,C_BYTE1] == "Tie"; TiesAvailable ,= _dressup[2,C_BYTE1]
+	}
 }

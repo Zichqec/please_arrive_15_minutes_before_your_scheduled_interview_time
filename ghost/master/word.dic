@@ -37,3 +37,16 @@ doyou
 	"If I ask friend of friend of stranger of friend, they say you"
 	"Tell, tell. You"
 }
+
+//For the name mangler but feel free to use elsewhere also
+DragonNoisePrefix
+{
+	"Grrrrrrr"
+	"Rrrrararrr"
+}
+
+DragonNoiseSuffix
+{
+	"rrrrrrrr"
+	"rggrgrgr"
+}

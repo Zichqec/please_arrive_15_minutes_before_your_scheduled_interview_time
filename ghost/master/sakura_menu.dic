@@ -7,7 +7,7 @@ SakuraMenuGreetings : nonoverlap
 //Because there is an all modifier here, you don't need to write -- between menu options
 OnSakuraMenu : all
 {
-	"\0\b[2]\s[0]\![set,autoscroll,disable]"
+	"\0\b[2]\s[0]\![set,autoscroll,disable]\![no-pause]"
 	if SHIORI3FW.Eventid == "OnMouseDoubleClick"; SakuraMenuGreetings //The check here is so they won't comment if you click the back button. Remove if you prefer
 	
 	"\n\n\_q"
@@ -44,7 +44,7 @@ OnCustomizeBalloon : all
 	else; _b = "0"
 	
 	
-	"\C\![lock,balloonrepaint]\c\0\s[0]\b[%(_b),--fallback=2]\_q\*\![set,autoscroll,disable]"
+	"\C\![lock,balloonrepaint]\c\0\s[0]\b[%(_b),--fallback=2]\_q\*\![set,autoscroll,disable]\![no-pause]"
 	
 	/*
 	
@@ -121,7 +121,7 @@ OnTalkRateMenu : all
 	elseif aitalkinterval == 300; _talkrate = "5 minutes"
 	elseif aitalkinterval == 600; _talkrate = "10 minutes"
 	
-	"\C\![lock,balloonrepaint]\c\0\b[2]\s[0]\![set,autoscroll,disable]\_q"
+	"\C\![lock,balloonrepaint]\c\0\b[2]\s[0]\![set,autoscroll,disable]\_q\![no-pause]"
 	"Current interval: \f[color,default.anchor]%(_talkrate)\f[color,default]\n\n"
 	
 	"\![*]\q[Off,OnTalkRateChange,0]\n"
@@ -158,7 +158,7 @@ OnAskBossAQuestion
 	--
 	"\0\b[0]oh sure sure sure sure whats up"
 	--
-	"\_q\n\n\![*]\__q[OnCancelQuestion]Actually, nevermind...\__q"
+	"\_q\n\n\![*]\__q[OnCancelQuestion]Actually,\_w[0] nevermind...\__q"
 }
 
 OnCancelQuestion
@@ -496,17 +496,7 @@ Mangler.DragonNoises
 	DragonNoisePrefix + TOLOWER(_argv[0]) + DragonNoiseSuffix
 }
 
-DragonNoisePrefix
-{
-	"Grrrrrrr"
-	"Rrrrararrr"
-}
 
-DragonNoiseSuffix
-{
-	"rrrrrrrr"
-	"rggrgrgr"
-}
 
 
 // Mangler.Uppercase

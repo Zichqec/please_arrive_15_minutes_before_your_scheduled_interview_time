@@ -49,6 +49,18 @@ OnTranslate
 		//TODO make sure input boxes also get randomized
 	}
 	
+	if "\![no-pause]" !_in_ _talk
+	{
+		_talk = REPLACE(_talk,". ",".\w8\w8\w8 ")
+		_talk = REPLACE(_talk,", ",",\w8 ")
+		_talk = REPLACE(_talk,"? ","?\w8\w8\w8\w8 ")
+		_talk = REPLACE(_talk,"! ","!\w8\w8 ")
+		_talk = REPLACE(_talk,": ",":\w8\w8 ")
+		_talk = REPLACE(_talk,"; ",";\w8\w8 ")
+		_talk = REPLACE(_talk,"- ","-\w8\w8\w8 ")
+		_talk = REPLACE(_talk,"~ ","~\w8 ")
+		_talk = REPLACE(_talk,"... ","...\w8\w8\w8\w8\w8\w8 ")
+	}
 	
 	//If you want to add anything to OnTranslate, like text replacement, I would put it after this point, generally. Just make sure it's before the TOSTR(_talk)
 	

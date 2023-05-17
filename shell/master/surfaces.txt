@@ -15,15 +15,15 @@ surface700
 {
 	element0,overlay,surface0.png,0,0
 	
-	animation0.interval,runonce
+	animation0.interval,always
 	animation0.pattern0,overlay,5,0,0,0
 	animation0.pattern1,overlay,6,700,0,0
 	animation0.pattern2,overlay,5,700,0,0
 	
 	//desk
-	animation1.interval,runonce
-	animation1.pattern0,overlay,1,0,0,0
-	animation1.option,background
+	animation100000.interval,runonce
+	animation100000.pattern0,overlay,1,0,0,0
+	animation100000.option,background
 	
 	animation3.interval,runonce
 	animation3.pattern0,overlay,3,0,0,0
@@ -40,9 +40,9 @@ surface700
 surface.append0,100-104
 {
 	//desk
-	animation1.interval,runonce
-	animation1.pattern0,overlay,1,0,0,0
-	animation1.option,background
+	animation100000.interval,runonce
+	animation100000.pattern0,overlay,1,0,0,0
+	animation100000.option,background
 	
 	animation2.interval,runonce
 	animation2.pattern0,overlay,2,0,0,0
@@ -203,4 +203,46 @@ surface.append0,100-104
 	
 	animation60014.interval,bind + never
 	animation60014.pattern0,overlay,614,0,0,0
+}
+
+//Normal ties
+surface.append0,100-103
+{
+	animation1000.interval,bind
+	animation1000.pattern0,overlay,10002,0,0,0
+	animation1000.option,background
+}
+
+//Agitated ties
+surface.append104
+{
+	animation1000.interval,bind
+	animation1000.pattern0,overlay,10003,0,0,0
+	animation1000.option,background
+}
+
+// surface502
+// {
+	// element0,overlay,surface502.png,0,0
+	
+	// animation1000.interval,bind
+	// animation1000.pattern0,overlayfast,1000,0,579,373
+// }
+
+// surface503
+// {
+	// animation1000.interval,bind
+	// animation1000.pattern0,overlayfast,1000,0,579,313
+// }
+
+surface10002
+{
+	element0,overlay,surface502.png,0,0
+	element1,overlayfast,surface1000.png,580,373
+}
+
+surface10003
+{
+	element0,overlay,surface503.png,0,0
+	element1,overlayfast,surface1000.png,570,313
 }

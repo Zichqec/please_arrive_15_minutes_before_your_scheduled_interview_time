@@ -6,7 +6,7 @@ OnAiTalk
 		elseif TalkTopic == "chatter"; LastTalk = RandomTalk
 		else //Both
 		{
-			if RAND(2); LastTalk = OnAskMeAQuestion
+			if RAND(2); LastTalk = QuestionTalk
 			else; LastTalk = RandomTalk
 		}
 	}
@@ -20,13 +20,19 @@ OnAiTalk
 
 OnAskMeAQuestion
 {
-	"%(input)" + QuestionTalk
+	QuestionTalk
 }
 
 QuestionTalk : nonoverlap_pool
 {
-	"\0\b[4]%(speak)%(forward)%(doyou)... %(neutral)%(nervous)consider yourself edible?"
-	"\0\b[4]%(speak)%(plead)On scale of %(scale), how would you rate this interview?"
+	"\0\b[4]%(input)%(speak)%(forward)%(doyou)... %(neutral)%(nervous)consider yourself edible?"
+	"\0\b[4]%(input)%(speak)%(plead)On scale of %(scale), how would you rate this interview?"
+	
+	"\0\b[0]Have you ever worked with a dragon before?%(yesno('worked with dragon'))"
+	"\0\b[0]Have you ever been caught stealing?%(yesno('caught stealing'))"
+	"\0\b[0]Do you like scales?%(yesno('yes'))"
+	"\0\b[0]Do you plan to leave the area in the next 100 years?%(yesno('no'))"
+	"\0\b[0]Do you eat bugs?%(yesno)"
 }
 
 RandomTalk : nonoverlap_pool

@@ -39,6 +39,84 @@ OnAnswerQuestion
 	_intents = ProcessQuestion(_input)
 	
 	//This can be set up like the if/else structure in OnAskQuestion below
+	if Intent("soft,growl",_intents)
+	{
+		"oh is that a threat? hmmmmmmmm"
+	}
+	elseif Intent("screaming,loud",_intents)
+	{
+		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA WHY ARE WE SCREAMING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+	}
+	elseif "gold" _in_ _input
+	{
+		"gold!!! my gold"
+	}
+	elseif _input == ""
+	{
+		"oh, uh, nothing to say, oh no"
+	}
+	else //Didn't match any intents
+	{
+		"Mysterious..."
+	}
+}
+
+//Resoponses to yes/no questions
+OnAnswerYesNo
+{
+	"\0\b[0]"
+	--
+	if reference1 == "worked with dragon"
+	{
+		if reference0 == "yes"
+		{
+			"WERE THEY BIGGER THAN ME!?"
+		}
+		else
+		{
+			"oh good I would hate to have dragonly competition"
+		}
+	}
+	elseif reference1 == "caught stealing"
+	{
+		if reference0 == "yes"
+		{
+			"Hmmmmmm my ad said thieves need not apply"
+		}
+		else
+		{
+			GenericPositive
+		}
+	}
+	
+	//Generic responses
+	elseif reference0 == "yes"
+	{
+		if reference1 == "yes"; GenericPositive
+		elseif reference1 == "no"; GenericNegative
+		else; GenericNeutral
+	}
+	else //no
+	{
+		if reference1 == "no"; GenericPositive
+		elseif reference1 == "yes"; GenericNegative
+		else; GenericNeutral
+	}
+}
+
+GenericNeutral
+{
+	"I see I see..."
+}
+
+GenericPositive
+{
+	"Oh good good good good"
+}
+
+GenericNegative
+{
+	"Hmm, this concerning..."
 }
 
 //Boss's response to the user asking a question
@@ -69,6 +147,7 @@ OnAskQuestion
 	else //Didn't match any intents
 	{
 		"Mysterious..."
+		"Um..... yes. Yes? Yes."
 	}
 	--
 	"\n\n%(REPLACE(OnAskBossAQuestion,'\_q',''))"

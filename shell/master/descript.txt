@@ -8,4 +8,18 @@ craftmanurl,
 seriko.alignmenttodesktop,bottom
 seriko.use_self_alpha,1
 
-sakura.menu,hidden
+//sakura.menu,hidden
+
+sakura.bindgroup59900.name,Lights,Off
+sakura.bindgroup59900.addid,60000
+sakura.bindgroup59900.addid,60001
+sakura.bindgroup59900.addid,60002
+sakura.bindgroup59900.addid,60003
+sakura.bindgroup59900.addid,60004
+sakura.bindgroup59900.addid,60005
+sakura.bindgroup59900.addid,60006
+sakura.bindgroup59900.addid,60007
+sakura.bindgroup59900.addid,60008
+sakura.bindgroup59900.addid,60009
+sakura.bindgroup59900.addid,60011
+sakura.bindgroup59900.addid,60014

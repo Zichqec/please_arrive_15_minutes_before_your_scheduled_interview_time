@@ -113,5 +113,63 @@ slime
 
 TempNames
 {
-	"treasured prospective employee"
+	"treasured pros-\w4pec-\w4tive employee"
+	"employee-to-may-or-may-not-be"
+}
+
+coins
+{
+	"%(metal) coins"
+	"%(metal) ingots"
+	"%(event) ties"
+	"sheep"
+	"goats"
+	"feathers"
+	"scales"
+	"stickynotes"
+	"pens"
+	"paperclips"
+	"%(gem) gems"
+}
+
+metal
+{
+	"gold"
+	"silver"
+	"copper"
+	"platinum"
+	"bronze"
+	"cho-\w4co-\w4late"
+}
+
+event
+{
+	"business"
+	"party"
+	"lunch"
+	"breakfast"
+	"bedtime"
+	"meeting"
+}
+
+gem
+{
+	"ruby"
+	"sapphire"
+	"amethyst"
+	"topaz"
+	"garnet"
+	"amber"
+	"aqua-\w4ma-\w4rine"
+	"azurite"
+	"opal"
+	"bloodstone"
+	"moonstone"
+	"spinel"
+	"eme-\w4rald"
+	"quartz"
+	"agate"
+	"jade"
+	"jasper"
+	"rho-\w4do-\w4nite"
 }

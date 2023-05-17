@@ -255,7 +255,7 @@ OnQuestionName
 		NameIndex = 7
 		SavedUsername = username
 		ProgressMangler
-		"Oh? Name changed? Ok! Let me see here, it's....... %(CurrentName)! Yes!"
+		"\0\b[4]%(paper)%(processing)Oh? Name changed? %(read)Ok! Let me see here, %(squint)it's... \n\n... %(read)%(CurrentName)! Yes!"
 	}
 	elseif NameIndex > 0
 	{
@@ -263,16 +263,16 @@ OnQuestionName
 		
 		if _index == 1 //Saying it right for the first time
 		{
-			"%(CurrentName)? %(CurrentName)! %(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName)~!!"
+			"\0\b[2]%(paper)%(processing)%(CurrentName)? %(smile)%(CurrentName)! %(happy)%(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName)~!!"
 		}
 		else //Getting it wrong in a new way
 		{
-			"oh oh ok! i got it, it's %(CurrentName)."
+			"\0\b[4]%(paper)%(processing)Oh oh, okay! %(smile)I got it, it's %(CurrentName)."
 		}
 	}
 	elseif NameIndex == 0 //Already had it right
 	{
-		"Yes yes, I remember, %(CurrentName)! %(CurrentName) %(CurrentName) %(CurrentName)~"
+		"\0\b[0]%(paper)%(smile)Yes yes, I remember, %(CurrentName)! %(happy)%(CurrentName) %(CurrentName) %(CurrentName)~"
 	}
 }
 
@@ -310,4 +310,111 @@ bold
 boldoff
 {
 	"\f[bold,0]"
+}
+
+//Bodies
+neutral
+{
+	
+}
+
+paper
+{
+	
+}
+
+speak
+{
+	
+}
+
+tie
+{
+	
+}
+
+agitated
+{
+	
+}
+
+//Expressions
+forward
+{
+	
+}
+
+read
+{
+	
+}
+
+squint
+{
+	
+}
+
+threaten
+{
+	
+}
+
+ceiling
+{
+	
+}
+
+plead
+{
+	
+}
+
+nervous
+{
+	
+}
+
+scowl
+{
+	
+}
+
+smile
+{
+	
+}
+
+look
+{
+	
+}
+
+happy
+{
+	
+}
+
+serious
+{
+	
+}
+
+pet
+{
+	
+}
+
+behind
+{
+	
+}
+
+processing
+{
+	
+}
+
+tired
+{
+	
 }

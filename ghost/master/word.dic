@@ -109,6 +109,7 @@ slime
 	"blood"
 	"silent"
 	"probably edible"
+	"%(metal)
 }
 
 TempNames
@@ -140,6 +141,9 @@ metal
 	"platinum"
 	"bronze"
 	"cho-\w4co-\w4late"
+	"metal"
+	"wood"
+	"glass"
 }
 
 event
@@ -172,4 +176,5 @@ gem
 	"jade"
 	"jasper"
 	"rho-\w4do-\w4nite"
+	"onyx"
 }

@@ -1,3 +1,59 @@
+bug
+{
+	"spider"
+	"wolf spider"
+	"huntsman spider"
+	"beetle"
+	"coffin beetle"
+	"potato beetle"
+	"scarab"
+	"stag beetle"
+	"tiger beetle"
+	"weevil"
+	"centipede"
+	"millipede"
+	"bristle millipede"
+	"pillbug"
+	"woodlouse"
+	"cricket"
+	"grasshopper"
+	"locust"
+	"snail"
+	"slug"
+	"velvet worm"
+	"bloodworm"
+	"glowworm"
+	"springtail"
+	"striped earwig"
+	"ring-legged earwig"
+	"fly"
+	"moth"
+	"roach"
+	"lizard"
+	"salamander"
+	"spotted-tail salamander"
+	"ghost lizard"
+	"gecko"
+	"whiptail lizard"
+	"fire toad"
+	"young cave fisher"
+	"%(slime) slime"
+}
+
+color
+{
+	"red"
+	"blue"
+	"green"
+	"cyan"
+	"yellow"
+	"purple"
+	"magenta"
+	"white"
+	"brown"
+	"black"
+}
+
 doyou
 {
 	"Do you"
@@ -31,6 +87,28 @@ DragonNoiseSuffix
 	"grrr"
 	"grrggrarar"
 	"rarargrr"
+}
+
+scale
+{
+	"1 to 10"
+	"0 to 5 stars"
+	"0 to 4 thumbs-up"
+	"good to excellent"
+}
+
+slime
+{
+	"%(color)"
+	"water"
+	"rock"
+	"toxic"
+	"pudding"
+	"gelatinous"
+	"cubic"
+	"blood"
+	"silent"
+	"probably edible"
 }
 
 TempNames

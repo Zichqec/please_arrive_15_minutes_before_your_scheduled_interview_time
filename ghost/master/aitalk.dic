@@ -25,10 +25,12 @@ OnAskMeAQuestion
 
 QuestionTalk : nonoverlap_pool
 {
-	"\0\b[0]interview question"
+	"\0\b[4]%(speakforward)%(doyou)... %(neutralnervous)consider yourself edible?"
+	"\0\b[4]%(speakplead)On scale of %(scale), how would you rate this interview?"
 }
 
 RandomTalk : nonoverlap_pool
 {
-	"\0\b[0]idle chatter"
+	"\0\b[4]%(tieceiling)%(narration)%(italic)He seems like he'd make a good boss.\w8.\w8.\w8\w8?%(italicoff)"
+	"\0\b[4]%(agitatedbehind)%(narration)%(italic)Oh! He noticed a %(bug) crawling on the wall...%(italicoff)"
 }

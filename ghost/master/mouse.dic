@@ -13,6 +13,7 @@ OnMouseDoubleClick
 OnMouseClick
 {
 	if reference4 == "switch"; OnFlipSwitch
+	elseif reference4 == "paper"; OnPushPaper
 }
 
 OnFlipSwitch
@@ -27,6 +28,11 @@ OnFlipSwitch
 		HasToggledLights = 1
 		"\t\0\b[0]%(neutral)Oh! Yes, yes, right, right. You have weak eyes. I forgot, sorry, sorry.\w8\w8\w8\w8\![bind,Lights,Off,0]"
 	}
+}
+
+OnPushPaper
+{
+	"\0\b[0]\i[4]\t%(narration)%(italic)Whoosh%(italicoff)\w8\w8\w8\w8\n\n%(neutral)%(look)\![anim,clear,2]Papers... %(neutral)%(nervous)\![anim,clear,2]A moment, please. \s[700]\_w[5000]\n\n%(neutral)%(forward)Apologies."
 }
 
 OnMouseMove

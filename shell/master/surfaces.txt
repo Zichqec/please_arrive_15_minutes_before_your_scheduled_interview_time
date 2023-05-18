@@ -49,6 +49,8 @@ surface.append0,100-104
 	animation2.interval,runonce
 	animation2.pattern0,overlay,2,0,0,0
 	
+	animation2.collisionex1,paper,polygon,1126,721,1110,728,1106,736,1106,750,1127,813,1142,814,1148,824,1163,824,1161,835,1246,836,1250,812,1256,812,1287,842,1291,838,1302,820,1306,808,1283,778,1260,757,1242,739,1240,735,1222,728,1199,722,1166,720,1134,720
+	
 	animation3.interval,runonce
 	animation3.pattern0,overlay,3,0,0,0
 	animation3.pattern1,start,59999,0,0,0
@@ -56,7 +58,7 @@ surface.append0,100-104
 	animation4.interval,never
 	animation4.pattern0,stop,2
 	animation4.pattern1,overlay,4,0,0,0
-	animation4.pattern2,overlay,-1,100,0,0,0
+	animation4.pattern2,overlay,-1,450,0,0,0
 	
 	animation105.interval,never
 	animation105.pattern0,overlay,105,0,0,0

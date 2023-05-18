@@ -8,7 +8,26 @@ craftmanurl,
 seriko.alignmenttodesktop,bottom
 seriko.use_self_alpha,1
 
-//sakura.menu,hidden
+sakura.menu,hidden
+
+sakura.bindgroup59900.name,Lights,Off
+sakura.bindgroup59900.default,1
+sakura.bindgroup59900.addid,59999
+sakura.bindgroup59900.addid,60000
+sakura.bindgroup59900.addid,60001
+sakura.bindgroup59900.addid,60002
+sakura.bindgroup59900.addid,60003
+sakura.bindgroup59900.addid,60004
+sakura.bindgroup59900.addid,60005
+sakura.bindgroup59900.addid,60006
+sakura.bindgroup59900.addid,60007
+sakura.bindgroup59900.addid,60008
+sakura.bindgroup59900.addid,60009
+sakura.bindgroup59900.addid,60011
+sakura.bindgroup59900.addid,60014
+
+sakura.balloon.offsetx,560
+sakura.balloon.offsety,140
 
 sakura.bindgroup1000.default,1
 sakura.bindoption1000.group,Tie,mustselect
@@ -95,21 +114,3 @@ sakura.bindgroup1078.name,Tie,1078
 sakura.bindgroup1079.name,Tie,1079
 sakura.bindgroup1080.name,Tie,1080
 
-sakura.bindgroup59900.name,Lights,Off
-sakura.bindgroup59900.default,1
-sakura.bindgroup59900.addid,59999
-sakura.bindgroup59900.addid,60000
-sakura.bindgroup59900.addid,60001
-sakura.bindgroup59900.addid,60002
-sakura.bindgroup59900.addid,60003
-sakura.bindgroup59900.addid,60004
-sakura.bindgroup59900.addid,60005
-sakura.bindgroup59900.addid,60006
-sakura.bindgroup59900.addid,60007
-sakura.bindgroup59900.addid,60008
-sakura.bindgroup59900.addid,60009
-sakura.bindgroup59900.addid,60011
-sakura.bindgroup59900.addid,60014
-
-sakura.balloon.offsetx,480
-sakura.balloon.offsety,140

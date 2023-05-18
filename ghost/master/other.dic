@@ -298,7 +298,7 @@ OnNotifyDressupInfo
 
 narration
 {
-	if SHIORI3FW.BalloonName == "Stuck to a Filing Cabinet"; "\![quicksection,true]\f[name,wingdings]\f[height,+4]\f[valign,top]!\f[height,default]\f[name,default]\n \n[-100]\f[valign,bottom]  \![quicksection,false]"
+	if SHIORI3FW.BalloonName == "Stuck to a Filing Cabinet"; "\![quicksection,true]\f[name,wingdings]\f[height,+4]\f[valign,top]!\f[height,default]\f[name,default]\n \n[-100]\f[valign,bottom]   \![quicksection,false]"
 	else; "\![quicksection,true]\f[name,wingdings]!\f[name,default] \![quicksection,false]"
 }
 

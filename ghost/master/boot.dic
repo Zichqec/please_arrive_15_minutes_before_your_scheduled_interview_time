@@ -9,6 +9,8 @@ OnFirstBoot
 	CurrentName = TempNames
 	NameDiscovered = 0
 	SavedUsername = username
+	LightsOn = 0
+	HasToggledLights = 0
 	
 	"\![bind,Tie,,0]\![bind,Tie,%(ANY(TiesAvailable)),1]"
 	--

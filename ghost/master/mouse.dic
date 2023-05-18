@@ -5,14 +5,33 @@ OnMouseDoubleClick
 	{
 		//reference3 is which character is being clicked
 		//If you want to add double click interactions, reference4 will be the name of the hitbox the mouse is over
-		OnSakuraMenu
+		if reference4 != "switch"; OnSakuraMenu
 		
+	}
+}
+
+OnMouseClick
+{
+	if reference4 == "switch"; OnFlipSwitch
+}
+
+OnFlipSwitch
+{
+	if HasToggledLights
+	{
+		if LightsOn; "\0\![bind,Lights,Off,1]%(neutral)%(narration)%(italic)Bink!%(italicoff)"
+		else; "\0\![bind,Lights,Off,0]%(narration)%(italic)Bink!%(italicoff)"
+	}
+	else
+	{
+		HasToggledLights = 1
+		"\t\0\b[0]%(neutral)Oh! Yes, yes, right, right. You have weak eyes. I forgot, sorry, sorry.\w8\w8\w8\w8\![bind,Lights,Off,0]"
 	}
 }
 
 OnMouseMove
 {
-	if reference4 != ""
+	if reference4 == "head"
 	{
 		stroke++
 		

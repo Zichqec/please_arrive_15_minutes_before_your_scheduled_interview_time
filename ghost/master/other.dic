@@ -284,9 +284,11 @@ OnQuestionName
 OnNotifyDressupInfo
 {
 	TiesAvailable = IARRAY
+	LightsOn = 1
 	// [character ID, category name, part name, option, on-1/off-0, thumbnail path]
 	foreach reference; _dressup
 	{
+		if _dressup[1,C_BYTE1] == "Lights" && _dressup[4,C_BYTE1] == "1"; LightsOn = 0
 		if _dressup[1,C_BYTE1] == "Tie"; TiesAvailable ,= _dressup[2,C_BYTE1]
 	}
 }

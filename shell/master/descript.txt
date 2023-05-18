@@ -16,6 +16,7 @@ sakura.bindoption1000.group,Tie,mustselect
 sakura.bindgroup1000.name,Tie,Test
 
 sakura.bindgroup59900.name,Lights,Off
+sakura.bindgroup59900.default,1
 sakura.bindgroup59900.addid,59999
 sakura.bindgroup59900.addid,60000
 sakura.bindgroup59900.addid,60001

@@ -92,11 +92,33 @@ OnAnswerYesNo
 	{
 		if reference0 == "yes"
 		{
-			"Hmmmmmm my ad said thieves need not apply"
+			"\0\b[0]%(neutral)%(serious)Yes? You said... %(agitated)%(threaten)you said yes!? Ad said no thieves! THIEVES MEANS NO THIEVES!!! \n\n%(wings)YOU AFTER MY GOLD!? MY CAVE!? MY TIES!?!?!?%(yesno('after my ties'))"
 		}
 		else
 		{
 			GenericPositive
+		}
+	}
+	elseif reference1 == "after my ties"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[2]%(agitated)%(threaten)%(wings)NO! NO! OUT MY CAVE! NO JOB! FIRED! FIRED FIRED FIRED!!! NO THANK YOU! GOODBYE! \n\n%(narration)%(italic)Uh-oh, this is getting pretty dangerous. \n\n%(narration)You decide to leave... \n\n%(narration)Maybe you should have kept your criminal history to yourself when dealing with a giant carnivorous lizard... \n\n%(narration)Oh well. Back to job hunting. \w8\w8\w8\w8\w8\w8\![vanishbymyself]"
+		}
+		else
+		{
+			"\0\b[0]%(agitated)%(threaten)%(DragonNoisePrefix)... Grrm... Don't know if I trust you... \w8\w8\w8\n\n%(neutral)%(scowl)Okay... Okay. I'll give you chance. I see any funny business, you gone. Gone forever, or else. \n\nOkay?%(yesno('no funny business'))"
+		}
+	}
+	elseif reference1 == "no funny business"
+	{
+		if reference0 == "yes"
+		{
+			GenericPositive
+		}
+		else
+		{
+			"\0\b[0]%(agitated)%(threaten)%(DragonNoisePrefix)... I think... You not taking this opportunity seriously... Making jokes... Making me %(wings)UPSET... \w8\w8\n\n%(agitated)%(threaten)Let's move on... \n\n... before one of us does something they regret."
 		}
 	}
 	

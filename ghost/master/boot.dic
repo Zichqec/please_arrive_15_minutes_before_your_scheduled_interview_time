@@ -41,8 +41,15 @@ OnJobTime : all
 	"\0\b[4]\t\*%(darkboss)%(narration)%(italic)...\w8 It's dark.\w8 Very dark.\w8 You don't see much when you look around,\w4 except—\w8\w8%(italicoff)\n\n[half]AH!\x"
 	"\0\b[0]\t\*%(neutral)%(forward)Oh, grrm, you must be- %(tie)%(processing)must be... %(speak)%(smile)my %(TempNames)! \n\n%(neutral)%(behind)... What time now? \w8\w8%(neutral)%(forward)Oh! \n\n%(neutral)%(serious)You early. I said be here 15 minutes before your interview, you here 20 minutes before... %(agitated)%(happy)Must be very excited to start! \x"
 	"\0\b[2]\t\*%(neutral)%(forward)Good, good, we'll get right into it. \n\n%(speak)%(look)Now, your resume... where... Ah, here! \n\n%(paper)%(read)Yes, yes, yes, good, good... %(paper)%(squint)Grrm... hmm! %(paper)%(scowl)Everything looks in order... \n\n%(paper)%(squint)... %(TempNames). \n\n%(paper)%(nervous)I have couple quick questions to ask! And, %(neutral)%(forward)if you have questions, you ask, too. Okay? Okay.\x"
-	"\0\b[4]\t\*%(speak)%(forward)Firstly, first! %(input)How did you find my limited edition Help Wanted pro-\w4mot-\w4ional adver-\w4tising poster for job gaining?\x"
+	"\0\b[4]\t\*%(speak)%(forward)Firstly, first! %(input)How did you find my limited edition Help Wanted pro-\w4mot-\w4ional adver-\w4tising poster for job gaining?\x\e:chain=firstinterview"
 }
+
+firstinterview
+CHAIN{{
+	"\0\b[0]%(paper)%(scowl)Have you ever been caught stealing?%(yesno('caught stealing'))"
+	"\0\b[0]%(speak)%(forward)Do you plan to leave area in next 100 years?%(yesno('no'))"
+	"fourth dialogue\e:chain=end"
+CHAIN}}
 
 OnInitialize
 {

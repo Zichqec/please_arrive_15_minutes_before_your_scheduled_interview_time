@@ -70,11 +70,22 @@ OnAnswerYesNo
 	{
 		if reference0 == "yes"
 		{
-			"WERE THEY BIGGER THAN ME!?"
+			"\0\b[4]%(agitated)%(threaten)WHAT!? %(wings)WERE THEY BIGGER THAN ME!?%(yesno('bigger than me'))"
 		}
 		else
 		{
 			"oh good I would hate to have dragonly competition"
+		}
+	}
+	elseif reference1 == "bigger than me"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[0]%(agitated)%(threaten)%(wings)WHAT!? NO NO NO! BITE BITE GRRR CLAW BITE THEM!!! MINE MINE MINE- \n\n... \n\n\0%(agitated)%(threaten)grrrm... %(neutral)%(tired)\w8\w8\w8\w8%(neutral)%(serious)Apologies. I... %(neutral)%(nervous)got carried away."
+		}
+		else
+		{
+			"\0\b[4]%(neutral)%(serious)Ah. %(neutral)%(processing)I see. %(neutral)%(smile)That's fine then. \n\n%(narration)%(italic)...\w8 He seems happy about that,\w4 for some reason... %(italicoff)"
 		}
 	}
 	elseif reference1 == "caught stealing"

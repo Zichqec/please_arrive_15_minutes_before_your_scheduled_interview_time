@@ -32,7 +32,7 @@ OnFlipSwitch
 
 OnPushPaper
 {
-	"\0\b[0]\i[4]\t%(narration)%(italic)Whoosh%(italicoff)\w8\w8\w8\w8\n\n%(neutral)\![anim,clear,2]%(look)Papers... %(neutral)\![anim,clear,2]%(nervous)A moment, please. \s[700]\_w[5000]\n\n%(neutral)%(forward)Apologies. Where were we?"
+	"\0\b[0]\i[4]\t%(narration)%(italic)Whoosh%(italicoff)\w8\w8\w8\w8\n\n%(neutral)\![anim,clear,2]%(look)Papers... %(neutral)\![anim,clear,2]%(nervous)One moment, please. \s[700]\_w[5000]\n\n%(neutral)%(forward)Apologies. Where were we?"
 }
 
 OnMouseMove
@@ -52,7 +52,14 @@ OnMouseMove.Sakura
 {
 	if reference4 == "head"
 	{
-		"\0\b[0]\s[0]Petting??"
+		"\0\b[4]%(agitated)%(pet)Rrr?"
+		"\0\b[4]%(agitated)%(pet)Mrrp~"
+		"\0\b[4]%(agitated)%(pet)Scritch scratch~"
+		"\0\b[4]%(agitated)%(pet)Pet pet pet~"
+		"\0\b[4]%(agitated)%(pet)Ohh...!"
+		"\0\b[4]%(agitated)%(pet)Yes, yes..."
+		"\0\b[4]%(agitated)%(pet)%(DragonNoisePrefix) %(good) pets for %(good) Boss~"
+		"\0\b[4]%(agitated)%(pet)Pets... %(good)..."
 	}
 }
 

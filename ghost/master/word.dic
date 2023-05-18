@@ -1,3 +1,16 @@
+prey
+{
+	"%(bug)"
+	"lizard"
+	"salamander"
+	"spotted-tail salamander"
+	"ghost lizard"
+	"gecko"
+	"whiptail lizard"
+	"fire toad"
+	"young cave fisher"
+	"%(slime) slime"
+}
 bug
 {
 	"spider"
@@ -29,15 +42,6 @@ bug
 	"fly"
 	"moth"
 	"roach"
-	"lizard"
-	"salamander"
-	"spotted-tail salamander"
-	"ghost lizard"
-	"gecko"
-	"whiptail lizard"
-	"fire toad"
-	"young cave fisher"
-	"%(slime) slime"
 }
 
 color
@@ -87,6 +91,28 @@ DragonNoiseSuffix
 	"grrr"
 	"grrggrarar"
 	"rarargrr"
+}
+
+good
+{
+	"good"
+	"best"
+	"exceptional"
+	"excellent"
+	"satisfactory"
+	"incredible"
+	"amazing"
+	"marvelous"
+	"superb"
+	"wonderful"
+	"big"
+	"enormous"
+	"huge"
+	"tremendous"
+	"powerful"
+	"mighty"
+	"robust"
+	"strong"
 }
 
 scale

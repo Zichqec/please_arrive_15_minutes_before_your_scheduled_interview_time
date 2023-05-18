@@ -84,7 +84,10 @@ OnKeyPress
 //Happens about 30 seconds after a script ends, by default, to bring them back to normal poses
 OnSurfaceRestore
 {
-	"\1\s[-1]\0\s[0]"
+	"\1\s[-1]\0"
+	--
+	"%(neutral)%(forward)"
+	"%(paper)%(read)"
 }
 
 //Happens when the ghost is unminimized. You *can* include dialogue, but you don't *have* to. I have included this event because if you don't, it defaults to \0\s[0]\1\s[10], which you don't want in some cases, such as if your ghost uses different surfaces or has a different number of characters.
@@ -361,88 +364,298 @@ agitated
 	"\s[104]"
 }
 
+//TODO ??? Handle this?????
 wings
 {
 	"\i[105]"
+	--
+	"\![embed,OnWingsPiece]"
+}
+
+OnWingsPiece
+{
+	
 }
 
 //Expressions
 forward
 {
 	"\i[200]"
+	--
+	"\![embed,OnForwardHead]"
+}
+
+OnForwardHead
+{
+	LastInterval = "200"
 }
 
 read
 {
 	"\i[201]"
+	--
+	"\![embed,OnReadHead]"
+}
+
+OnReadHead
+{
+	LastInterval = "201"
 }
 
 squint
 {
 	"\i[202]"
+	--
+	"\![embed,OnSquintHead]"
+}
+
+OnSquintHead
+{
+	LastInterval = "202"
 }
 
 threaten
 {
 	"\i[203]"
+	--
+	"\![embed,OnThreatenHead]"
+}
+
+OnThreatenHead
+{
+	LastInterval = "203"
 }
 
 ceiling
 {
 	"\i[204]"
+	--
+	"\![embed,OnCeilingHead]"
+}
+
+OnCeilingHead
+{
+	LastInterval = "204"
 }
 
 plead
 {
 	"\i[205]"
+	--
+	"\![embed,OnPleadHead]"
+}
+
+OnPleadHead
+{
+	LastInterval = "205"
 }
 
 nervous
 {
 	"\i[206]"
+	--
+	"\![embed,OnNervousHead]"
+}
+
+OnNervousHead
+{
+	LastInterval = "206"
 }
 
 scowl
 {
 	"\i[207]"
+	--
+	"\![embed,OnScowlHead]"
+}
+
+OnScowlHead
+{
+	LastInterval = "207"
 }
 
 smile
 {
 	"\i[208]"
+	--
+	"\![embed,OnSmileHead]"
+}
+
+OnSmileHead
+{
+	LastInterval = "208"
 }
 
 look
 {
 	"\i[209]"
+	--
+	"\![embed,OnLookHead]"
+}
+
+OnLookHead
+{
+	LastInterval = "209"
 }
 
 happy
 {
 	"\i[210]"
+	--
+	"\![embed,OnHappyHead]"
+}
+
+OnHappyHead
+{
+	LastInterval = "210"
 }
 
 serious
 {
 	"\i[211]"
+	--
+	"\![embed,OnSeriousHead]"
+}
+
+OnSeriousHead
+{
+	LastInterval = "211"
 }
 
 pet
 {
 	"\i[212]"
+	--
+	"\![embed,OnPetHead]"
+}
+
+OnPetHead
+{
+	LastInterval = "212"
 }
 
 behind
 {
 	"\i[213]"
+	--
+	"\![embed,OnBehindHead]"
+}
+
+OnBehindHead
+{
+	LastInterval = "213"
 }
 
 processing
 {
 	"\i[214]"
+	--
+	"\![embed,OnProcessingHead]"
+}
+
+OnProcessingHead
+{
+	LastInterval = "214"
 }
 
 tired
 {
 	"\i[500]"
+	--
+	"\![embed,OnTiredHead]"
+}
+
+OnTiredHead
+{
+	LastInterval = "500"
+}
+
+MakePatternSurfaces : all
+{
+	_max = _argv[0]
+	if _max <= 0; return
+	
+	_surface = 10002
+	_image = 1000
+	for _i = 0; _i < _max; _i++
+	{
+		"surface%(_surface)"
+		"CRLF"
+		"{"
+		"CRLFTAB"
+		"element0,overlay,surface502.png,0,0"
+		"CRLFTAB"
+		"element1,overlayfast,tie_patterns/surface%(_image).png,580,373"
+		"CRLF"
+		"}"
+		"CRLFCRLF"
+		_surface++
+		"surface%(_surface)"
+		"CRLF"
+		"{"
+		"CRLFTAB"
+		"element0,overlay,surface503.png,0,0"
+		"CRLFTAB"
+		"element1,overlayfast,tie_patterns/surface%(_image).png,570,313"
+		"CRLF"
+		"}"
+		"CRLFCRLF"
+		_surface += 9
+		_image++
+	}
+}
+
+MakePatternBinds : all
+{
+	_max = _argv[0]
+	if _max <= 0; return
+	
+	_surface = 10002
+	_image = 1000
+	for _i = 0; _i < _max; _i++
+	{
+		"TAB"
+		"animation%(_image).interval,bind"
+		"CRLFTAB"
+		"animation%(_image).pattern0,overlay,%(_surface),0,0,0"
+		"CRLFTAB"
+		"animation%(_image).option,background"
+		"CRLF"
+		"CRLF"
+		
+		
+		_image++
+		_surface += 10
+	}
+	"CRLFCRLFCRLFCRLFCRLF"
+	_surface = 10003
+	_image = 1000
+	for _i = 0; _i < _max; _i++
+	{
+		"TAB"
+		"animation%(_image).interval,bind"
+		"CRLFTAB"
+		"animation%(_image).pattern0,overlay,%(_surface),0,0,0"
+		"CRLFTAB"
+		"animation%(_image).option,background"
+		"CRLF"
+		"CRLF"
+		
+		_image++
+		_surface += 10
+	}
+}
+
+MakePatternDescripts : all
+{
+	_max = _argv[0]
+	if _max <= 0; return
+	
+	_num = 1000
+	for _i = 0; _i < _max; _i++
+	{
+		"sakura.bindgroup%(_num).name,Tie,%(_num)"
+		"CRLF"
+		_num++
+	}
 }

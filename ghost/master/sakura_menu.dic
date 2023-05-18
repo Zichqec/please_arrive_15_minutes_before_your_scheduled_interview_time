@@ -17,7 +17,9 @@ OnSakuraMenu : all
 	"\n\n"
 	
 	"\![*]\__q[OnAskMeAQuestion]Do you have more questions for me?\__q\n"
-	"\![*]\__q[OnAskBossAQuestion]Can I ask you something?\__q"
+	"\![*]\__q[OnAskBossAQuestion]Can I ask you something?\__q\n\n"
+	"\![*]\__q[OnChangeTie]Do you have any other ties?\__q"
+	
 	
 	"\n\n"
 	
@@ -166,6 +168,12 @@ OnCancelQuestion
 	"\![close,inputbox,OnAskQuestion]"
 	--
 	"oh ok"
+}
+
+OnChangeTie : all
+{
+	
+	"\![bind,Tie,,0]\![bind,Tie,%(ANY(TiesAvailable)),1]"
 }
 
 Intent

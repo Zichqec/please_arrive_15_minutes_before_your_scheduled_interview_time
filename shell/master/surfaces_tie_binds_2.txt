@@ -1,0 +1,332 @@
+descript
+{
+	version,1
+}
+
+//Normal ties
+surface.append0,100-103
+{
+	animation1000.interval,bind
+	animation1000.pattern0,overlay,10002,0,0,0
+	animation1000.option,background
+
+	animation1001.interval,bind
+	animation1001.pattern0,overlay,10012,0,0,0
+	animation1001.option,background
+
+	animation1002.interval,bind
+	animation1002.pattern0,overlay,10022,0,0,0
+	animation1002.option,background
+
+	animation1003.interval,bind
+	animation1003.pattern0,overlay,10032,0,0,0
+	animation1003.option,background
+
+	animation1004.interval,bind
+	animation1004.pattern0,overlay,10042,0,0,0
+	animation1004.option,background
+
+	animation1005.interval,bind
+	animation1005.pattern0,overlay,10052,0,0,0
+	animation1005.option,background
+
+	animation1006.interval,bind
+	animation1006.pattern0,overlay,10062,0,0,0
+	animation1006.option,background
+
+	animation1007.interval,bind
+	animation1007.pattern0,overlay,10072,0,0,0
+	animation1007.option,background
+
+	animation1008.interval,bind
+	animation1008.pattern0,overlay,10082,0,0,0
+	animation1008.option,background
+
+	animation1009.interval,bind
+	animation1009.pattern0,overlay,10092,0,0,0
+	animation1009.option,background
+
+	animation1010.interval,bind
+	animation1010.pattern0,overlay,10102,0,0,0
+	animation1010.option,background
+
+	animation1011.interval,bind
+	animation1011.pattern0,overlay,10112,0,0,0
+	animation1011.option,background
+
+	animation1012.interval,bind
+	animation1012.pattern0,overlay,10122,0,0,0
+	animation1012.option,background
+
+	animation1013.interval,bind
+	animation1013.pattern0,overlay,10132,0,0,0
+	animation1013.option,background
+
+	animation1014.interval,bind
+	animation1014.pattern0,overlay,10142,0,0,0
+	animation1014.option,background
+
+	animation1015.interval,bind
+	animation1015.pattern0,overlay,10152,0,0,0
+	animation1015.option,background
+
+	animation1016.interval,bind
+	animation1016.pattern0,overlay,10162,0,0,0
+	animation1016.option,background
+
+	animation1017.interval,bind
+	animation1017.pattern0,overlay,10172,0,0,0
+	animation1017.option,background
+
+	animation1018.interval,bind
+	animation1018.pattern0,overlay,10182,0,0,0
+	animation1018.option,background
+
+	animation1019.interval,bind
+	animation1019.pattern0,overlay,10192,0,0,0
+	animation1019.option,background
+
+	animation1020.interval,bind
+	animation1020.pattern0,overlay,10202,0,0,0
+	animation1020.option,background
+
+	animation1021.interval,bind
+	animation1021.pattern0,overlay,10212,0,0,0
+	animation1021.option,background
+
+	animation1022.interval,bind
+	animation1022.pattern0,overlay,10222,0,0,0
+	animation1022.option,background
+
+	animation1023.interval,bind
+	animation1023.pattern0,overlay,10232,0,0,0
+	animation1023.option,background
+
+	animation1024.interval,bind
+	animation1024.pattern0,overlay,10242,0,0,0
+	animation1024.option,background
+
+	animation1025.interval,bind
+	animation1025.pattern0,overlay,10252,0,0,0
+	animation1025.option,background
+
+	animation1026.interval,bind
+	animation1026.pattern0,overlay,10262,0,0,0
+	animation1026.option,background
+
+	animation1027.interval,bind
+	animation1027.pattern0,overlay,10272,0,0,0
+	animation1027.option,background
+
+	animation1028.interval,bind
+	animation1028.pattern0,overlay,10282,0,0,0
+	animation1028.option,background
+
+	animation1029.interval,bind
+	animation1029.pattern0,overlay,10292,0,0,0
+	animation1029.option,background
+
+	animation1030.interval,bind
+	animation1030.pattern0,overlay,10302,0,0,0
+	animation1030.option,background
+
+	animation1031.interval,bind
+	animation1031.pattern0,overlay,10312,0,0,0
+	animation1031.option,background
+
+	animation1032.interval,bind
+	animation1032.pattern0,overlay,10322,0,0,0
+	animation1032.option,background
+
+	animation1033.interval,bind
+	animation1033.pattern0,overlay,10332,0,0,0
+	animation1033.option,background
+
+	animation1034.interval,bind
+	animation1034.pattern0,overlay,10342,0,0,0
+	animation1034.option,background
+
+	animation1035.interval,bind
+	animation1035.pattern0,overlay,10352,0,0,0
+	animation1035.option,background
+
+	animation1036.interval,bind
+	animation1036.pattern0,overlay,10362,0,0,0
+	animation1036.option,background
+
+	animation1037.interval,bind
+	animation1037.pattern0,overlay,10372,0,0,0
+	animation1037.option,background
+
+	animation1038.interval,bind
+	animation1038.pattern0,overlay,10382,0,0,0
+	animation1038.option,background
+
+	animation1039.interval,bind
+	animation1039.pattern0,overlay,10392,0,0,0
+	animation1039.option,background
+
+	animation1040.interval,bind
+	animation1040.pattern0,overlay,10402,0,0,0
+	animation1040.option,background
+
+	animation1041.interval,bind
+	animation1041.pattern0,overlay,10412,0,0,0
+	animation1041.option,background
+
+	animation1042.interval,bind
+	animation1042.pattern0,overlay,10422,0,0,0
+	animation1042.option,background
+
+	animation1043.interval,bind
+	animation1043.pattern0,overlay,10432,0,0,0
+	animation1043.option,background
+
+	animation1044.interval,bind
+	animation1044.pattern0,overlay,10442,0,0,0
+	animation1044.option,background
+
+	animation1045.interval,bind
+	animation1045.pattern0,overlay,10452,0,0,0
+	animation1045.option,background
+
+	animation1046.interval,bind
+	animation1046.pattern0,overlay,10462,0,0,0
+	animation1046.option,background
+
+	animation1047.interval,bind
+	animation1047.pattern0,overlay,10472,0,0,0
+	animation1047.option,background
+
+	animation1048.interval,bind
+	animation1048.pattern0,overlay,10482,0,0,0
+	animation1048.option,background
+
+	animation1049.interval,bind
+	animation1049.pattern0,overlay,10492,0,0,0
+	animation1049.option,background
+
+	animation1050.interval,bind
+	animation1050.pattern0,overlay,10502,0,0,0
+	animation1050.option,background
+
+	animation1051.interval,bind
+	animation1051.pattern0,overlay,10512,0,0,0
+	animation1051.option,background
+
+	animation1052.interval,bind
+	animation1052.pattern0,overlay,10522,0,0,0
+	animation1052.option,background
+
+	animation1053.interval,bind
+	animation1053.pattern0,overlay,10532,0,0,0
+	animation1053.option,background
+
+	animation1054.interval,bind
+	animation1054.pattern0,overlay,10542,0,0,0
+	animation1054.option,background
+
+	animation1055.interval,bind
+	animation1055.pattern0,overlay,10552,0,0,0
+	animation1055.option,background
+
+	animation1056.interval,bind
+	animation1056.pattern0,overlay,10562,0,0,0
+	animation1056.option,background
+
+	animation1057.interval,bind
+	animation1057.pattern0,overlay,10572,0,0,0
+	animation1057.option,background
+
+	animation1058.interval,bind
+	animation1058.pattern0,overlay,10582,0,0,0
+	animation1058.option,background
+
+	animation1059.interval,bind
+	animation1059.pattern0,overlay,10592,0,0,0
+	animation1059.option,background
+
+	animation1060.interval,bind
+	animation1060.pattern0,overlay,10602,0,0,0
+	animation1060.option,background
+
+	animation1061.interval,bind
+	animation1061.pattern0,overlay,10612,0,0,0
+	animation1061.option,background
+
+	animation1062.interval,bind
+	animation1062.pattern0,overlay,10622,0,0,0
+	animation1062.option,background
+
+	animation1063.interval,bind
+	animation1063.pattern0,overlay,10632,0,0,0
+	animation1063.option,background
+
+	animation1064.interval,bind
+	animation1064.pattern0,overlay,10642,0,0,0
+	animation1064.option,background
+
+	animation1065.interval,bind
+	animation1065.pattern0,overlay,10652,0,0,0
+	animation1065.option,background
+
+	animation1066.interval,bind
+	animation1066.pattern0,overlay,10662,0,0,0
+	animation1066.option,background
+
+	animation1067.interval,bind
+	animation1067.pattern0,overlay,10672,0,0,0
+	animation1067.option,background
+
+	animation1068.interval,bind
+	animation1068.pattern0,overlay,10682,0,0,0
+	animation1068.option,background
+
+	animation1069.interval,bind
+	animation1069.pattern0,overlay,10692,0,0,0
+	animation1069.option,background
+
+	animation1070.interval,bind
+	animation1070.pattern0,overlay,10702,0,0,0
+	animation1070.option,background
+
+	animation1071.interval,bind
+	animation1071.pattern0,overlay,10712,0,0,0
+	animation1071.option,background
+
+	animation1072.interval,bind
+	animation1072.pattern0,overlay,10722,0,0,0
+	animation1072.option,background
+
+	animation1073.interval,bind
+	animation1073.pattern0,overlay,10732,0,0,0
+	animation1073.option,background
+
+	animation1074.interval,bind
+	animation1074.pattern0,overlay,10742,0,0,0
+	animation1074.option,background
+
+	animation1075.interval,bind
+	animation1075.pattern0,overlay,10752,0,0,0
+	animation1075.option,background
+
+	animation1076.interval,bind
+	animation1076.pattern0,overlay,10762,0,0,0
+	animation1076.option,background
+
+	animation1077.interval,bind
+	animation1077.pattern0,overlay,10772,0,0,0
+	animation1077.option,background
+
+	animation1078.interval,bind
+	animation1078.pattern0,overlay,10782,0,0,0
+	animation1078.option,background
+
+	animation1079.interval,bind
+	animation1079.pattern0,overlay,10792,0,0,0
+	animation1079.option,background
+	
+	animation1080.interval,bind
+	animation1080.pattern0,overlay,10802,0,0,0
+	animation1080.option,background
+}

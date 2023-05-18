@@ -20,7 +20,7 @@ OnFlipSwitch
 {
 	if HasToggledLights
 	{
-		if LightsOn; "\0\![bind,Lights,Off,1]%(neutral)%(narration)%(italic)Bink!%(italicoff)"
+		if LightsOn; "\0\![bind,Lights,Off,1]\s[%(SHIORI3FW.LastSurface[0])]\i[%(LastInterval)]%(narration)%(italic)Bink!%(italicoff)"
 		else; "\0\![bind,Lights,Off,0]%(narration)%(italic)Bink!%(italicoff)"
 	}
 	else
@@ -32,7 +32,7 @@ OnFlipSwitch
 
 OnPushPaper
 {
-	"\0\b[0]\i[4]\t%(narration)%(italic)Whoosh%(italicoff)\w8\w8\w8\w8\n\n%(neutral)%(look)\![anim,clear,2]Papers... %(neutral)%(nervous)\![anim,clear,2]A moment, please. \s[700]\_w[5000]\n\n%(neutral)%(forward)Apologies. Where were we?"
+	"\0\b[0]\i[4]\t%(narration)%(italic)Whoosh%(italicoff)\w8\w8\w8\w8\n\n%(neutral)\![anim,clear,2]%(look)Papers... %(neutral)\![anim,clear,2]%(nervous)A moment, please. \s[700]\_w[5000]\n\n%(neutral)%(forward)Apologies. Where were we?"
 }
 
 OnMouseMove

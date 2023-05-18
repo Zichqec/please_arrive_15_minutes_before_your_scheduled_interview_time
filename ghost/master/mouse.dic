@@ -48,7 +48,7 @@ OnMouseMove
 	}
 }
 
-OnMouseMove.Sakura
+OnMouseMove.Sakura : nonoverlap_pool
 {
 	if reference4 == "head"
 	{

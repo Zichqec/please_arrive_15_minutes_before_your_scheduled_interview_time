@@ -36,10 +36,15 @@
 OnAnswerQuestion
 {
 	_input = TOLOWER(reference0)
+	_type = TOAUTO(reference.raw[0])
 	_intents = ProcessQuestion(_input)
 	
 	//This can be set up like the if/else structure in OnAskQuestion below
-	if Intent("soft,growl",_intents)
+	if GETTYPE(_type) == 1 || GETTYPE(_type) == 2 //If the response is a number, with or without decimal point
+	{
+		"Numbers??????? lotta numbers"
+	}
+	elseif Intent("soft,growl",_intents)
 	{
 		"oh is that a threat? hmmmmmmmm"
 	}

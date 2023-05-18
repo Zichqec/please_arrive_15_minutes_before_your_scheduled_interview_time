@@ -178,7 +178,7 @@ surface.append0,100-104
 	animation212.pattern1,overlay,212,0,0,0
 	animation212.option,background
 	
-	animation212.collisionex0,head,polygon,608,180,640,212,673,211,707,199,733,174,748,186,769,186,792,161,802,155,812,164,822,193,853,214,882,197,878,148,771,97,683,104,605,151,604,182
+	animation212.collisionex0,head,polygon,644,321,916,310,934,139,732,61,567,131
 	
 	//
 	animation213.interval,never

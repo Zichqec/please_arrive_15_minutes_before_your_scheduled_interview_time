@@ -2,8 +2,8 @@ charset,UTF-8
 type,shell
 
 name,Default Shell
-craftman,
-craftmanurl,
+craftman,Naryu & Galla & Zichqec
+craftmanurl,https://github.com/Zichqec/please_arrive_15_minutes_before_your_scheduled_interview_time
 
 seriko.alignmenttodesktop,bottom
 seriko.use_self_alpha,1

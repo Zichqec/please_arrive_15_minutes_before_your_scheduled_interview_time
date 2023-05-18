@@ -153,3 +153,15 @@ OnAskQuestion
 	"\n\n%(REPLACE(OnAskBossAQuestion,'\_q',''))"
 }
 
+OnUserInputCancel
+{
+	if reference1 == "timeout"
+	{
+		"Ok, we'll come back to that"
+	}
+	else //closed deliberately
+	{
+		"Hmmm refusing to answer..."
+	}
+}
+

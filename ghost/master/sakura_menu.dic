@@ -36,6 +36,34 @@ OnLastTalk
 	LastTalk
 }
 
+OnAskMeAQuestion
+{
+	LastTalk = QuestionTalk
+	LastTalk
+}
+
+OnAskBossAQuestion
+{
+	"\![open,inputbox,OnAskQuestion,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]\t\*"
+	--
+	"\0\b[0]oh sure sure sure sure whats up"
+	--
+	"\_q\n\n\![*]\__q[OnCancelQuestion]Actually,\_w[0] nevermind...\__q"
+}
+
+OnCancelQuestion
+{
+	"\![close,inputbox,OnAskQuestion]"
+	--
+	"oh ok"
+}
+
+OnChangeTie : all
+{
+	
+	"\![bind,Tie,,0]\![bind,Tie,%(ANY(TiesAvailable)),1]"
+}
+
 OnCustomizeBalloon : all
 {
 	_colors = ("yellow","pink","blue","orange","green","purple","notary","inkwell","shimmer","starlight")
@@ -152,28 +180,6 @@ OnTalkTopicChange
 {
 	TalkTopic = reference0
 	"\C\![raise,OnTalkRateMenu]"
-}
-
-OnAskBossAQuestion
-{
-	"\![open,inputbox,OnAskQuestion,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]\t\*"
-	--
-	"\0\b[0]oh sure sure sure sure whats up"
-	--
-	"\_q\n\n\![*]\__q[OnCancelQuestion]Actually,\_w[0] nevermind...\__q"
-}
-
-OnCancelQuestion
-{
-	"\![close,inputbox,OnAskQuestion]"
-	--
-	"oh ok"
-}
-
-OnChangeTie : all
-{
-	
-	"\![bind,Tie,,0]\![bind,Tie,%(ANY(TiesAvailable)),1]"
 }
 
 Intent

@@ -18,11 +18,6 @@ OnAiTalk
 	LastTalk
 }
 
-OnAskMeAQuestion
-{
-	QuestionTalk
-}
-
 QuestionTalk : nonoverlap_pool
 {
 	"\0\b[4]%(input)%(speak)%(forward)%(doyou)... %(neutral)%(nervous)consider yourself edible?"

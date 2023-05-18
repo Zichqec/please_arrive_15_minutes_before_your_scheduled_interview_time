@@ -1,0 +1,6 @@
+communicatebox.background.color.r,115
+communicatebox.background.color.g,057
+communicatebox.background.color.b,092
+communicatebox.font.color.r,255
+communicatebox.font.color.g,255
+communicatebox.font.color.b,255

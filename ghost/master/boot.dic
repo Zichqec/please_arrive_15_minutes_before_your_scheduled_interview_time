@@ -19,8 +19,20 @@ OnFirstBoot
 
 OnHelpWanted : all
 {
-	"\_b[helpwanted.png,6,6,opaque]\x"
+	if SHIORI3FW.BalloonName == "Stuck to a Filing Cabinet"; "\0\b[100]\_b[helpwanted.png,6,6,opaque,--option=foreground]"
+	"%(HelpWanted)\x"
 	"\![raise,OnJobTime]"
+}
+
+HelpWanted : all
+{
+	"\![no-pause]\_qHELP WANTED\n"
+	"One creature wanted for HOARD MAINTENANCE position.\n"
+	"Duties include Cleaning, Organizing, and Admiration.\n"
+	"SALARY: 1 sack of feathers & rocks /day, bed and board provided.\n"
+	"Must NOT have metal allergies.\n"
+	"Be no TALLER than 16 ft. (488 cm.) or LONGER from snout to flank.\n"
+	"THIEVES AND LOOTERS NEED NOT APPLY."
 }
 
 OnJobTime : all

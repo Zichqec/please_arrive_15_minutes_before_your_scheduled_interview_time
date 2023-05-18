@@ -319,6 +319,22 @@ boldoff
 	"\f[bold,0]"
 }
 
+noboss
+{
+	"\s[-1]"
+}
+
+darkboss : all
+{
+	"\s[-1]\![set,alpha,0]\s[100]"
+	for _i = 0; _i < 100; _i += 5
+	{
+		"\![set,alpha,%(_i)]\w1"
+	}
+	"\![set,alpha,100]"
+	
+}
+
 //Bodies
 neutral
 {

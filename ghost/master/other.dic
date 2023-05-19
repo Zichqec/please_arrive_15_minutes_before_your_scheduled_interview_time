@@ -279,7 +279,8 @@ OnQuestionName
 		NameIndex = 7
 		SavedUsername = username
 		ProgressMangler
-		"\0\b[4]%(paper)%(processing)Oh? Name changed? %(read)Ok! Let me see here, %(squint)it's... \n\n... %(read)%(CurrentName)! Yes!"
+		
+		"\0\b[0]%(paper)%(processing)Oh? Name changed? %(paper)%(read)Ok! Let me see here, %(paper)%(squint)it's... \n\n... %(paper)%(read)%(CurrentName)! Yes! %(neutral)%(forward)Call you %(CurrentName) from now on. %(agitated)%(happy)Good sound."
 	}
 	elseif NameIndex > 0
 	{
@@ -287,17 +288,19 @@ OnQuestionName
 		
 		if _index == 1 //Saying it right for the first time
 		{
-			"\0\b[2]%(paper)%(processing)%(CurrentName)? %(smile)%(CurrentName)! %(happy)%(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName)~!!"
+			"\0\b[0]%(paper)%(processing)%(CurrentName)? %(neutral)%(smile)%(CurrentName)! %(agitated)%(happy)%(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName)~!!"
 		}
 		else //Getting it wrong in a new way
 		{
-			"\0\b[4]%(paper)%(processing)Oh oh, okay! %(smile)I got it, it's %(CurrentName)."
+			"\0\b[4]%(paper)%(processing)Oh oh, okay! %(neutral)%(smile)I got it, it's %(CurrentName). %(neutral)%(forward)Yes, sure this time."
 		}
 	}
 	elseif NameIndex == 0 //Already had it right
 	{
-		"\0\b[0]%(paper)%(smile)Yes yes, I remember, %(CurrentName)! %(happy)%(CurrentName) %(CurrentName) %(CurrentName)~"
+		"\0\b[0]%(paper)%(smile)Yes yes, I remember, %(CurrentName)! %(agitated)%(happy)%(CurrentName) %(CurrentName) %(CurrentName)~"
 	}
+	--
+	"\_w[2000]"
 }
 
 OnNotifyDressupInfo

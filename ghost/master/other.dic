@@ -292,6 +292,11 @@ OnQuestionName
 		{
 			"\0\b[0]%(paper)%(processing)%(CurrentName)? %(neutral)%(smile)%(CurrentName)! %(agitated)%(happy)%(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName)~!!"
 		}
+		elseif _index == 6
+		{
+			//"\0\b[4]%(forward)%(neutral)Oh. %(tie)%(nervous)Say name wrong...? %(paper)%(squint)It's... Ah! %(neutral)%(pet)It's %(CurrentName)! %(neutral)%(forward)I get it right now."
+			"\0\b[4]%(paper)%(look)What? %(paper)%(squint)What??? %(paper)%(scowl)You say... %(CurrentName)? %(paper)%(processing)Grrm..."
+		}
 		else //Getting it wrong in a new way
 		{
 			"\0\b[4]%(paper)%(processing)Oh oh, okay! %(neutral)%(smile)I got it, it's %(CurrentName). %(neutral)%(forward)Yes, sure this time."

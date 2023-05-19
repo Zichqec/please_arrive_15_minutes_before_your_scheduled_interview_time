@@ -31,6 +31,8 @@ QuestionTalk : nonoverlap_pool
 	"\0\b[4]%(input)%(paper)%(look)What is your preferred type of nesting material?"
 	"\0\b[4]%(input)%(paper)%(look)How many times in month would you say you need to be fed?"
 	"\0\b[4]%(input)%(speak)%(forward)How many magic spells do you know?"
+	"\0\b[4]%(input)%(speak)%(forward)How much ex-\w4per-\w4i-\w4ence you have pol-\w4ish-\w4ing %(metal) objects?"
+	"\0\b[4]%(input)%(speak)%(forward)What sort of co-\w4llec-\w4tions you have in your hoard?"
 	
 	"\0\b[0]%(neutral)%(serious)Have you ever worked with dragon before?%(yesno('worked with dragon'))"
 	"\0\b[0]%(speak)%(forward)Have you ever fought off armored knight before?%(yesno('yes'))"
@@ -55,4 +57,6 @@ RandomTalk : nonoverlap_pool
 	"\0\b[4]%(speak)%(forward)Have good view from cave entrance! %(speak)%(forward)Good for relaxing lunch break!"
 	"\0\b[4]%(speak)%(forward)Have good human resources. %(agitated)%(happy)Whole town nearby!"
 	"\0\b[4]%(speak)%(smile)Have ac-\w4tiv-\w4i-\w4ties to help you relax; %(neutral)%(forward)you can stack gold pieces, or sort gems!"
+	"\0\b[4]%(speak)%(smile)I hope you will enjoy your em-\w4-ploy-\w4ment here, %(name)! %(tie)%(nervous)If in-\w4ter-\w4view goes well..."
+	"\0\b[4]%(neutral)%(ceiling)%(name)... %(name)...? \n\n%(narration)%(italic)He's mumbling... %(italicoff)"
 }

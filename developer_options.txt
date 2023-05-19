@@ -1,0 +1,3 @@
+.gitignore,nonar,noupdate
+.git/,nonar,noupdate
+developer_options.txt,noupdate

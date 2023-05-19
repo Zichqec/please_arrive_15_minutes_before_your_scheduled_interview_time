@@ -155,12 +155,15 @@ OnAnswerYesNo
 
 GenericNeutral
 {
-	"\0\b[4]%(neutral)%(forward)I see, I see..."
+	"\0\b[4]%(neutral)%(scowl)I see, I see..."
+	"\0\b[4]%(neutral)%(scowl)Good in-\w4for-\w4ma-\w4tion..."
+	"\0\b[4]%(paper)%(read)Hmm... %(paper)%(forward)I see? %(paper)%(nervous) I see!"
 }
 
 GenericPositive
 {
-	"\0\b[4]%(neutral)%(smile)Oh, good good good good."
+	"\0\b[4]%(neutral)%(smile)Oh, good good good good. %(agitated)%(happy)Yes, very good to know about %(name)!"
+	"\0\b[4]%(neutral)%(smile)"
 }
 
 GenericNegative
@@ -209,15 +212,14 @@ OnAskQuestion
 	}
 	elseif _input == ""
 	{
-		"\0\b[4]%(paper)%(forward)Oh, %(DragonNoiseSuffix), %(paper)%(nervous)nothing to say... oh no..."
+		"\0\b[4]%(paper)%(forward)Oh, %(DragonNoiseSuffix), %(paper)%(nervous)nothing to say... Oh..."
 	}
 	else //Didn't match any intents
 	{
-		"\0\b[4]%(tie)%(squint)Mysterious..."
+		"\0\b[4]%(tie)%(squint)Hmm, I see I see... %(neutral)%(forward)I will consider this."
 		"\0\b[4]%(neutral)%(processing)Um... yes. %(neutral)%(ceiling)Yes? %(neutral)%(forward)Yes."
+		"\0\b[4]%(neutral)%(processing).\w8.\w8.\w8\w8\w8\w8\w8 %(tie)%(nervous) Prob-\w4ab-\w4ly?"
 	}
-	--
-	"\n\n%(REPLACE(OnAskBossAQuestion,'\_q',''))"
 }
 
 OnUserInputCancel
@@ -228,7 +230,7 @@ OnUserInputCancel
 	}
 	else //closed deliberately
 	{
-		"\0\b[4]%(paper)%(scowl)Hmmm refusing to answer..."
+		"\0\b[4]%(paper)%(scowl)Hmmm, refusing to answer..."
 	}
 }
 

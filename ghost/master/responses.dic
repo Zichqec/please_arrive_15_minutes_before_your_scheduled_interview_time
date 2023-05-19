@@ -228,11 +228,29 @@ OnUserInputCancel
 {
 	if reference1 == "timeout"
 	{
-		"\0\b[4]%(paper)%(scowl)Okay, %(neutral)%(forward)we'll come back to that."
+		timeoutresponse
 	}
 	else //closed deliberately
 	{
 		"\0\b[4]%(paper)%(scowl)Hmmm, refusing to answer..."
+		"\0\b[4]%(paper)%(scowl)A-\w4voi-\w4ding the question..."
+		"\0\b[4]%(paper)%(serious)I see, you refuse..."
+		"\0\b[4]%(paper)%(serious)I-\w4gnor-\w4ing the question..."
 	}
 }
 
+OnChoiceTimeout
+{
+	if "OnAnswerYesNo" _in_ reference0
+	{
+		"\![close,inputbox,OnAnswerQuestion]"
+		--
+		timeoutresponse
+	}
+}
+
+timeoutresponse
+{
+	"\0\b[4]%(paper)%(scowl)Okay, %(neutral)%(forward)we come back to that."
+	"\0\b[4]%(paper)%(scowl)Hm, not sure...? %(neutral)%(forward)I ask again later."
+}

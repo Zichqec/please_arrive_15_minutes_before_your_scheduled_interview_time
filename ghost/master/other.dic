@@ -252,12 +252,12 @@ IsVowel
 
 input
 {
-	"\![open,inputbox,OnAnswerQuestion,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]"
+	"\_l[-10000]\q[timeoutprevention,OnAnswerYesNo]\_l[0,0]\![set,choicetimeout,%(aitalkinterval * 1000)]\![open,inputbox,OnAnswerQuestion,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]"
 }
 
 yesno
 {
-	"\_q\n\n\![*]\q[Yes,OnAnswerYesNo,yes,%(_argv[0])]\n \n[-100]\f[align,right]\![*]\q[No,OnAnswerYesNo,no,%(_argv[0])]"
+	"\_q\n\n\![*]\q[Yes,OnAnswerYesNo,yes,%(_argv[0])]\n \n[-100]\f[align,right]\![*]\q[No,OnAnswerYesNo,no,%(_argv[0])]\![set,choicetimeout,%(aitalkinterval * 1000)]"
 }
 
 name

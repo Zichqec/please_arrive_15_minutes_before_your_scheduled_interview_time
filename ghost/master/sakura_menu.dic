@@ -11,7 +11,7 @@ SakuraMenuGreetings : nonoverlap
 //Because there is an all modifier here, you don't need to write -- between menu options
 OnSakuraMenu : all
 {
-	"\0\b[2]\s[0]\![set,autoscroll,disable]\![no-pause]"
+	"\0\b[2]\s[0]\![set,autoscroll,disable]\![no-pause]\![close,inputbox,OnAnswerQuestion]"
 	"\n"
 	
 	"\n\n\_q"

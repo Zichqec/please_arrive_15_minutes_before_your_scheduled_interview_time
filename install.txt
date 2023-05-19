@@ -3,3 +3,5 @@ type,ghost
 
 name,Please arrive 15 minutes before your scheduled interview time
 directory,please_arrive_15_minutes_before_your_scheduled_interview_time_gnz
+
+balloon.directory,stuck_to_a_filing_cabinet

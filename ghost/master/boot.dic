@@ -128,15 +128,17 @@ OnBoot
 	}
 	else //Normal boot
 	{
-		"\0\s[0]Hello %(username).\w8 Good to see you."
-		"\0\s[0]Hello.\w8 Ready to make something cool?"
+		"\0\b[4]%(neutral)%(forward)Hello, %(name)! %(neutral)%(pet)It another part of best interview!"
+		"\0\b[4]%(neutral)%(behind)Have time for snack...? %(neutral)%(ceiling)Grrm... \n\n%(neutral)%(forward)Oh! %(name)! Y-yes, am ready to continue, yes, yes!"
+		"\0\b[4]\s[700]\i[4]Get get get, get things... \w8\w8%(paper)%(look)That everything...? \w8%(neutral)%(forward)Yes, we start now! Hello!"
 	}
 }
 
 OnClose
 {
-	"\0\b[0]\s[0]Farewell."
-	"\0\b[0]\s[0]Goodbye."
+	"\0\b[4]%(paper)%(behind)Well... getting late now. %(neutral)%(forward)We continue next time. %(neutral)%(smile)Be safe! \w8\w8\w8"
+	"\0\b[4]%(neutral)%(processing)Ah, time to go? %(speak)%(smile)We'll schedule another meeting soon! %(neutral)%(forward)I look forward to it."
+	"\0\b[4]%(tie)%(ceiling)Grrm... is about time I count my ties. %(tie)%(look)You find your way out fine, yes? %(tie)%(smile)Good."
 	--
 	"\w8\w8\-" //This is what makes the ghost close (after a short pause), do not remove the \- , and MAKE SURE you don't use a \e before this point or it won't work
 }

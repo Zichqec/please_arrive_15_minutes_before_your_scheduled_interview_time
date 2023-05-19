@@ -52,4 +52,7 @@ RandomTalk : nonoverlap_pool
 	"\0\b[4]%(neutral)%(forward)You good in-\w4ter-\w4view-\w4ee. %(agitated)%(happy)Best so far!"
 	"\0\b[4]%(neutral)%(forward)There lots of bugs in cave, will have no shortage of snacks here."
 	"\0\b[4]%(speak)%(smile)Always have access to water, to meet regulation! %(neutral)%(forward)Drips into cave at all times!"
+	"\0\b[4]%(speak)%(forward)Have good view from cave entrance! %(speak)%(forward)Good for relaxing lunch break!"
+	"\0\b[4]%(speak)%(forward)Have good human resources. %(agitated)%(happy)Whole town nearby!"
+	"\0\b[4]%(speak)%(smile)Have ac-\w4tiv-\w4i-\w4ties to help you relax; %(neutral)%(forward)you can stack gold pieces, or sort gems!"
 }

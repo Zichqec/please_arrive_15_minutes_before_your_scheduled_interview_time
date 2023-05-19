@@ -10,7 +10,7 @@ craftmanurl,https://github.com/Zichqec/please_arrive_15_minutes_before_your_sche
 
 sakura.name,Boss
 
-icon,icon.ico
+icon,tiecon.ico
 
 sstp.allowunspecifiedsend,0
 

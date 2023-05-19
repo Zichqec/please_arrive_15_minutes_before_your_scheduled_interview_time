@@ -38,7 +38,7 @@ QuestionTalk : nonoverlap_pool
 	"\0\b[0]%(speak)%(forward)Have you ever fought off armored knight before?%(yesno('yes'))"
 	"\0\b[0]%(neutral)%(look)Do you have any pets, and %(paper)%(processing)would you be upset if they... %(paper)%(nervous)disappeared...?%(yesno)"
 	"\0\b[4]%(neutral)%(processing)Do you need to chew your food?%(yesno)"
-	"\0\b[4]%(tie)%(plead)Do you like my tie?%(yesno('yes')"
+	"\0\b[4]%(tie)%(plead)Do you like my tie?%(yesno('yes'))"
 	"\0\b[4]%(speak)%(forward)Do you know how to work microwave?%(yesno('work a microwave'))"
 	"\0\b[4]%(neutral)%(scowl)Have you ever kept sen-\w4ti-\w4ent reptile as pet?%(yesno('no'))"
 	"\0\b[4]%(neutral)%(ceiling)Do you believe in dinosaurs?%(yesno)"

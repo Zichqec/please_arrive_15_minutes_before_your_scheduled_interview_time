@@ -42,27 +42,27 @@ OnAnswerQuestion
 	//This can be set up like the if/else structure in OnAskQuestion below
 	if GETTYPE(_type) == 1 || GETTYPE(_type) == 2 //If the response is a number, with or without decimal point
 	{
-		"Numbers??????? lotta numbers"
+		"\0\b[4]%(paper)%(processing)Hmmm. \w8\w8%(paper)%(ceiling)Sounds like real number..."
 	}
 	elseif Intent("soft,growl",_intents)
 	{
-		"oh is that a threat? hmmmmmmmm"
+		"\0\b[4]%(neutral)%(processing)%(DragonNoisePrefix)...? \n\n%(neutral)%(look)%(DragonNoisePrefix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)..."
 	}
 	elseif Intent("screaming,loud",_intents)
 	{
-		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA WHY ARE WE SCREAMING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		"\0\b[4]%(neutral)%(ceiling)AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA WHY WE SCREAMING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 	}
 	elseif "gold" _in_ _input
 	{
-		"gold!!! my gold"
+		"\0\b[4]%(agitated)%(forward)Gold!!! %(agitated)%(serious)My gold!!! %(agitated)%(threaten)Give!!! No one touch!!!"
 	}
 	elseif _input == ""
 	{
-		"oh, uh, nothing to say, oh no"
+		"\0\b[4]%(paper)%(forward)Oh, %(DragonNoiseSuffix), %(paper)%(nervous)nothing to say... oh no..."
 	}
 	else //Didn't match any intents
 	{
-		"Mysterious..."
+		"\0\b[4]%(tie)%(squint)Mysterious..."
 	}
 }
 
@@ -79,7 +79,7 @@ OnAnswerYesNo
 		}
 		else
 		{
-			"oh good I would hate to have dragonly competition"
+			"\0\b[4]%(neutral)%(processing)Oh, good. %(speak)%(pet)I would hate to have dragonly competition!"
 		}
 	}
 	elseif reference1 == "bigger than me"
@@ -155,17 +155,17 @@ OnAnswerYesNo
 
 GenericNeutral
 {
-	"I see I see..."
+	"\0\b[4]%(neutral)%(forward)I see, I see..."
 }
 
 GenericPositive
 {
-	"Oh good good good good"
+	"\0\b[4]%(neutral)%(smile)Oh, good good good good."
 }
 
 GenericNegative
 {
-	"Hmm, this concerning..."
+	"\0\b[4]%(paper)%(scowl)Hmm, this concerning..."
 }
 
 //Boss's response to the user asking a question
@@ -177,15 +177,15 @@ OnAskQuestion
 	//The top line here and the line at the bottom can be commented if you want to get rid of the debug info
 	if Intent("soft,growl",_intents)
 	{
-		"oh is that a threat? hmmmmmmmm"
+		"\0\b[4]%(neutral)%(processing)%(DragonNoisePrefix)...? \n\n%(neutral)%(look)%(DragonNoisePrefix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)..."
 	}
 	elseif Intent("screaming,loud",_intents)
 	{
-		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA WHY WE SCREAMING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		"\0\b[4]%(neutral)%(ceiling)AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA WHY WE SCREAMING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 	}
 	elseif "gold" _in_ _input
 	{
-		"gold!!! my gold"
+		"\0\b[4]%(agitated)%(forward)Gold!!! %(agitated)%(serious)My gold!!! %(agitated)%(threaten)Give!!! No one touch!!!"
 	}
 	elseif "require" _in_ _input
 	{
@@ -209,24 +209,26 @@ OnAskQuestion
 	}
 	elseif _input == ""
 	{
-		"oh, uh, nothing to say, oh no"
+		"\0\b[4]%(paper)%(forward)Oh, %(DragonNoiseSuffix), %(paper)%(nervous)nothing to say... oh no..."
 	}
 	else //Didn't match any intents
 	{
-		"Mysterious..."
-		"Um..... yes. Yes? Yes."
+		"\0\b[4]%(tie)%(squint)Mysterious..."
+		"\0\b[4]%(neutral)%(processing)Um... yes. %(neutral)%(ceiling)Yes? %(neutral)%(forward)Yes."
 	}
+	--
+	"\n\n%(REPLACE(OnAskBossAQuestion,'\_q',''))"
 }
 
 OnUserInputCancel
 {
 	if reference1 == "timeout"
 	{
-		"Ok, we'll come back to that"
+		"\0\b[4]%(paper)%(scowl)Okay, %(neutral)%(forward)we'll come back to that."
 	}
 	else //closed deliberately
 	{
-		"Hmmm refusing to answer..."
+		"\0\b[4]%(paper)%(scowl)Hmmm refusing to answer..."
 	}
 }
 

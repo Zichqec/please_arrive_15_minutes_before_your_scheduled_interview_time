@@ -22,7 +22,7 @@ OnSakuraMenu : all
 	
 	"\![*]\__q[OnAskMeAQuestion]Do you have more questions?\__q\n"
 	"\![*]\__q[OnAskBossAQuestion]Can I ask you something?\__q\n\n"
-	"\![*]\__q[OnChangeTie]Do you have any other ties?\__q"
+	if LightsOn; "\![*]\__q[OnChangeTie]Do you have any other ties?\__q"
 	
 	
 	"\n\n"
@@ -44,8 +44,7 @@ OnLastTalk
 
 OnAskMeAQuestion
 {
-	LastTalk = QuestionTalk
-	LastTalk
+	OnAiTalk("question")
 }
 
 OnAskBossAQuestion

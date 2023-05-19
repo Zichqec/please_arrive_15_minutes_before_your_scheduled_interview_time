@@ -2,7 +2,7 @@ OnAiTalk
 {
 	if CHAIN.IDName == ""
 	{
-		if TalkTopic == "questions"; LastTalk = QuestionTalk
+		if TalkTopic == "questions" || _argv[0] == "question"; LastTalk = QuestionTalk
 		elseif TalkTopic == "chatter"; LastTalk = RandomTalk
 		else //Both
 		{
@@ -33,8 +33,6 @@ QuestionTalk : nonoverlap_pool
 	"\0\b[4]%(input)%(speak)%(forward)How many magic spells do you know?"
 	
 	"\0\b[0]%(neutral)%(serious)Have you ever worked with dragon before?%(yesno('worked with dragon'))"
-	"\0\b[0]Do you like scales?%(yesno('yes'))"
-	"\0\b[0]Do you eat bugs?%(yesno)"
 	"\0\b[0]%(speak)%(forward)Have you ever fought off armored knight before?%(yesno('yes'))"
 	"\0\b[0]%(neutral)%(look)Do you have any pets, and %(paper)%(processing)would you be upset if they... %(paper)%(nervous)disappeared...?%(yesno)"
 	"\0\b[4]%(neutral)%(processing)Do you need to chew your food?%(yesno)"
@@ -50,4 +48,8 @@ RandomTalk : nonoverlap_pool
 	"\0\b[4]%(tie)%(ceiling)%(narration)%(italic)He seems like he'd make a good boss.\w8.\w8.\w8\w8?%(italicoff)"
 	"\0\b[4]%(agitated)%(behind)%(narration)%(italic)Oh! He noticed a %(bug) crawling on the wall...%(italicoff)"
 	"\0\b[4]%(paper)%(squint)%(narration)%(italic)He keeps squinting at the %(resume)...%(italicoff)"
+	"\0\b[4]%(paper)%(squint)%(narration)%(italic)He's checking the details again... How many times is this now?%(italicoff)"
+	"\0\b[4]%(neutral)%(forward)You good in-\w4ter-\w4view-\w4ee. %(agitated)%(happy)Best so far!"
+	"\0\b[4]%(neutral)%(forward)There lots of bugs in cave, will have no shortage of snacks here."
+	"\0\b[4]%(speak)%(smile)Always have access to water, to meet regulation! %(neutral)%(forward)Drips into cave at all times!"
 }

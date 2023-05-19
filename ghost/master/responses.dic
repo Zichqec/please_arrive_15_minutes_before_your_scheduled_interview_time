@@ -175,8 +175,6 @@ OnAskQuestion
 	_intents = ProcessQuestion(_input)
 	
 	//The top line here and the line at the bottom can be commented if you want to get rid of the debug info
-	"\_q\0\b[0]You asked: %(reference0)\n\nOutput: %(ProcessQuestion(reference0))\n\n"
-	--
 	if Intent("soft,growl",_intents)
 	{
 		"oh is that a threat? hmmmmmmmm"
@@ -201,7 +199,7 @@ OnAskQuestion
 	{
 		"\0\b[4]%(tie)%(forward)My birthday? %(agitated)%(happy)May 18th, of course!"
 	}
-	elseif "accidental death"
+	elseif "accidental death" _in_ _input
 	{
 		"\0\b[4]%(neutral)%(smile)Don't worry! %(tie)%(smile)I've never had employee die on my watch before! \n\n%(narration)%(italic)Has he ever had any employees before...? %(italicoff)"
 	}
@@ -218,8 +216,6 @@ OnAskQuestion
 		"Mysterious..."
 		"Um..... yes. Yes? Yes."
 	}
-	--
-	"\n\n%(REPLACE(OnAskBossAQuestion,'\_q',''))"
 }
 
 OnUserInputCancel

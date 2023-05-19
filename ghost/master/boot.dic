@@ -50,13 +50,24 @@ CHAIN{{
 	"\0\b[0]%(speak)%(forward)Do you plan to leave area in next 100 years?%(yesno('no'))"
 	"\0\b[0]%(input)%(paper)%(serious)How often would you require time off to visit friends and family to assure them that you haven't been kidnapped and/or eaten?"
 	"\0\b[4]%(input)%(paper)%(read)If I wanted to... %(paper)%(nervous)contact... your previous employers, %(paper)%(forward)where would you say they live and... %(paper)%(scowl)they how dangerous?"
-	"\![embed,OnDiscoverName]\0\b[0]%(paper)%(look)Grrm-? \s[700]\i[4]\n\n%(narration)%(italic)Did he notice something...? %(italicoff)\n\n%(paper)%(read)Here, here! Yes, here, I have! \n\n%(paper)%(squint)%(DragonNoisePrefix)... %(name)...? %(paper)%(forward)%(name)! Nice to meet you! %(paper)%(pet)This will be good interview! I can tell!\e:chain=end"
+	"\![raise,OnDiscoverName]"
 CHAIN}}
 
-OnDiscoverName
+OnDiscoverName : all
 {
 	ProgressMangler
 	NameDiscovered = 1
+	
+	"\0\b[0]%(paper)%(look)Grrm-? \s[700]\i[4]\n\n%(narration)%(italic)Did he notice something...? %(italicoff)\n\n%(paper)%(read)Here, here! Yes, here, I have! \n\n%(paper)%(squint)%(DragonNoisePrefix)... "
+	if username == ""
+	{
+		"Ah- wait... Grrm... No name...? Well, anyway! "
+	}
+	else
+	{
+		"%(name)...? %(paper)%(forward)%(name)! Nice to meet you! "
+	}
+	"%(paper)%(pet)This will be good interview! I can tell!\e:chain=end"
 }
 
 OnInitialize

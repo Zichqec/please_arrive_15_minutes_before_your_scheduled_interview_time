@@ -163,12 +163,14 @@ GenericNeutral
 GenericPositive
 {
 	"\0\b[4]%(neutral)%(smile)Oh, good good good good. %(agitated)%(happy)Yes, very good to know about %(name)!"
-	"\0\b[4]%(neutral)%(smile)"
+	"\0\b[4]%(neutral)%(smile)Good! %(neutral)%(forward)Good good good. Good to know. %(speak)%(forward)Important, you know."
+	"\0\b[4]%(speak)%(forward)Ex-\w4cel-\w4lent! %(tie)%(nervous)Would be bad if no."
 }
 
 GenericNegative
 {
 	"\0\b[4]%(paper)%(scowl)Hmm, this concerning..."
+	"\0\b[4]%(paper)%(squint)I see... %(paper)%(serious)Reconsider."
 }
 
 //Boss's response to the user asking a question

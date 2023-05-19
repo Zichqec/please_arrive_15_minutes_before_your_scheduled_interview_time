@@ -49,18 +49,21 @@ OnAskMeAQuestion
 
 OnAskBossAQuestion
 {
-	"\![open,inputbox,OnAskQuestion,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]\t\*"
+	"\0\b[4]\![open,inputbox,OnAskQuestion,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]\t\*"
 	--
-	"\0\b[0]oh sure sure sure sure whats up"
+	"%(neutral)%(forward)Yes yes, question for me? Ask, ask!"
+	"%(neutral)%(forward)Yes, question, ask!"
+	"%(tie)%(nervous)Question?"
+	"%(paper)%(processing)Oh? Questions?? %(neutral)%(pet)Yes yes yes, ask, ask."
 	--
 	"\_q\n\n\![*]\__q[OnCancelQuestion]Actually,\_w[0] nevermind...\__q"
 }
 
 OnCancelQuestion
 {
-	"\![close,inputbox,OnAskQuestion]"
+	"\0\b[4]\![close,inputbox,OnAskQuestion]"
 	--
-	"oh ok"
+	"%(paper)%(scowl)%(DragonNoisePrefix)..."
 }
 
 OnChangeTie : nonoverlap

@@ -19,6 +19,13 @@ OnTranslate
 	
 	if SHIORI3FW.BalloonName == "Stuck to a Filing Cabinet"
 	{
+		_2 = "2"
+		_4 = "4"
+		if _available_balloons[0] == 10
+		{
+			_2 = "0"
+			_4 = "0"
+		}
 		LOGGING("====================================================================")
 		while "\0\b[0]" _in_ _talk
 		{
@@ -29,14 +36,14 @@ OnTranslate
 		
 		while "\0\b[2]" _in_ _talk
 		{
-			_2 = "2"
+			
 			if _available_balloons[0] == 10; _2 = "0"
 			_talk = REPLACE(_talk,"\0\b[2]","\0\b[%(ANY(_available_balloons))%(_2),--fallback=2]",1)
 		}
 		
 		while "\0\b[4]" _in_ _talk
 		{
-			_4 = "4"
+			
 			if _available_balloons[0] == 10; _2 = "0"
 			_talk = REPLACE(_talk,"\0\b[4]","\0\b[%(ANY(_available_balloons))%(_4)]",1)
 		}
@@ -87,7 +94,16 @@ OnSurfaceRestore
 	"\1\s[-1]\0"
 	--
 	"%(neutral)%(forward)"
+	"%(neutral)%(forward)"
+	"%(neutral)%(forward)"
 	"%(paper)%(read)"
+	"%(paper)%(squint)"
+	//"%(tie)%(processing)"
+	// "%(tie)%(plead)" //← dont like how these peer into your soul, that should be saved for dialogue
+	// "%(paper)%(plead)"
+	"%(neutral)%(read)"
+	"%(neutral)%(ceiling)"
+	"%(tie)%(look)"
 }
 
 //Happens when the ghost is unminimized. You *can* include dialogue, but you don't *have* to. I have included this event because if you don't, it defaults to \0\s[0]\1\s[10], which you don't want in some cases, such as if your ghost uses different surfaces or has a different number of characters.
@@ -568,6 +584,11 @@ tired
 OnTiredHead
 {
 	LastInterval = "500"
+}
+
+resume
+{
+	"résumé"
 }
 
 MakePatternSurfaces : all

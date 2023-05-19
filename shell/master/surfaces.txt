@@ -29,6 +29,9 @@ surface700
 	animation3.pattern0,overlay,3,0,0,0
 	animation3.pattern1,start,59999,0,0,0
 	
+	animation4.interval,never
+	animation4.pattern0,overlay,2,0,0,0
+	
 	//dark overlay
 	animation59900.interval,bind
 	animation59900.pattern0,overlayfast,99,0,0,0

@@ -32,7 +32,7 @@ OnFlipSwitch
 
 OnPushPaper
 {
-	"\0\b[0]\i[4]\t%(narration)%(italic)Whoosh%(italicoff)\w8\w8\w8\w8\n\n%(neutral)\![anim,clear,2]%(look)Papers... %(neutral)\![anim,clear,2]%(nervous)One moment, please. \s[700]\_w[5000]\n\n%(neutral)%(forward)Apologies. Where were we?"
+	"\0\b[0]\i[4]\t%(narration)%(italic)Whoosh%(italicoff)\w8\w8\w8\w8\n\n%(neutral)\![anim,clear,2]%(look)Papers... %(neutral)\![anim,clear,2]%(nervous)One moment, please. \s[700]\_w[5000]\n\n%(neutral)%(forward)Apologies. What was saying?"
 }
 
 OnMouseMove

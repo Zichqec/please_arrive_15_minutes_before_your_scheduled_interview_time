@@ -1,14 +1,18 @@
 SakuraMenuGreetings : nonoverlap
 {
-	"Hello."
-	"How can I help you?"
+	"Yes yes,\w8 you have question?"
+	"Yes,\w8 yes?"
+	"Problem?"
+	"There problem?"
+	"I listen!"
+	"Interview going well,\w8 yes?"
 }
 
 //Because there is an all modifier here, you don't need to write -- between menu options
 OnSakuraMenu : all
 {
 	"\0\b[2]\s[0]\![set,autoscroll,disable]\![no-pause]"
-	if SHIORI3FW.Eventid == "OnMouseDoubleClick"; SakuraMenuGreetings //The check here is so they won't comment if you click the back button. Remove if you prefer
+	"\n"
 	
 	"\n\n\_q"
 	
@@ -16,7 +20,7 @@ OnSakuraMenu : all
 	if LastTalk != ""; "\![*]\__q[OnLastTalk]I'm sorry, what was that?\__q"
 	"\n\n"
 	
-	"\![*]\__q[OnAskMeAQuestion]Do you have more questions for me?\__q\n"
+	"\![*]\__q[OnAskMeAQuestion]Do you have more questions?\__q\n"
 	"\![*]\__q[OnAskBossAQuestion]Can I ask you something?\__q\n\n"
 	"\![*]\__q[OnChangeTie]Do you have any other ties?\__q"
 	
@@ -28,7 +32,9 @@ OnSakuraMenu : all
 	
 	"\![*]\__q[OnTalkRateMenu]Can we change the pace?\__q\n\n"
 	
-	"\![*]\q[Nevermind,blank]"	
+	"\![*]\q[Nevermind,blank]"
+	"\_l[0,0]\_q"
+	if SHIORI3FW.Eventid == "OnMouseDoubleClick"; SakuraMenuGreetings //The check here is so they won't comment if you click the back button. Remove if you prefer
 }
 
 OnLastTalk
@@ -58,10 +64,18 @@ OnCancelQuestion
 	"oh ok"
 }
 
-OnChangeTie : all
+OnChangeTie : nonoverlap
 {
-	
+	"\0\b[0]%(agitated)%(happy)Yes, yes! Have many ties, special co-\w4llec-\w4tion. %(tie)%(forward)You would like to see another? Wait moment!"
+	--
+	"\s[700]\i[4]"
+	--
+	"\_w[2000]\n\nFind right one... Ah! "
+	--
 	"\![bind,Tie,,0]\![bind,Tie,%(ANY(TiesAvailable)),1]"
+	--
+	"%(neutral)%(forward)\n\nNew pattern, see? Favorite of mine!"
+	"%(neutral)%(forward)\n\nThis is good pattern, yes, yes!"
 }
 
 OnCustomizeBalloon : all
@@ -252,7 +266,7 @@ ProcessQuestion
 	if _input == _argv[0]; _output ,= "soft" //All lowercase
 	if TOUPPER(_input) == _argv[0]; _output ,= "loud" //All uppercase
 	if STRLEN(_input) >= 100; _output ,= "long"
-	if STRLEN(_input) <= 10; _output ,= "short"
+	if STRLEN(_input) <= 5; _output ,= "short"
 	if ARRAYSIZE(SPLIT(_input," ")) == 1; _output ,= "one word"
 	if SUBSTR(_input,_len - 1,1) == "." && SUBSTR(_input,_len - 2,1) != "."; _output ,= "definitive"
 	if "!?" _in_ _input || "?!" _in_ _input; _output ,= "demanding"

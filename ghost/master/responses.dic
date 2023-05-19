@@ -232,10 +232,17 @@ OnUserInputCancel
 	}
 	else //closed deliberately
 	{
-		"\0\b[4]%(paper)%(scowl)Hmmm, refusing to answer..."
-		"\0\b[4]%(paper)%(scowl)A-\w4voi-\w4ding the question..."
-		"\0\b[4]%(paper)%(serious)I see, you refuse..."
-		"\0\b[4]%(paper)%(serious)I-\w4gnor-\w4ing the question..."
+		if reference0 == "OnAskQuestion"
+		{
+			OnCancelQuestion
+		}
+		else
+		{
+			"\0\b[4]%(paper)%(scowl)Hmmm, refusing to answer..."
+			"\0\b[4]%(paper)%(scowl)A-\w4voi-\w4ding the question..."
+			"\0\b[4]%(paper)%(serious)I see, you refuse..."
+			"\0\b[4]%(paper)%(serious)I-\w4gnor-\w4ing the question..."
+		}
 	}
 }
 
@@ -253,4 +260,6 @@ timeoutresponse
 {
 	"\0\b[4]%(paper)%(scowl)Okay, %(neutral)%(forward)we come back to that."
 	"\0\b[4]%(paper)%(scowl)Hm, not sure...? %(neutral)%(forward)I ask again later."
+	--
+	"\_w[2000]"
 }

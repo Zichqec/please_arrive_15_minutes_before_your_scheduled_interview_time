@@ -126,6 +126,17 @@ OnAnswerYesNo
 			"\0\b[0]%(agitated)%(threaten)%(DragonNoisePrefix)... I think... You not taking this opportunity seriously... Making jokes... Making me %(wings)UPSET... \w8\w8\n\n%(agitated)%(threaten)Let's move on... \n\n... before one of us does something they regret."
 		}
 	}
+	elseif reference1 == "work a microwave"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[4]%(neutral)%(plead)Can you teach me?%(yesno('yes'))"
+		}
+		else
+		{
+			"\0\b[4]%(neutral)%(tired)Me neither... %(neutral)%(look)Need more kobolds..."
+		}
+	}
 	
 	//Generic responses
 	elseif reference0 == "yes"
@@ -172,11 +183,31 @@ OnAskQuestion
 	}
 	elseif Intent("screaming,loud",_intents)
 	{
-		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA WHY ARE WE SCREAMING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA WHY WE SCREAMING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 	}
 	elseif "gold" _in_ _input
 	{
 		"gold!!! my gold"
+	}
+	elseif "require" _in_ _input
+	{
+		"\0\b[0]%(speak)%(forward)The only requirements are counting treasure, %(neutral)%(squint)cleaning treasure, %(neutral)%(scowl)protecting treasure, and %(agitated)%(threaten)NOT STEALING TREASURE."
+	}
+	elseif "time off" _in_ _input
+	{
+		"\0\b[0]%(paper)%(forward)Under my management, %(paper)%(smile)you'll get 2 full days off every month, as well as all of the usual holidays: %(paper)%(ceiling)the Decennial Hibernation, my birthday, Livestock Roasting Day, laundry day..."
+	}
+	elseif "your birthday" _in_ _input
+	{
+		"\0\b[4]%(tie)%(forward)My birthday? %(agitated)%(happy)May 18th, of course!"
+	}
+	elseif "accidental death"
+	{
+		"\0\b[4]%(neutral)%(smile)Don't worry! %(tie)%(smile)I've never had employee die on my watch before! \n\n%(narration)%(italic)Has he ever had any employees before...? %(italicoff)"
+	}
+	elseif "salary" _in_ _input && "negotiable" _in_ _input
+	{
+		"\0\b[0]%(tie)%(serious)Grrm... what do you want to be paid in? %(speak)%(processing)Scales? %(neutral)%(smile)Meat? %(neutral)%(look)Stickynotes? %(paper)%(read)Silver? \n\n%(paper)%(serious)If you do well, we can figure something out."
 	}
 	elseif _input == ""
 	{

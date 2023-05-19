@@ -22,10 +22,27 @@ QuestionTalk : nonoverlap_pool
 {
 	"\0\b[4]%(input)%(speak)%(forward)%(doyou)... %(neutral)%(nervous)consider yourself edible?"
 	"\0\b[4]%(input)%(speak)%(plead)On scale of %(scale), how would you rate this interview?"
+	"\0\b[4]%(input)%(neutral)%(processing)How long would you say your teeth are?"
+	"\0\b[4]%(input)%(neutral)%(processing)Do you keep your claws sharpened?"
+	"\0\b[0]%(input)%(speak)%(processing)On scale of %(scale), what would you say %(speak)%(ceiling)your chances of surviving a 500 ft.\w4 fall? \w8\w8%(neutral)%(forward)Or, 152 m., if that's better for you."
+	"\0\b[0]%(input)%(paper)%(squint)Would you say that you're more comfortable working alone, or alongside kobolds? %(paper)%(nervous)And if with kobolds, do you have any I can borrow?"
+	"\0\b[4]%(input)%(speak)%(forward)What's the highest number you can count to?"
+	"\0\b[0]%(input)%(neutral)%(forward)Let's pretend that I have brought home company of a royal persuasion, %(neutral)%(serious)completely with their consent, %(speak)%(forward)and one of their relatives sends a warrior to retrieve them... %(neutral)%(processing)How would you handle the situation?"
+	"\0\b[4]%(input)%(paper)%(look)What is your preferred type of nesting material?"
+	"\0\b[4]%(input)%(paper)%(look)How many times in month would you say you need to be fed?"
+	"\0\b[4]%(input)%(speak)%(forward)How many magic spells do you know?"
 	
 	"\0\b[0]%(neutral)%(serious)Have you ever worked with dragon before?%(yesno('worked with dragon'))"
 	"\0\b[0]Do you like scales?%(yesno('yes'))"
 	"\0\b[0]Do you eat bugs?%(yesno)"
+	"\0\b[0]%(speak)%(forward)Have you ever fought off armored knight before?%(yesno('yes'))"
+	"\0\b[0]%(neutral)%(look)Do you have any pets, and %(paper)%(processing)would you be upset if they... %(paper)%(nervous)disappeared...?%(yesno)"
+	"\0\b[4]%(neutral)%(processing)Do you need to chew your food?%(yesno)"
+	"\0\b[4]%(tie)%(plead)Do you like my tie?%(yesno('yes')"
+	"\0\b[4]%(speak)%(forward)Do you know how to work microwave?%(yesno('work a microwave'))"
+	"\0\b[4]%(neutral)%(scowl)Have you ever kept sen-\w4ti-\w4ent reptile as pet?%(yesno('no'))"
+	"\0\b[4]%(neutral)%(ceiling)Do you believe in dinosaurs?%(yesno)"
+	"\0\b[4]%(speak)%(processing)Have you ever considered work as %(job) before?%(yesno)"
 }
 
 RandomTalk : nonoverlap_pool

@@ -56,7 +56,7 @@ OnAskBossAQuestion
 	"%(tie)%(nervous)Question?"
 	"%(paper)%(processing)Oh? Questions?? %(neutral)%(pet)Yes yes yes, ask, ask."
 	--
-	"\_q\n\n\![*]\__q[OnCancelQuestion]Actually,\_w[0] nevermind...\__q"
+	"\_q\n\n\![*]\__q[OnCancelQuestion]Actually,\_w[0] nevermind...\__q\*"
 }
 
 OnCancelQuestion

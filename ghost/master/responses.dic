@@ -50,11 +50,47 @@ OnAnswerQuestion
 	}
 	elseif Intent("screaming,loud",_intents)
 	{
-		"\0\b[4]%(neutral)%(ceiling)AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA WHY WE SCREAMING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		"\0\b[4]%(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA%(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA %(neutral)%(forward)\w8WHY WE SCREAMING?\w8 %(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA%(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA"
 	}
 	elseif "gold" _in_ _input
 	{
 		"\0\b[4]%(agitated)%(forward)Gold!!! %(agitated)%(serious)My gold!!! %(agitated)%(threaten)Give!!! No one touch!!!"
+	}
+	elseif Intent("hesitant",_intents)
+	{
+		"\0\b[4]%(paper)%(serious)Hmm, not con-\w4fi-\w4dent, I see..."
+	}
+	elseif Intent("one word",_intents)
+	{
+		"\0\b[4]%(neutral)%(nervous)Creature of few words...?"
+	}
+	elseif Intent("excited",_intents)
+	{
+		"\0\b[4]%(agitated)%(happy)Yes yes yes good good good, good en-\w4thu-\w4si-\w4as-\w4m!"
+	}
+	elseif Intent("inquisitive",_intents)
+	{
+		"\0\b[4]%(paper)%(smile)Want to know more, yes? Yes. %(paper)%(read)We go over this more."
+	}
+	elseif Intent("thoughtful",_intents)
+	{
+		"\0\b[4]%(neutral)%(forward)I see, I see. %(neutral)%(smile)Thinking care-\w4ful-\w4ly. Good."
+	}
+	elseif Intent("confused",_intents)
+	{
+		"\0\b[4]%(paper)%(serious)Grmm... Seem confused... %(paper)%(nervous)Maybe I not ask well enough...?"
+	}
+	elseif Intent("loud",_intents)
+	{
+		"\0\b[4]%(paper)%(nervous)WHY YELL? %(paper)%(ceiling)WHY YELL!"
+	}
+	elseif Intent("long",_intents)
+	{
+		"\0\b[4]%(tie)%(forward)Many words... Grrm... %(tie)%(nervous)You... Say again? Did not hear all..."
+	}
+	elseif Intent("short",_intents)
+	{
+		"\0\b[4]%(speak)%(forward)Concise, I see. ... %(tie)%(nervous)What does mean...?"
 	}
 	elseif _input == ""
 	{
@@ -62,7 +98,7 @@ OnAnswerQuestion
 	}
 	else //Didn't match any intents
 	{
-		"\0\b[4]%(tie)%(squint)Mysterious..."
+		"\0\b[4]%(tie)%(squint)I see... %(tie)%(nervous)I not see."
 	}
 }
 
@@ -186,7 +222,7 @@ OnAskQuestion
 	}
 	elseif Intent("screaming,loud",_intents)
 	{
-		"\0\b[4]%(neutral)%(ceiling)AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA WHY WE SCREAMING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		"\0\b[4]%(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA%(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA %(neutral)%(forward)\w8WHY WE SCREAMING?\w8 %(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA%(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA"
 	}
 	elseif "gold" _in_ _input
 	{

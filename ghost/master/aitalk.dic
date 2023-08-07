@@ -14,7 +14,7 @@ OnAiTalk
 	{
 		LastTalk = ChainTalk
 	}
-	LastTalk += "\_w[2000]"
+	LastTalk = "\![close,inputbox,__SYSTEM_ALL_INPUT__]" + LastTalk + "\_w[2000]"
 	LastTalk
 }
 
@@ -57,6 +57,6 @@ RandomTalk : nonoverlap_pool
 	"\0\b[4]%(speak)%(forward)Have good view from cave entrance! %(speak)%(forward)Good for relaxing lunch break!"
 	"\0\b[4]%(speak)%(forward)Have good human resources. %(agitated)%(happy)Whole town nearby!"
 	"\0\b[4]%(speak)%(smile)Have ac-\w4tiv-\w4i-\w4ties to help you relax; %(neutral)%(forward)you can stack gold pieces, or sort gems!"
-	"\0\b[4]%(speak)%(smile)I hope you will enjoy your em-\w4-ploy-\w4ment here, %(name)! %(tie)%(nervous)If in-\w4ter-\w4view goes well..."
+	"\0\b[4]%(speak)%(smile)I hope you will enjoy your em-\w4ploy-\w4ment here, %(name)! %(tie)%(nervous)If in-\w4ter-\w4view goes well..."
 	"\0\b[4]%(neutral)%(ceiling)%(name)... %(name)...? \n\n%(narration)%(italic)He's mumbling... %(italicoff)"
 }

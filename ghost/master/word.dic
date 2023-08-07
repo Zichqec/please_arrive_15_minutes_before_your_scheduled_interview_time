@@ -205,3 +205,17 @@ gem
 	"rho-\w4do-\w4nite"
 	"onyx"
 }
+
+job
+{
+	"an entertainer"
+	"a chef"
+	"a hunter"
+	"a veterinarian"
+	"a DJ"
+	"a taxi driver"
+	"a janitor"
+	"a banker"
+	"a taxidermist"
+	"an exceptional employee with no path to promotion"
+}

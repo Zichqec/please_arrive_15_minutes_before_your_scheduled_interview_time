@@ -40,7 +40,11 @@ OnAnswerQuestion
 	_intents = ProcessQuestion(_input)
 	
 	//This can be set up like the if/else structure in OnAskQuestion below
-	if GETTYPE(_type) == 1 || GETTYPE(_type) == 2 //If the response is a number, with or without decimal point
+	if _input == ""
+	{
+		"\0\b[4]%(paper)%(forward)Oh, %(DragonNoiseSuffix), %(paper)%(nervous)nothing to say... oh no..."
+	}
+	elseif GETTYPE(_type) == 1 || GETTYPE(_type) == 2 //If the response is a number, with or without decimal point
 	{
 		"\0\b[4]%(paper)%(processing)Hmmm. \w8\w8%(paper)%(ceiling)Sounds like real number..."
 	}
@@ -59,10 +63,6 @@ OnAnswerQuestion
 	elseif Intent("hesitant",_intents)
 	{
 		"\0\b[4]%(paper)%(serious)Hmm, not con-\w4fi-\w4dent, I see..."
-	}
-	elseif Intent("one word",_intents)
-	{
-		"\0\b[4]%(neutral)%(nervous)Creature of few words...?"
 	}
 	elseif Intent("excited",_intents)
 	{
@@ -88,13 +88,13 @@ OnAnswerQuestion
 	{
 		"\0\b[4]%(tie)%(forward)Many words... Grrm... %(tie)%(nervous)You... Say again? Did not hear all..."
 	}
+	elseif Intent("one word",_intents)
+	{
+		"\0\b[4]%(neutral)%(nervous)Creature of few words...?"
+	}
 	elseif Intent("short",_intents)
 	{
 		"\0\b[4]%(speak)%(forward)Concise, I see. ... %(tie)%(nervous)What does mean...?"
-	}
-	elseif _input == ""
-	{
-		"\0\b[4]%(paper)%(forward)Oh, %(DragonNoiseSuffix), %(paper)%(nervous)nothing to say... oh no..."
 	}
 	else //Didn't match any intents
 	{
@@ -177,15 +177,15 @@ OnAnswerYesNo
 	//Generic responses
 	elseif reference0 == "yes"
 	{
-		if reference1 == "yes"; GenericPositive
-		elseif reference1 == "no"; GenericNegative
-		else; GenericNeutral
+		if reference1 == "yes"; GenericPositive(reference0)
+		elseif reference1 == "no"; GenericNegative(reference0)
+		else; GenericNeutral(reference0)
 	}
 	else //no
 	{
-		if reference1 == "no"; GenericPositive
-		elseif reference1 == "yes"; GenericNegative
-		else; GenericNeutral
+		if reference1 == "no"; GenericPositive(reference0)
+		elseif reference1 == "yes"; GenericNegative(reference0)
+		else; GenericNeutral(reference0)
 	}
 }
 
@@ -198,9 +198,11 @@ GenericNeutral
 
 GenericPositive
 {
+	_opposite = "no"
+	if _argv[0] == "no"; _opposite = "yes"
 	"\0\b[4]%(neutral)%(smile)Oh, good good good good. %(agitated)%(happy)Yes, very good to know about %(name)!"
 	"\0\b[4]%(neutral)%(smile)Good! %(neutral)%(forward)Good good good. Good to know. %(speak)%(forward)Important, you know."
-	"\0\b[4]%(speak)%(forward)Ex-\w4cel-\w4lent! %(tie)%(nervous)Would be bad if no."
+	"\0\b[4]%(speak)%(forward)Ex-\w4cel-\w4lent! %(tie)%(nervous)Would be bad if %(_opposite)."
 }
 
 GenericNegative
@@ -216,7 +218,11 @@ OnAskQuestion
 	_intents = ProcessQuestion(_input)
 	
 	//The top line here and the line at the bottom can be commented if you want to get rid of the debug info
-	if Intent("soft,growl",_intents)
+	if _input == ""
+	{
+		"\0\b[4]%(paper)%(forward)Oh, %(DragonNoiseSuffix), %(paper)%(nervous)nothing to say... Oh..."
+	}
+	elseif Intent("soft,growl",_intents)
 	{
 		"\0\b[4]%(neutral)%(processing)%(DragonNoisePrefix)...? \n\n%(neutral)%(look)%(DragonNoisePrefix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)..."
 	}
@@ -248,13 +254,9 @@ OnAskQuestion
 	{
 		"\0\b[0]%(tie)%(serious)Grrm... what do you want to be paid in? %(speak)%(processing)Scales? %(neutral)%(smile)Meat? %(neutral)%(look)Stickynotes? %(paper)%(read)Silver? \n\n%(paper)%(serious)If you do well, we can figure something out."
 	}
-	elseif _input == ""
-	{
-		"\0\b[4]%(paper)%(forward)Oh, %(DragonNoiseSuffix), %(paper)%(nervous)nothing to say... Oh..."
-	}
 	else //Didn't match any intents
 	{
-		"\0\b[4]%(tie)%(squint)Hmm, I see I see... %(neutral)%(forward)I will consider this."
+		"\0\b[4]%(tie)%(squint)Hmm, I see I see... %(neutral)%(forward)I will consider this. Get back to you later."
 		"\0\b[4]%(neutral)%(processing)Um... yes. %(neutral)%(ceiling)Yes? %(neutral)%(forward)Yes."
 		"\0\b[4]%(neutral)%(processing).\w8.\w8.\w8\w8\w8\w8\w8 %(tie)%(nervous) Prob-\w4ab-\w4ly?"
 	}
@@ -275,9 +277,9 @@ OnUserInputCancel
 		else
 		{
 			"\0\b[4]%(paper)%(scowl)Hmmm, refusing to answer..."
-			"\0\b[4]%(paper)%(scowl)A-\w4voi-\w4ding the question..."
+			"\0\b[4]%(paper)%(scowl)A-\w4voi-\w4ding question..."
 			"\0\b[4]%(paper)%(serious)I see, you refuse..."
-			"\0\b[4]%(paper)%(serious)I-\w4gnor-\w4ing the question..."
+			"\0\b[4]%(paper)%(serious)Ig-\w4nor-\w4ing question..."
 		}
 	}
 }

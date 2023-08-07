@@ -304,7 +304,7 @@ OnQuestionName
 	}
 	elseif NameIndex == 0 //Already had it right
 	{
-		"\0\b[0]%(paper)%(smile)Yes yes, I remember, %(CurrentName)! %(agitated)%(happy)%(CurrentName) %(CurrentName) %(CurrentName)~"
+		"\0\b[4]%(paper)%(smile)Yes yes, I remember, %(CurrentName)! %(agitated)%(happy)%(CurrentName) %(CurrentName) %(CurrentName)~"
 	}
 	--
 	"\_w[2000]"

@@ -268,7 +268,7 @@ ProcessQuestion
 	if _input == _argv[0]; _output ,= "soft" //All lowercase
 	if TOUPPER(_input) == _argv[0]; _output ,= "loud" //All uppercase
 	if STRLEN(_input) >= 100; _output ,= "long"
-	if STRLEN(_input) <= 5; _output ,= "short"
+	if STRLEN(_input) <= 10; _output ,= "short"
 	if ARRAYSIZE(SPLIT(_input," ")) == 1; _output ,= "one word"
 	if SUBSTR(_input,_len - 1,1) == "." && SUBSTR(_input,_len - 2,1) != "."; _output ,= "definitive"
 	if "!?" _in_ _input || "?!" _in_ _input; _output ,= "demanding"
@@ -412,7 +412,7 @@ Mangler.VowelConsonant
 	for _i = 0; _i <= STRLEN(_input) - 1; _i++
 	{
 		_currentletter = SUBSTR(_input,_i,1)
-		if IsVowel(_lastletter) && !IsVowel(_currentletter) && _lastletter != ""; _pairs ,= _lastletter + _currentletter
+		if IsVowel(_lastletter) && !IsVowel(_currentletter) && !(_lastletter == "" || _lastletter == " "); _pairs ,= _lastletter + _currentletter
 		_lastletter = _currentletter
 	}
 	
@@ -441,7 +441,7 @@ Mangler.ConsonantVowel
 	for _i = 0; _i <= STRLEN(_input) - 1; _i++
 	{
 		_currentletter = SUBSTR(_input,_i,1)
-		if IsVowel(_currentletter) && !IsVowel(_lastletter) && _lastletter != ""; _pairs ,= _lastletter + _currentletter
+		if IsVowel(_currentletter) && !IsVowel(_lastletter) && !(_lastletter == "" || _lastletter == " "); _pairs ,= _lastletter + _currentletter
 		_lastletter = _currentletter
 	}
 	

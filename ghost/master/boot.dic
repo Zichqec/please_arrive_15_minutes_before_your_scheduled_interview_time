@@ -11,6 +11,7 @@ OnFirstBoot
 	SavedUsername = username
 	LightsOn = 0
 	HasToggledLights = 0
+	TalkTopic = "both"
 	
 	"\t\*%(noboss)\![bind,Tie,,0]\![bind,Tie,%(ANY(TiesAvailable)),1]"
 	--
@@ -80,6 +81,7 @@ OnInitialize
 	if !ISVAR("NameDiscovered"); NameDiscovered = 0
 	if !ISVAR("CurrentName"); CurrentName = TempNames
 	if !ISVAR("SavedUsername"); SavedUsername = username
+	if !ISVAR("TalkTopic"); TalkTopic = "both"
 	
 	if ISVAR("SavedChain")
 	{
@@ -110,28 +112,17 @@ OnDestroy
 
 OnBoot
 {
-	_temp = SPLIT(SHIORI3FW.UserBirthday,":")
+	_temp = SHIORI3FW.UserBirthday
 	_user_birthday = "%(_temp[1])/%(_temp[2])" //M/D, if you want it D/M you can switch it around
-	_today = "%(_month)/%(_day)" //Again, switch this around if using D/M
+	_today = "%(month)/%(day)" //Again, switch this around if using D/M
 	
 	"\1\s[-1]\0\b[0]\s[0]"
 	--
 	"\![bind,Tie,,0]\![bind,Tie,%(ANY(TiesAvailable)),1]"
 	--
-	if _today == _user_birthday
-	{
-		"\0\s[0]It is %(username)'s birthday today.\w8 Happy birthday, %(username).\w8 Developer,\w4 you can add an interesting message here.\w8 It can be as long as you like.\w8 Or, you can remove it entirely."
-	}
-	elseif _today == "1/1" //You can add whatever cool dates you want with more elseifs here
-	{
-		"\0\s[0]It's new year's day.\w8 Happy %(year),\w4 %(username)."
-	}
-	else //Normal boot
-	{
-		"\0\b[4]%(neutral)%(forward)Hello, %(name)! %(neutral)%(pet)It another part of best interview!"
-		"\0\b[4]%(neutral)%(behind)Have time for snack...? %(neutral)%(ceiling)Grrm... \n\n%(neutral)%(forward)Oh! %(name)! Y-yes, am ready to continue, yes, yes!"
-		"\0\b[4]\s[700]\i[4]Get get get, get things... \w8\w8%(paper)%(look)That everything...? \w8%(neutral)%(forward)Yes, we start now! Hello!"
-	}
+	"\0\b[4]%(neutral)%(forward)Hello, %(name)! %(neutral)%(pet)It another part of best interview!"
+	"\0\b[4]%(neutral)%(behind)Have time for snack...? %(neutral)%(ceiling)Grrm... \n\n%(neutral)%(forward)Oh! %(name)! Y-yes, am ready to continue, yes, yes!"
+	"\0\b[4]\s[700]\i[4]Get get get, get things... \w8\w8%(paper)%(look)That everything...? \w8%(neutral)%(forward)Yes, we start now! Hello!"
 }
 
 OnClose

@@ -37,68 +37,71 @@ OnAnswerQuestion
 {
 	_input = TOLOWER(reference0)
 	_type = TOAUTO(reference.raw[0])
-	_intents = ProcessQuestion(_input)
+	_intents = ProcessQuestion(reference0)
 	
+	LOGGING("====================================================================")
+	LOGGING("_input: %(_input)")
+	LOGGING("_intents: %(_intents)")
 	//This can be set up like the if/else structure in OnAskQuestion below
 	if _input == ""
 	{
-		"\0\b[4]%(paper)%(forward)Oh, %(DragonNoiseSuffix), %(paper)%(nervous)nothing to say... oh no..."
+		"\0\b[4]%(forward)%(paper)Oh, %(DragonNoiseSuffix), %(nervous)%(paper)nothing to say... oh no..."
 	}
 	elseif GETTYPE(_type) == 1 || GETTYPE(_type) == 2 //If the response is a number, with or without decimal point
 	{
-		"\0\b[4]%(paper)%(processing)Hmmm. \w8\w8%(paper)%(ceiling)Sounds like real number..."
+		"\0\b[4]%(processing)%(paper)Hmmm. \w8\w8%(ceiling)%(paper)Sounds like real number..."
 	}
 	elseif Intent("soft,growl",_intents)
 	{
-		"\0\b[4]%(neutral)%(processing)%(DragonNoisePrefix)...? \n\n%(neutral)%(look)%(DragonNoisePrefix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)..."
+		"\0\b[4]%(processing)%(neutral)%(DragonNoisePrefix)...? \n\n%(look)%(neutral)%(DragonNoisePrefix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)..."
 	}
 	elseif Intent("screaming,loud",_intents)
 	{
-		"\0\b[4]%(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA%(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA %(neutral)%(forward)\w8WHY WE SCREAMING?\w8 %(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA%(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA"
+		"\0\b[4]%(ceiling)%(neutral)AAAAAAAAAA%(pet)%(neutral)AAAAAAAAAA%(ceiling)%(neutral)AAAAAAAAAA%(pet)%(neutral)AAAAAAAAAA %(forward)%(neutral)\w8WHY WE SCREAMING?\w8 %(ceiling)%(neutral)AAAAAAAAAA%(pet)%(neutral)AAAAAAAAAA%(ceiling)%(neutral)AAAAAAAAAA%(pet)%(neutral)AAAAAAAAAA"
 	}
 	elseif "gold" _in_ _input
 	{
-		"\0\b[4]%(agitated)%(forward)Gold!!! %(agitated)%(serious)My gold!!! %(agitated)%(threaten)Give!!! No one touch!!!"
+		"\0\b[4]%(forward)%(agitated)Gold!!! %(serious)%(agitated)My gold!!! %(threaten)%(agitated)Give!!! No one touch!!!"
 	}
 	elseif Intent("hesitant",_intents)
 	{
-		"\0\b[4]%(paper)%(serious)Hmm, not con-\w4fi-\w4dent, I see..."
+		"\0\b[4]%(serious)%(paper)Hmm, not con-\w4fi-\w4dent, I see..."
 	}
 	elseif Intent("excited",_intents)
 	{
-		"\0\b[4]%(agitated)%(happy)Yes yes yes good good good, good en-\w4thu-\w4si-\w4as-\w4m!"
+		"\0\b[4]%(happy)%(agitated)Yes yes yes good good good, good en-\w4thu-\w4si-\w4as-\w4m!"
 	}
 	elseif Intent("inquisitive",_intents)
 	{
-		"\0\b[4]%(paper)%(smile)Want to know more, yes? Yes. %(paper)%(read)We go over this more."
+		"\0\b[4]%(smile)%(paper)Want to know more, yes? Yes. %(read)%(paper)We go over this more."
 	}
 	elseif Intent("thoughtful",_intents)
 	{
-		"\0\b[4]%(neutral)%(forward)I see, I see. %(neutral)%(smile)Thinking care-\w4ful-\w4ly. Good."
+		"\0\b[4]%(forward)%(neutral)I see, I see. %(smile)%(neutral)Thinking care-\w4ful-\w4ly. Good."
 	}
 	elseif Intent("confused",_intents)
 	{
-		"\0\b[4]%(paper)%(serious)Grmm... Seem confused... %(paper)%(nervous)Maybe I not ask well enough...?"
+		"\0\b[4]%(serious)%(paper)Grmm... Seem confused... %(nervous)%(paper)Maybe I not ask well enough...?"
 	}
 	elseif Intent("loud",_intents)
 	{
-		"\0\b[4]%(paper)%(nervous)WHY YELL? %(paper)%(ceiling)WHY YELL!"
+		"\0\b[4]%(nervous)%(paper)WHY YELL? %(ceiling)%(paper)WHY YELL!"
 	}
 	elseif Intent("long",_intents)
 	{
-		"\0\b[4]%(tie)%(forward)Many words... Grrm... %(tie)%(nervous)You... Say again? Did not hear all..."
+		"\0\b[4]%(forward)%(tie)Many words... Grrm... %(nervous)%(tie)You... Say again? Did not hear all..."
 	}
 	elseif Intent("one word",_intents)
 	{
-		"\0\b[4]%(neutral)%(nervous)Creature of few words...?"
+		"\0\b[4]%(nervous)%(neutral)Creature of few words...?"
 	}
 	elseif Intent("short",_intents)
 	{
-		"\0\b[4]%(speak)%(forward)Concise, I see. ... %(tie)%(nervous)What does mean...?"
+		"\0\b[4]%(forward)%(speak)Concise, I see. ... %(nervous)%(tie)What does mean...?"
 	}
 	else //Didn't match any intents
 	{
-		"\0\b[4]%(tie)%(squint)I see... %(tie)%(nervous)I not see."
+		"\0\b[4]%(squint)%(tie)I see... %(nervous)%(tie)I not see."
 	}
 }
 
@@ -111,29 +114,29 @@ OnAnswerYesNo
 	{
 		if reference0 == "yes"
 		{
-			"\0\b[4]%(agitated)%(threaten)WHAT!? %(wings)WERE THEY BIGGER THAN ME!?%(yesno('bigger than me'))"
+			"\0\b[4]%(threaten)%(agitated)WHAT!? %(wings)WERE THEY BIGGER THAN ME!?%(yesno('bigger than me'))"
 		}
 		else
 		{
-			"\0\b[4]%(neutral)%(processing)Oh, good. %(speak)%(pet)I would hate to have dragonly competition!"
+			"\0\b[4]%(processing)%(neutral)Oh, good. %(pet)%(speak)I would hate to have dragonly competition!"
 		}
 	}
 	elseif reference1 == "bigger than me"
 	{
 		if reference0 == "yes"
 		{
-			"\0\b[0]%(agitated)%(threaten)%(wings)WHAT!? NO NO NO! BITE BITE GRRR CLAW BITE THEM!!! MINE MINE MINE- \n\n... \n\n\0%(agitated)%(threaten)grrrm... %(neutral)%(tired)\w8\w8\w8\w8%(neutral)%(serious)Apologies. I... %(neutral)%(nervous)got carried away."
+			"\0\b[0]%(threaten)%(agitated)%(wings)WHAT!? NO NO NO! BITE BITE GRRR CLAW BITE THEM!!! MINE MINE MINE- \n\n... \n\n\0%(threaten)%(agitated)grrrm... %(tired)%(neutral)\w8\w8\w8\w8%(serious)%(neutral)Apologies. I... %(nervous)%(neutral)got carried away."
 		}
 		else
 		{
-			"\0\b[4]%(neutral)%(serious)Ah. %(neutral)%(processing)I see. %(neutral)%(smile)That's fine then. \n\n%(narration)%(italic)...\w8 He seems happy about that,\w4 for some reason... %(italicoff)"
+			"\0\b[4]%(serious)%(neutral)Ah. %(processing)%(neutral)I see. %(smile)%(neutral)That's fine then. \n\n%(italic)%(narration)...\w8 He seems happy about that,\w4 for some reason... %(italicoff)"
 		}
 	}
 	elseif reference1 == "caught stealing"
 	{
 		if reference0 == "yes"
 		{
-			"\0\b[0]%(neutral)%(serious)Yes? You said... %(agitated)%(threaten)you said yes!? Ad said no thieves! THIEVES MEANS NO THIEVES!!! \n\n%(wings)YOU AFTER MY GOLD!? MY CAVE!? MY TIES!?!?!?%(yesno('after my ties'))"
+			"\0\b[0]%(serious)%(neutral)Yes? You said... %(threaten)%(agitated)you said yes!? Ad said no thieves! THIEVES MEANS NO THIEVES!!! \n\n%(wings)YOU AFTER MY GOLD!? MY CAVE!? MY TIES!?!?!?%(yesno('after my ties'))"
 		}
 		else
 		{
@@ -144,11 +147,11 @@ OnAnswerYesNo
 	{
 		if reference0 == "yes"
 		{
-			"\0\b[2]%(agitated)%(threaten)%(wings)NO! NO! OUT MY CAVE! NO JOB! FIRED! FIRED FIRED FIRED!!! NO THANK YOU! GOODBYE! \n\n%(narration)%(italic)Uh-oh, this is getting pretty dangerous. \n\n%(narration)You decide to leave... \n\n%(narration)Maybe you should have kept your criminal history to yourself when dealing with a giant carnivorous lizard... \n\n%(narration)Oh well. Back to job hunting. \w8\w8\w8\w8\w8\w8\![vanishbymyself]"
+			"\0\b[2]%(threaten)%(agitated)%(wings)NO! NO! OUT MY CAVE! NO JOB! FIRED! FIRED FIRED FIRED!!! NO THANK YOU! GOODBYE! \n\n%(italic)%(narration)Uh-oh, this is getting pretty dangerous. \n\n%(narration)You decide to leave... \n\n%(narration)Maybe you should have kept your criminal history to yourself when dealing with a giant carnivorous lizard... \n\n%(narration)Oh well. Back to job hunting. \w8\w8\w8\w8\w8\w8\![vanishbymyself]"
 		}
 		else
 		{
-			"\0\b[0]%(agitated)%(threaten)%(DragonNoisePrefix)... Grrm... Don't know if I trust you... \w8\w8\w8\n\n%(neutral)%(scowl)Okay... Okay. I'll give you chance. I see any funny business, you gone. Gone forever, or else. \n\nOkay?%(yesno('no funny business'))"
+			"\0\b[0]%(threaten)%(agitated)%(DragonNoisePrefix)... Grrm... Don't know if I trust you... \w8\w8\w8\n\n%(scowl)%(neutral)Okay... Okay. I'll give you chance. I see any funny business, you gone. Gone forever, or else. \n\nOkay?%(yesno('no funny business'))"
 		}
 	}
 	elseif reference1 == "no funny business"
@@ -159,18 +162,18 @@ OnAnswerYesNo
 		}
 		else
 		{
-			"\0\b[0]%(agitated)%(threaten)%(DragonNoisePrefix)... I think... You not taking this opportunity seriously... Making jokes... Making me %(wings)UPSET... \w8\w8\n\n%(agitated)%(threaten)Let's move on... \n\n... before one of us does something they regret."
+			"\0\b[0]%(threaten)%(agitated)%(DragonNoisePrefix)... I think... You not taking this opportunity seriously... Making jokes... Making me %(wings)UPSET... \w8\w8\n\n%(threaten)%(agitated)Let's move on... \n\n... before one of us does something they regret."
 		}
 	}
 	elseif reference1 == "work a microwave"
 	{
 		if reference0 == "yes"
 		{
-			"\0\b[4]%(neutral)%(plead)Can you teach me?%(yesno('yes'))"
+			"\0\b[4]%(plead)%(neutral)Can you teach me?%(yesno('yes'))"
 		}
 		else
 		{
-			"\0\b[4]%(neutral)%(tired)Me neither... %(neutral)%(look)Need more kobolds..."
+			"\0\b[4]%(tired)%(neutral)Me neither... %(look)%(neutral)Need more kobolds..."
 		}
 	}
 	
@@ -191,74 +194,94 @@ OnAnswerYesNo
 
 GenericNeutral
 {
-	"\0\b[4]%(neutral)%(scowl)I see, I see..."
-	"\0\b[4]%(neutral)%(scowl)Good in-\w4for-\w4ma-\w4tion..."
-	"\0\b[4]%(paper)%(read)Hmm... %(paper)%(forward)I see? %(paper)%(nervous) I see!"
+	"\0\b[4]%(scowl)%(neutral)I see, I see..."
+	"\0\b[4]%(scowl)%(neutral)Good in-\w4for-\w4ma-\w4tion..."
+	"\0\b[4]%(read)%(paper)Hmm... %(forward)%(paper)I see? %(nervous)%(paper) I see!"
 }
 
-GenericPositive
+GenericPositive : pool
 {
 	_opposite = "no"
 	if _argv[0] == "no"; _opposite = "yes"
-	"\0\b[4]%(neutral)%(smile)Oh, good good good good. %(agitated)%(happy)Yes, very good to know about %(name)!"
-	"\0\b[4]%(neutral)%(smile)Good! %(neutral)%(forward)Good good good. Good to know. %(speak)%(forward)Important, you know."
-	"\0\b[4]%(speak)%(forward)Ex-\w4cel-\w4lent! %(tie)%(nervous)Would be bad if %(_opposite)."
+	
+	"\0\b[4]%(smile)%(neutral)Oh, good good good good. %(happy)%(agitated)Yes, very good to know about %(name)!"
+	"\0\b[4]%(smile)%(neutral)Good! %(forward)%(neutral)Good good good. Good to know. %(forward)%(speak)Important, you know."
+	if _argv[0] == "yes" || _argv[0] == "no"
+	{
+		"\0\b[4]%(forward)%(speak)Ex-\w4cel-\w4lent! %(nervous)%(tie)Would be bad if %(_opposite)."
+	}
 }
 
 GenericNegative
 {
-	"\0\b[4]%(paper)%(scowl)Hmm, this concerning..."
-	"\0\b[4]%(paper)%(squint)I see... %(paper)%(serious)Reconsider."
+	"\0\b[4]%(scowl)%(paper)Hmm, this concerning..."
+	"\0\b[4]%(squint)%(paper)I see... %(serious)%(paper)Reconsider."
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Boss's response to the user asking a question
 OnAskQuestion
 {
+	_intents = ProcessQuestion(reference0)
 	_input = TOLOWER(reference0)
-	_intents = ProcessQuestion(_input)
 	
 	//The top line here and the line at the bottom can be commented if you want to get rid of the debug info
 	if _input == ""
 	{
-		"\0\b[4]%(paper)%(forward)Oh, %(DragonNoiseSuffix), %(paper)%(nervous)nothing to say... Oh..."
+		"\0\b[4]%(forward)%(paper)Oh, %(DragonNoiseSuffix), %(nervous)%(paper)nothing to say... Oh..."
 	}
 	elseif Intent("soft,growl",_intents)
 	{
-		"\0\b[4]%(neutral)%(processing)%(DragonNoisePrefix)...? \n\n%(neutral)%(look)%(DragonNoisePrefix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)..."
+		"\0\b[4]%(processing)%(neutral)%(DragonNoisePrefix)...? \n\n%(look)%(neutral)%(DragonNoisePrefix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)..."
 	}
 	elseif Intent("screaming,loud",_intents)
 	{
-		"\0\b[4]%(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA%(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA %(neutral)%(forward)\w8WHY WE SCREAMING?\w8 %(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA%(neutral)%(ceiling)AAAAAAAAAA%(neutral)%(pet)AAAAAAAAAA"
+		"\0\b[4]%(ceiling)%(neutral)AAAAAAAAAA%(pet)%(neutral)AAAAAAAAAA%(ceiling)%(neutral)AAAAAAAAAA%(pet)%(neutral)AAAAAAAAAA %(forward)%(neutral)\w8WHY WE SCREAMING?\w8 %(ceiling)%(neutral)AAAAAAAAAA%(pet)%(neutral)AAAAAAAAAA%(ceiling)%(neutral)AAAAAAAAAA%(pet)%(neutral)AAAAAAAAAA"
 	}
 	elseif "gold" _in_ _input
 	{
-		"\0\b[4]%(agitated)%(forward)Gold!!! %(agitated)%(serious)My gold!!! %(agitated)%(threaten)Give!!! No one touch!!!"
+		"\0\b[4]%(forward)%(agitated)Gold!!! %(serious)%(agitated)My gold!!! %(threaten)%(agitated)Give!!! No one touch!!!"
 	}
 	elseif "require" _in_ _input
 	{
-		"\0\b[0]%(speak)%(forward)The only requirements are counting treasure, %(neutral)%(squint)cleaning treasure, %(neutral)%(scowl)protecting treasure, and %(agitated)%(threaten)NOT STEALING TREASURE."
+		"\0\b[0]%(forward)%(speak)The only requirements are counting treasure, %(squint)%(neutral)cleaning treasure, %(scowl)%(neutral)protecting treasure, and %(threaten)%(agitated)NOT STEALING TREASURE."
 	}
 	elseif "time off" _in_ _input
 	{
-		"\0\b[0]%(paper)%(forward)Under my management, %(paper)%(smile)you'll get 2 full days off every month, as well as all of the usual holidays: %(paper)%(ceiling)the Decennial Hibernation, my birthday, Livestock Roasting Day, laundry day..."
+		"\0\b[0]%(forward)%(paper)Under my management, %(smile)%(paper)you'll get 2 full days off every month, as well as all of the usual holidays: %(ceiling)%(paper)the Decennial Hibernation, my birthday, Livestock Roasting Day, laundry day..."
 	}
 	elseif "your birthday" _in_ _input
 	{
-		"\0\b[4]%(tie)%(forward)My birthday? %(agitated)%(happy)May 18th, of course!"
+		"\0\b[4]%(forward)%(tie)My birthday? %(happy)%(agitated)May 18th, of course!"
 	}
 	elseif "accidental death" _in_ _input
 	{
-		"\0\b[4]%(neutral)%(smile)Don't worry! %(tie)%(smile)I've never had employee die on my watch before! \n\n%(narration)%(italic)Has he ever had any employees before...? %(italicoff)"
+		"\0\b[4]%(smile)%(neutral)Don't worry! %(smile)%(tie)I've never had employee die on my watch before! \n\n%(italic)%(narration)Has he ever had any employees before...? %(italicoff)"
 	}
 	elseif "salary" _in_ _input && "negotiable" _in_ _input
 	{
-		"\0\b[0]%(tie)%(serious)Grrm... what do you want to be paid in? %(speak)%(processing)Scales? %(neutral)%(smile)Meat? %(neutral)%(look)Stickynotes? %(paper)%(read)Silver? \n\n%(paper)%(serious)If you do well, we can figure something out."
+		"\0\b[0]%(serious)%(tie)Grrm... what do you want to be paid in? %(processing)%(speak)Scales? %(smile)%(neutral)Meat? %(look)%(neutral)Stickynotes? %(read)%(paper)Silver? \n\n%(serious)%(paper)If you do well, we can figure something out."
 	}
 	else //Didn't match any intents
 	{
-		"\0\b[4]%(tie)%(squint)Hmm, I see I see... %(neutral)%(forward)I will consider this. Get back to you later."
-		"\0\b[4]%(neutral)%(processing)Um... yes. %(neutral)%(ceiling)Yes? %(neutral)%(forward)Yes."
-		"\0\b[4]%(neutral)%(processing).\w8.\w8.\w8\w8\w8\w8\w8 %(tie)%(nervous) Prob-\w4ab-\w4ly?"
+		"\0\b[4]%(squint)%(tie)Hmm, I see I see... %(forward)%(neutral)I will consider this. Get back to you later."
+		"\0\b[4]%(processing)%(neutral)Um... yes. %(ceiling)%(neutral)Yes? %(forward)%(neutral)Yes."
+		"\0\b[4]%(processing)%(neutral).\w8.\w8.\w8\w8\w8\w8\w8 %(nervous)%(tie) Prob-\w4ab-\w4ly?"
 	}
 }
 
@@ -276,10 +299,10 @@ OnUserInputCancel
 		}
 		else
 		{
-			"\0\b[4]%(paper)%(scowl)Hmmm, refusing to answer..."
-			"\0\b[4]%(paper)%(scowl)A-\w4voi-\w4ding question..."
-			"\0\b[4]%(paper)%(serious)I see, you refuse..."
-			"\0\b[4]%(paper)%(serious)Ig-\w4nor-\w4ing question..."
+			"\0\b[4]%(scowl)%(paper)Hmmm, refusing to answer..."
+			"\0\b[4]%(scowl)%(paper)A-\w4voi-\w4ding question..."
+			"\0\b[4]%(serious)%(paper)I see, you refuse..."
+			"\0\b[4]%(serious)%(paper)Ig-\w4nor-\w4ing question..."
 		}
 	}
 }
@@ -296,8 +319,8 @@ OnChoiceTimeout
 
 timeoutresponse
 {
-	"\0\b[4]%(paper)%(scowl)Okay, %(neutral)%(forward)we come back to that."
-	"\0\b[4]%(paper)%(scowl)Hm, not sure...? %(neutral)%(forward)I ask again later."
+	"\0\b[4]%(scowl)%(paper)Okay, %(forward)%(neutral)we come back to that."
+	"\0\b[4]%(scowl)%(paper)Hm, not sure...? %(forward)%(neutral)I ask again later."
 	--
 	"\_w[2000]"
 }

@@ -93,17 +93,17 @@ OnSurfaceRestore
 {
 	"\1\s[-1]\0"
 	--
-	"%(neutral)%(forward)"
-	"%(neutral)%(forward)"
-	"%(neutral)%(forward)"
-	"%(paper)%(read)"
-	"%(paper)%(squint)"
-	//"%(tie)%(processing)"
-	// "%(tie)%(plead)" //← dont like how these peer into your soul, that should be saved for dialogue
-	// "%(paper)%(plead)"
-	"%(neutral)%(read)"
-	"%(neutral)%(ceiling)"
-	"%(tie)%(look)"
+	"%(forward)%(neutral)"
+	"%(forward)%(neutral)"
+	"%(forward)%(neutral)"
+	"%(read)%(paper)"
+	"%(squint)%(paper)"
+	//"%(processing)%(tie)"
+	// "%(plead)%(tie)" //← dont like how these peer into your soul, that should be saved for dialogue
+	// "%(plead)%(paper)"
+	"%(read)%(neutral)"
+	"%(ceiling)%(neutral)"
+	"%(look)%(tie)"
 }
 
 //Happens when the ghost is unminimized. You *can* include dialogue, but you don't *have* to. I have included this event because if you don't, it defaults to \0\s[0]\1\s[10], which you don't want in some cases, such as if your ghost uses different surfaces or has a different number of characters.
@@ -282,7 +282,7 @@ OnQuestionName
 		SavedUsername = username
 		ProgressMangler
 		
-		"\0\b[0]%(paper)%(processing)Oh? Name changed? %(paper)%(read)Ok! Let me see here, %(paper)%(squint)it's... \n\n... %(paper)%(read)%(CurrentName)! Yes! %(neutral)%(forward)Call you %(CurrentName) from now on. %(agitated)%(happy)Good sound."
+		"\0\b[0]%(processing)%(paper)Oh? Name changed? %(read)%(paper)Ok! Let me see here, %(squint)%(paper)it's... \n\n... %(read)%(paper)%(CurrentName)! Yes! %(forward)%(neutral)Call you %(CurrentName) from now on. %(happy)%(agitated)Good sound."
 	}
 	elseif NameIndex > 0
 	{
@@ -290,21 +290,21 @@ OnQuestionName
 		
 		if _index == 1 //Saying it right for the first time
 		{
-			"\0\b[0]%(paper)%(processing)%(CurrentName)? %(neutral)%(smile)%(CurrentName)! %(agitated)%(happy)%(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName)~!!"
+			"\0\b[0]%(processing)%(paper)%(CurrentName)? %(smile)%(neutral)%(CurrentName)! %(happy)%(agitated)%(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName) %(CurrentName)~!!"
 		}
 		elseif _index == 6
 		{
-			//"\0\b[4]%(forward)%(neutral)Oh. %(tie)%(nervous)Say name wrong...? %(paper)%(squint)It's... Ah! %(neutral)%(pet)It's %(CurrentName)! %(neutral)%(forward)I get it right now."
-			"\0\b[4]%(paper)%(look)What? %(paper)%(squint)What??? %(paper)%(scowl)You say... %(CurrentName)? %(paper)%(processing)Grrm..."
+			//"\0\b[4]%(neutral)%(forward)Oh. %(nervous)%(tie)Say name wrong...? %(squint)%(paper)It's... Ah! %(pet)%(neutral)It's %(CurrentName)! %(forward)%(neutral)I get it right now."
+			"\0\b[4]%(look)%(paper)What? %(squint)%(paper)What??? %(scowl)%(paper)You say... %(CurrentName)? %(processing)%(paper)Grrm..."
 		}
 		else //Getting it wrong in a new way
 		{
-			"\0\b[4]%(paper)%(processing)Oh oh, okay! %(neutral)%(smile)I got it, it's %(CurrentName). %(neutral)%(forward)Yes, sure this time."
+			"\0\b[4]%(processing)%(paper)Oh oh, okay! %(smile)%(neutral)I got it, it's %(CurrentName). %(forward)%(neutral)Yes, sure this time."
 		}
 	}
 	elseif NameIndex == 0 //Already had it right
 	{
-		"\0\b[4]%(paper)%(smile)Yes yes, I remember, %(CurrentName)! %(agitated)%(happy)%(CurrentName) %(CurrentName) %(CurrentName)~"
+		"\0\b[4]%(smile)%(paper)Yes yes, I remember, %(CurrentName)! %(happy)%(agitated)%(CurrentName) %(CurrentName) %(CurrentName)~"
 	}
 	--
 	"\_w[2000]"
@@ -367,27 +367,42 @@ darkboss : all
 //Bodies
 neutral
 {
-	"\s[100]"
+	"\i[10000]"
+	--
+	"\![embed,OnBodyChange,10000]"
 }
 
 paper
 {
-	"\s[101]"
+	"\i[10001]"
+		--
+	"\![embed,OnBodyChange,10001]"
 }
 
 speak
 {
-	"\s[102]"
+	"\i[10002]"
+		--
+	"\![embed,OnBodyChange,10002]"
 }
 
 tie
 {
-	"\s[103]"
+	"\i[10003]"
+		--
+	"\![embed,OnBodyChange,10003]"
 }
 
 agitated
 {
-	"\s[104]"
+	"\i[10004]"
+		--
+	"\![embed,OnBodyChange,10004]"
+}
+
+OnBodyChange
+{
+	LastBody = reference0
 }
 
 //TODO ??? Handle this?????
@@ -406,194 +421,82 @@ OnWingsPiece
 //Expressions
 forward
 {
-	"\i[200]"
-	--
-	"\![embed,OnForwardHead]"
-}
-
-OnForwardHead
-{
-	LastInterval = "200"
+	"\s[200]"
 }
 
 read
 {
-	"\i[201]"
-	--
-	"\![embed,OnReadHead]"
-}
-
-OnReadHead
-{
-	LastInterval = "201"
+	"\s[201]"
 }
 
 squint
 {
-	"\i[202]"
-	--
-	"\![embed,OnSquintHead]"
-}
-
-OnSquintHead
-{
-	LastInterval = "202"
+	"\s[202]"
 }
 
 threaten
 {
-	"\i[203]"
-	--
-	"\![embed,OnThreatenHead]"
-}
-
-OnThreatenHead
-{
-	LastInterval = "203"
+	"\s[203]"
 }
 
 ceiling
 {
-	"\i[204]"
-	--
-	"\![embed,OnCeilingHead]"
-}
-
-OnCeilingHead
-{
-	LastInterval = "204"
+	"\s[204]"
 }
 
 plead
 {
-	"\i[205]"
-	--
-	"\![embed,OnPleadHead]"
-}
-
-OnPleadHead
-{
-	LastInterval = "205"
+	"\s[205]"
 }
 
 nervous
 {
-	"\i[206]"
-	--
-	"\![embed,OnNervousHead]"
-}
-
-OnNervousHead
-{
-	LastInterval = "206"
+	"\s[206]"
 }
 
 scowl
 {
-	"\i[207]"
-	--
-	"\![embed,OnScowlHead]"
-}
-
-OnScowlHead
-{
-	LastInterval = "207"
+	"\s[207]"
 }
 
 smile
 {
-	"\i[208]"
-	--
-	"\![embed,OnSmileHead]"
-}
-
-OnSmileHead
-{
-	LastInterval = "208"
+	"\s[208]"
 }
 
 look
 {
-	"\i[209]"
-	--
-	"\![embed,OnLookHead]"
-}
-
-OnLookHead
-{
-	LastInterval = "209"
+	"\s[209]"
 }
 
 happy
 {
-	"\i[210]"
-	--
-	"\![embed,OnHappyHead]"
-}
-
-OnHappyHead
-{
-	LastInterval = "210"
+	"\s[210]"
 }
 
 serious
 {
-	"\i[211]"
-	--
-	"\![embed,OnSeriousHead]"
-}
-
-OnSeriousHead
-{
-	LastInterval = "211"
+	"\s[211]"
 }
 
 pet
 {
-	"\i[212]"
-	--
-	"\![embed,OnPetHead]"
-}
-
-OnPetHead
-{
-	LastInterval = "212"
+	"\s[212]"
 }
 
 behind
 {
-	"\i[213]"
-	--
-	"\![embed,OnBehindHead]"
-}
-
-OnBehindHead
-{
-	LastInterval = "213"
+	"\s[213]"
 }
 
 processing
 {
-	"\i[214]"
-	--
-	"\![embed,OnProcessingHead]"
-}
-
-OnProcessingHead
-{
-	LastInterval = "214"
+	"\s[214]"
 }
 
 tired
 {
-	"\i[500]"
-	--
-	"\![embed,OnTiredHead]"
-}
-
-OnTiredHead
-{
-	LastInterval = "500"
+	"\s[215]"
 }
 
 resume

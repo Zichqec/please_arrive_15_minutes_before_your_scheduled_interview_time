@@ -3,14 +3,13 @@ descript
 	version,1
 }
 
-//—————————————————————————————— Sakura surfaces ——————————————————————————————
-
-//idk if i want this here..... but idk i guess i should
+//TODO make a preview surface for him as surface0.png
 surface0
 {
 	element0,overlay,surface100.png,0,0
 }
 
+//Under desk animation
 surface700
 {
 	element0,overlay,surface0.png,0,0
@@ -20,242 +19,230 @@ surface700
 	animation0.pattern1,overlay,6,700,0,0
 	animation0.pattern2,overlay,5,700,0,0
 	
-	//desk
+	//Desk
 	animation100000.interval,runonce
 	animation100000.pattern0,overlay,1,0,0,0
 	animation100000.option,background
 	
+	//Light switch
 	animation3.interval,runonce
 	animation3.pattern0,overlay,3,0,0,0
-	animation3.pattern1,start,59999,0,0,0
 	
+	//Papers
 	animation4.interval,never
 	animation4.pattern0,overlay,2,0,0,0
 	
-	//dark overlay
-	animation59900.interval,bind
-	animation59900.pattern0,overlayfast,99,0,0,0
+	//Dark overlay
+	animation60000.interval,bind
+	animation60000.pattern0,overlayfast,99,0,0,0
 	
-	animation59999.interval,bind + never
-	animation59999.pattern0,overlay,599,0,0,0
+	//Light switch glow
+	animation60002.interval,bind
+	animation60002.pattern0,overlayfast,599,0,0,0
 }
 
-surface.append0,100-104
+surface200-215
 {
-	collision0,1124,167,1233,292,switch
-	
-	//desk
+	//Desk
 	animation100000.interval,runonce
 	animation100000.pattern0,overlay,1,0,0,0
 	animation100000.option,background
 	
+	//Light switch
+	animation3.interval,runonce
+	animation3.pattern0,overlay,3,0,0,0
+	
+	collision10,1124,167,1233,292,switch
+	
+	//Papers
 	animation2.interval,runonce
 	animation2.pattern0,overlay,2,0,0,0
 	
 	animation2.collisionex1,paper,polygon,1126,721,1110,728,1106,736,1106,750,1127,813,1142,814,1148,824,1163,824,1161,835,1246,836,1250,812,1256,812,1287,842,1291,838,1302,820,1306,808,1283,778,1260,757,1242,739,1240,735,1222,728,1199,722,1166,720,1134,720
 	
-	animation3.interval,runonce
-	animation3.pattern0,overlay,3,0,0,0
-	animation3.pattern1,start,59999,0,0,0
-	
+	//Falling papers
 	animation4.interval,never
 	animation4.pattern0,stop,2
 	animation4.pattern1,overlay,4,0,0,0
 	animation4.pattern2,overlay,-1,450,0,0,0
 	
+	//Wings
 	animation105.interval,never
 	animation105.pattern0,overlay,105,0,0,0
 	animation105.option,background
 	
-	//heads
+	//Dark overlay
+	animation60000.interval,bind
+	animation60000.pattern0,overlayfast,99,0,0,0
 	
-	//Neutral
-	animation200.interval,runonce
-	animation200.pattern0,overlay,200,0,0,0
-	animation200.pattern1,start,60000
-	animation200.option,background
-	
-	animation200.collisionex0,head,polygon,629,175,657,196,688,200,713,212,777,210,837,196,866,180,909,146,852,116,768,97,697,112,635,146
-	
-	//
-	animation201.interval,never
-	animation201.pattern0,parallelstop,(200,60000)
-	animation201.pattern1,overlay,201,0,0,0
-	animation201.pattern2,start,60001
-	animation201.option,background
-	
-	animation201.collisionex0,head,polygon,686,247,764,258,788,228,814,224,857,219,952,181,994,116,918,71,763,67,689,102,674,191
-	
-	//
-	animation202.interval,never
-	animation202.pattern0,parallelstop,(200,60000)
-	animation202.pattern1,overlay,202,0,0,0
-	animation202.pattern2,start,60002
-	animation202.option,background
-	
-	animation202.collisionex0,head,polygon,686,247,764,258,788,228,814,224,857,219,952,181,994,116,918,71,763,67,689,102,674,191
-	
-	//
-	animation203.interval,never
-	animation203.pattern0,parallelstop,(200,60000)
-	animation203.pattern1,overlay,203,0,0,0
-	animation203.pattern2,start,60003
-	animation203.option,background
-	
-	animation203.collisionex0,head,polygon,719,205,744,223,772,232,800,226,804,185,821,160,849,36,694,33,563,61,558,191,654,202
-	
-	//
-	animation204.interval,never
-	animation204.pattern0,parallelstop,(200,60000)
-	animation204.pattern1,overlay,204,0,0,0
-	animation204.pattern2,start,60004
-	animation204.option,background
-	
-	animation204.collisionex0,head,polygon,607,244,667,250,707,237,821,204,828,188,839,187,851,192,885,178,867,142,778,136,614,177,621,233
-	
-	//
-	animation205.interval,never
-	animation205.pattern0,parallelstop,(200,60000)
-	animation205.pattern1,overlay,205,0,0,0
-	animation205.pattern2,start,60005
-	animation205.option,background
-	
-	animation205.collisionex0,head,polygon,678,290,739,295,752,282,775,280,944,276,1017,205,916,116,762,75,720,167,669,253
-	
-	//
-	animation206.interval,never
-	animation206.pattern0,parallelstop,(200,60000)
-	animation206.pattern1,overlay,206,0,0,0
-	animation206.pattern2,start,60006
-	animation206.option,background
-	
-	animation206.collisionex0,head,polygon,761,169,778,188,801,197,819,189,830,198,859,218,901,239,971,228,934,168,811,102,755,115,748,145,755,162
-	
-	//
-	animation207.interval,never
-	animation207.pattern0,parallelstop,(200,60000)
-	animation207.pattern1,overlay,207,0,0,0
-	animation207.pattern2,start,60007
-	animation207.option,background
-	
-	animation207.collisionex0,head,polygon,676,223,709,236,724,236,741,219,767,221,812,226,882,227,959,213,994,154,900,113,783,93,705,135,675,182
-	
-	//
-	animation208.interval,never
-	animation208.pattern0,parallelstop,(200,60000)
-	animation208.pattern1,overlay,208,0,0,0
-	animation208.pattern2,start,60008
-	animation208.option,background
-	
-	animation208.collisionex0,head,polygon,585,250,720,255,809,229,830,218,849,229,880,230,901,221,900,189,830,111,746,106,653,123,591,164
-	
-	//
-	animation209.interval,never
-	animation209.pattern0,parallelstop,(200,60000)
-	animation209.pattern1,overlay,209,0,0,0
-	animation209.pattern2,start,60009
-	animation209.option,background
-	
-	animation209.collisionex0,head,polygon,708,338,748,342,770,331,784,306,810,284,842,265,954,237,999,182,960,106,827,65,729,50,699,129,678,239,679,261
-	
-	//
-	animation210.interval,never
-	animation210.pattern0,parallelstop,(200,60000)
-	animation210.pattern1,overlay,210,0,0,0
-	animation210.option,background
-	
-	animation210.collisionex0,head,polygon,654,141,682,156,714,151,727,132,743,129,768,127,781,120,789,128,812,137,822,125,837,143,889,156,918,128,898,98,827,64,783,38,711,61,649,92,638,126
-	
-	//
-	animation211.interval,never
-	animation211.pattern0,parallelstop,(200,60000)
-	animation211.pattern1,overlay,211,0,0,0
-	animation211.pattern2,start,60011
-	animation211.option,background
-	
-	animation211.collisionex0,head,polygon,684,218,734,246,746,239,757,258,817,259,828,242,842,260,889,259,981,166,918,68,794,58,622,66,614,145
-	
-	//
-	animation212.interval,never
-	animation212.pattern0,parallelstop,(200,60000)
-	animation212.pattern1,overlay,212,0,0,0
-	animation212.option,background
-	
-	animation212.collisionex0,head,polygon,644,321,916,310,934,139,732,61,567,131
-	
-	//
-	animation213.interval,never
-	animation213.pattern0,parallelstop,(200,60000)
-	animation213.pattern1,overlay,213,0,0,0
-	animation213.option,background
-	
-	animation213.collisionex0,head,polygon,582,191,655,256,722,243,778,233,833,235,890,212,983,132,918,97,777,90,618,116,586,144
-	
-	//
-	animation214.interval,never
-	animation214.pattern0,parallelstop,(200,60000)
-	animation214.pattern1,overlay,214,0,0,0
-	animation214.pattern2,start,60014
-	animation214.option,background
-	
-	animation214.collisionex0,head,polygon,576,269,717,275,766,271,818,245,834,245,851,261,901,249,868,193,808,137,742,133,626,167,572,200
-	
-	//
-	animation500.interval,never
-	animation500.pattern0,parallelstop,(200,60000)
-	animation500.pattern1,overlay,500,0,0,0
-	animation500.pattern2,start,501
-	
-	animation500.collisionex0,head,polygon,649,304,730,332,765,342,799,342,812,339,903,307,956,199,952,92,768,51,596,106,607,235
-	
-	animation501.interval,never
-	animation501.pattern0,overlay,501,0,0,0
-	animation501.option,background
-	
-	
-	
-	//dark overlay
-	animation59900.interval,bind
-	animation59900.pattern0,overlayfast,99,0,0,0
-	
-	animation59999.interval,bind + never
-	animation59999.pattern0,overlay,599,0,0,0
-	
-	//eyes - skip 210, 212, and 213
-	animation60000.interval,bind + never
-	animation60000.pattern0,overlay,600,0,0,0
-	
-	animation60001.interval,bind + never
-	animation60001.pattern0,overlay,601,0,0,0
-	
-	animation60002.interval,bind + never
-	animation60002.pattern0,overlay,602,0,0,0
-	
-	animation60003.interval,bind + never
-	animation60003.pattern0,overlay,603,0,0,0
-	
-	animation60004.interval,bind + never
-	animation60004.pattern0,overlay,604,0,0,0
-	
-	animation60005.interval,bind + never
-	animation60005.pattern0,overlay,605,0,0,0
-	
-	animation60006.interval,bind + never
-	animation60006.pattern0,overlay,606,0,0,0
-	
-	animation60007.interval,bind + never
-	animation60007.pattern0,overlay,607,0,0,0
-	
-	animation60008.interval,bind + never
-	animation60008.pattern0,overlay,608,0,0,0
-	
-	animation60009.interval,bind + never
-	animation60009.pattern0,overlay,609,0,0,0
-	
-	animation60011.interval,bind + never
-	animation60011.pattern0,overlay,611,0,0,0
-	
-	animation60014.interval,bind + never
-	animation60014.pattern0,overlay,614,0,0,0
+	//Light switch glow
+	animation60002.interval,bind
+	animation60002.pattern0,overlayfast,599,0,0,0
 }
 
+//————— Bodies —————
+surface200-215,!203,!210
+{
+	//Neutral
+	animation10000.interval,runonce
+	animation10000.pattern0,overlay,100,0,0,0
+	
+	//Paper
+	animation10001.interval,never
+	animation10001.pattern0,stop,10000
+	animation10001.pattern1,overlay,101,0,0,0
+	
+	//Speak
+	animation10002.interval,never
+	animation10002.pattern0,stop,10000
+	animation10002.pattern1,overlay,102,0,0,0
+	
+	//Tie
+	animation10003.interval,never
+	animation10003.pattern0,stop,10000
+	animation10003.pattern1,overlay,103,0,0,0
+}
+
+surface203,210
+{
+	//Agitated
+	animation10004.interval,runonce
+	animation10004.pattern0,overlay,104,0,0,0
+}
+
+//Forward
+surface200
+{
+	animation60001.interval,bind
+	animation60001.pattern0,overlay,600,0,0,0
+	
+	collisionex0,head,polygon,629,175,657,196,688,200,713,212,777,210,837,196,866,180,909,146,852,116,768,97,697,112,635,146
+}
+
+//Read
+surface201
+{
+	animation60001.interval,bind
+	animation60001.pattern0,overlay,601,0,0,0
+	
+	collisionex0,head,polygon,686,247,764,258,788,228,814,224,857,219,952,181,994,116,918,71,763,67,689,102,674,191
+}
+
+//Squint
+surface202
+{
+	animation60001.interval,bind
+	animation60001.pattern0,overlay,602,0,0,0
+	
+	collisionex0,head,polygon,686,247,764,258,788,228,814,224,857,219,952,181,994,116,918,71,763,67,689,102,674,191
+}
+
+//Threaten
+surface203
+{
+	animation60001.interval,bind
+	animation60001.pattern0,overlay,603,0,0,0
+	
+	collisionex0,head,polygon,719,205,744,223,772,232,800,226,804,185,821,160,849,36,694,33,563,61,558,191,654,202
+}
+
+//Ceiling
+surface204
+{
+	animation60001.interval,bind
+	animation60001.pattern0,overlay,604,0,0,0
+	
+	collisionex0,head,polygon,607,244,667,250,707,237,821,204,828,188,839,187,851,192,885,178,867,142,778,136,614,177,621,233
+}
+
+//Plead
+surface205
+{
+	animation60001.interval,bind
+	animation60001.pattern0,overlay,605,0,0,0
+	
+	collisionex0,head,polygon,678,290,739,295,752,282,775,280,944,276,1017,205,916,116,762,75,720,167,669,253
+}
+
+//Nervous
+surface206
+{
+	animation60001.interval,bind
+	animation60001.pattern0,overlay,606,0,0,0
+	
+	collisionex0,head,polygon,761,169,778,188,801,197,819,189,830,198,859,218,901,239,971,228,934,168,811,102,755,115,748,145,755,162
+}
+
+//Scowl
+surface207
+{
+	animation60001.interval,bind
+	animation60001.pattern0,overlay,607,0,0,0
+	
+	collisionex0,head,polygon,676,223,709,236,724,236,741,219,767,221,812,226,882,227,959,213,994,154,900,113,783,93,705,135,675,182
+}
+
+//Smile
+surface208
+{
+	animation60001.interval,bind
+	animation60001.pattern0,overlay,608,0,0,0
+	
+	collisionex0,head,polygon,585,250,720,255,809,229,830,218,849,229,880,230,901,221,900,189,830,111,746,106,653,123,591,164
+}
+
+//Look
+surface209
+{
+	animation60001.interval,bind
+	animation60001.pattern0,overlay,609,0,0,0
+	
+	collisionex0,head,polygon,708,338,748,342,770,331,784,306,810,284,842,265,954,237,999,182,960,106,827,65,729,50,699,129,678,239,679,261
+}
+
+//Happy
+surface210
+{
+	collisionex0,head,polygon,654,141,682,156,714,151,727,132,743,129,768,127,781,120,789,128,812,137,822,125,837,143,889,156,918,128,898,98,827,64,783,38,711,61,649,92,638,126
+}
+
+//Serious
+surface211
+{
+	animation60001.interval,bind
+	animation60001.pattern0,overlay,611,0,0,0
+	
+	collisionex0,head,polygon,684,218,734,246,746,239,757,258,817,259,828,242,842,260,889,259,981,166,918,68,794,58,622,66,614,145
+}
+
+//Pet
+surface212
+{
+	collisionex0,head,polygon,644,321,916,310,934,139,732,61,567,131
+}
+
+//Behind
+surface213
+{
+	collisionex0,head,polygon,582,191,655,256,722,243,778,233,833,235,890,212,983,132,918,97,777,90,618,116,586,144
+}
+
+//Behind
+surface214
+{
+	animation60001.interval,bind
+	animation60001.pattern0,overlay,614,0,0,0
+	
+	collisionex0,head,polygon,576,269,717,275,766,271,818,245,834,245,851,261,901,249,868,193,808,137,742,133,626,167,572,200
+}
+
+//Tired
+surface215
+{
+	element0,overlay,surface501.png,0,0
+	
+	animation15000.interval,runonce
+	animation15000.pattern0,overlay,500,0,0,0
+	
+	collisionex0,head,polygon,649,304,730,332,765,342,799,342,812,339,903,307,956,199,952,92,768,51,596,106,607,235
+}

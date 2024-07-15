@@ -40,17 +40,17 @@ OnJobTime : all
 {
 	"\0\b[2]\t\*%(noboss)%(narration)%(italic)The directions on the odd advertisement have led you to the base of a mountain.\w8 There's a path winding up towards...\w8 a cave?\w8\w8 It's not your first choice of location,\w4 but a job's a job.\w8%(italicoff)\n\n%(narration)%(italic)Knowing it would take you a ways away from town,\w4 you had set out early to make it on time...\w8 preferably without getting lost.\w8 %(italicoff)\n\n%(narration)%(italic)It pays off when you reach the end of the path,\w4 arriving at the mouth of a cave 20 minutes before your interview was scheduled.\w8%(italicoff)\n\n%(narration)%(italic)After taking a moment to catch your breath and straighten your clothes,\w4 you head inside...\w8\w8\w8\x"
 	"\0\b[4]\t\*%(darkboss)%(narration)%(italic)...\w8 It's dark.\w8 Very dark.\w8 You don't see much when you look around,\w4 except—\w8\w8%(italicoff)\n\n[half]AH!\x"
-	"\0\b[0]\t\*%(neutral)%(forward)Oh, grrm, you must be- %(tie)%(processing)must be... %(speak)%(smile)my %(TempNames)! \n\n%(neutral)%(behind)... What time now? \w8\w8%(neutral)%(forward)Oh! \n\n%(neutral)%(serious)You early. I said be here 15 minutes before your interview, you here 20 minutes before... %(agitated)%(happy)Must be very excited to start! \x"
-	"\0\b[2]\t\*%(neutral)%(forward)Good, good, we'll get right into it. \n\n%(speak)%(look)Now, your %(resume)... where... Ah, here! \n\n%(paper)%(read)Yes, yes, yes, good, good... %(paper)%(squint)Grrm... hmm! %(paper)%(scowl)Everything looks in order... \n\n%(paper)%(squint)... %(TempNames). \n\n%(paper)%(nervous)I have couple quick questions to ask! And, %(neutral)%(forward)if you have questions, you ask, too. Okay? Okay.\x"
-	"\0\b[4]\t\*%(speak)%(forward)Firstly, first! %(input('firstboot'))How did you find my limited edition Help Wanted pro-\w4mot-\w4ional adver-\w4tising poster for job gaining?\_l[-10000]\q[timeoutprevention,blank]\e:chain=firstinterview"
+	"\0\b[0]\t\*%(forward)%(neutral)Oh, grrm, you must be- %(processing)%(tie)must be... %(smile)%(speak)my %(TempNames)! \n\n%(behind)%(neutral)... What time now? \w8\w8%(forward)%(neutral)Oh! \n\n%(serious)%(neutral)You early. I said be here 15 minutes before your interview, you here 20 minutes before... %(happy)%(agitated)Must be very excited to start! \x"
+	"\0\b[2]\t\*%(forward)%(neutral)Good, good, we'll get right into it. \n\n%(look)%(speak)Now, your %(resume)... where... Ah, here! \n\n%(read)%(paper)Yes, yes, yes, good, good... %(squint)%(paper)Grrm... hmm! %(scowl)%(paper)Everything looks in order... \n\n%(squint)%(paper)... %(TempNames). \n\n%(nervous)%(paper)I have couple quick questions to ask! And, %(forward)%(neutral)if you have questions, you ask, too. Okay? Okay.\x"
+	"\0\b[4]\t\*%(forward)%(speak)Firstly, first! %(input('firstboot'))How did you find my limited edition Help Wanted pro-\w4mot-\w4ional adver-\w4tising poster for job gaining?\_l[-10000]\q[timeoutprevention,blank]\e:chain=firstinterview"
 }
 
 firstinterview
 CHAIN{{
-	"\0\b[0]%(paper)%(scowl)Have you ever been caught stealing?%(yesno('caught stealing'))"
-	"\0\b[0]%(speak)%(forward)Do you plan to leave area in next 100 years?%(yesno('no'))"
-	"\0\b[0]%(input)%(paper)%(serious)How often would you require time off to visit friends and family to assure them that you haven't been kidnapped and/or eaten?"
-	"\0\b[4]%(input)%(paper)%(read)If I wanted to... %(paper)%(nervous)contact... your previous employers, %(paper)%(forward)where would you say they live and... %(paper)%(scowl)they how dangerous?"
+	"\0\b[0]%(scowl)%(paper)Have you ever been caught stealing?%(yesno('caught stealing'))"
+	"\0\b[0]%(forward)%(speak)Do you plan to leave area in next 100 years?%(yesno('no'))"
+	"\0\b[0]%(input)%(serious)%(paper)How often would you require time off to visit friends and family to assure them that you haven't been kidnapped and/or eaten?"
+	"\0\b[4]%(input)%(read)%(paper)If I wanted to... %(nervous)%(paper)contact... your previous employers, %(forward)%(paper)where would you say they live and... %(scowl)%(paper)they how dangerous?"
 	"\![raise,OnDiscoverName]"
 CHAIN}}
 
@@ -59,16 +59,16 @@ OnDiscoverName : all
 	ProgressMangler
 	NameDiscovered = 1
 	
-	"\0\b[0]%(paper)%(look)Grrm-? \s[700]\i[4]\n\n%(narration)%(italic)Did he notice something...? %(italicoff)\n\n%(paper)%(read)Here, here! Yes, here, I have! \n\n%(paper)%(squint)%(DragonNoisePrefix)... "
+	"\0\b[0]%(look)%(paper)Grrm-? \s[700]\i[4]\n\n%(narration)%(italic)Did he notice something...? %(italicoff)\n\n%(read)%(paper)Here, here! Yes, here, I have! \n\n%(squint)%(paper)%(DragonNoisePrefix)... "
 	if username == ""
 	{
 		"Ah- wait... Grrm... No name...? Well, anyway! "
 	}
 	else
 	{
-		"%(name)...? %(paper)%(forward)%(name)! Nice to meet you! "
+		"%(name)...? %(forward)%(paper)%(name)! Nice to meet you! "
 	}
-	"%(paper)%(pet)This will be good interview! I can tell!\e:chain=end"
+	"%(pet)%(paper)This will be good interview! I can tell!\e:chain=end"
 }
 
 OnInitialize
@@ -120,16 +120,16 @@ OnBoot
 	--
 	"\![bind,Tie,,0]\![bind,Tie,%(ANY(TiesAvailable)),1]"
 	--
-	"\0\b[4]%(neutral)%(forward)Hello, %(name)! %(neutral)%(pet)It another part of best interview!"
-	"\0\b[4]%(neutral)%(behind)Have time for snack...? %(neutral)%(ceiling)Grrm... \n\n%(neutral)%(forward)Oh! %(name)! Y-yes, am ready to continue, yes, yes!"
-	"\0\b[4]\s[700]\i[4]Get get get, get things... \w8\w8%(paper)%(look)That everything...? \w8%(neutral)%(forward)Yes, we start now! Hello!"
+	"\0\b[4]%(forward)%(neutral)Hello, %(name)! %(pet)%(neutral)It another part of best interview!"
+	"\0\b[4]%(behind)%(neutral)Have time for snack...? %(ceiling)%(neutral)Grrm... \n\n%(forward)%(neutral)Oh! %(name)! Y-yes, am ready to continue, yes, yes!"
+	"\0\b[4]\s[700]\i[4]Get get get, get things... \w8\w8%(look)%(paper)That everything...? \w8%(forward)%(neutral)Yes, we start now! Hello!"
 }
 
 OnClose
 {
-	"\0\b[4]%(paper)%(behind)Well... getting late now. %(neutral)%(forward)We continue next time. %(neutral)%(smile)Be safe! \w8\w8\w8"
-	"\0\b[4]%(neutral)%(processing)Ah, time to go? %(speak)%(smile)We'll schedule another meeting soon! %(neutral)%(forward)I look forward to it."
-	"\0\b[4]%(tie)%(ceiling)Grrm... is about time I count my ties. %(tie)%(look)You find your way out fine, yes? %(tie)%(smile)Good."
+	"\0\b[4]%(behind)%(paper)Well... getting late now. %(forward)%(neutral)We continue next time. %(smile)%(neutral)Be safe! \w8\w8\w8"
+	"\0\b[4]%(processing)%(neutral)Ah, time to go? %(smile)%(speak)We'll schedule another meeting soon! %(forward)%(neutral)I look forward to it."
+	"\0\b[4]%(ceiling)%(tie)Grrm... is about time I count my ties. %(look)%(tie)You find your way out fine, yes? %(smile)%(tie)Good."
 	--
 	"\w8\w8\-" //This is what makes the ghost close (after a short pause), do not remove the \- , and MAKE SURE you don't use a \e before this point or it won't work
 }

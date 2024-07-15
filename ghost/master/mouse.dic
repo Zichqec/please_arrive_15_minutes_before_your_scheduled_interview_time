@@ -20,7 +20,7 @@ OnFlipSwitch
 {
 	if HasToggledLights
 	{
-		if LightsOn; "\0\b[4]\![bind,Lights,Off,1]\s[%(SHIORI3FW.LastSurface[0])]\i[%(LastInterval)]%(narration)%(italic)Bink!%(italicoff)"
+		if LightsOn; "\0\b[4]\![bind,Lights,Off,1]\s[%(SHIORI3FW.LastSurface[0])]\i[%(LastBody)]%(narration)%(italic)Bink!%(italicoff)"
 		else; "\0\b[4]\![bind,Lights,Off,0]%(narration)%(italic)Bink!%(italicoff)"
 	}
 	else
@@ -32,7 +32,7 @@ OnFlipSwitch
 
 OnPushPaper
 {
-	"\0\b[0]\i[4]\t%(narration)%(italic)Whoosh%(italicoff)\w8\w8\w8\w8\n\n%(neutral)\![anim,clear,2]%(look)Papers... %(neutral)\![anim,clear,2]%(nervous)One moment, please. \s[700]\_w[5000]\n\n%(neutral)%(forward)Apologies. What was saying?"
+	"\0\b[0]\i[4]\t%(narration)%(italic)Whoosh%(italicoff)\w8\w8\w8\w8\n\n%(look)\![anim,clear,2]Papers... %(nervous)\![anim,clear,2]One moment, please. \s[700]\_w[5000]\n\n%(forward)%(neutral)Apologies. What was saying?"
 }
 
 OnMouseMove
@@ -52,14 +52,14 @@ OnMouseMove.Sakura : nonoverlap_pool
 {
 	if reference4 == "head"
 	{
-		"\0\b[4]%(agitated)%(pet)Rrr?"
-		"\0\b[4]%(agitated)%(pet)Mrrp~"
-		"\0\b[4]%(agitated)%(pet)Scritch scratch~"
-		"\0\b[4]%(agitated)%(pet)Pet pet pet~"
-		"\0\b[4]%(agitated)%(pet)Ohh...!"
-		"\0\b[4]%(agitated)%(pet)Yes, yes..."
-		"\0\b[4]%(agitated)%(pet)%(DragonNoisePrefix) %(good) pets for %(good) Boss~"
-		"\0\b[4]%(agitated)%(pet)Pets... %(good)..."
+		"\0\b[4]%(pet)%(neutral)Rrr?"
+		"\0\b[4]%(pet)%(neutral)Mrrp~"
+		"\0\b[4]%(pet)%(neutral)Scritch scratch~"
+		"\0\b[4]%(pet)%(neutral)Pet pet pet~"
+		"\0\b[4]%(pet)%(neutral)Ohh...!"
+		"\0\b[4]%(pet)%(neutral)Yes, yes..."
+		"\0\b[4]%(pet)%(neutral)%(DragonNoisePrefix) %(good) pets for %(good) Boss~"
+		"\0\b[4]%(pet)%(neutral)Pets... %(good)..."
 	}
 }
 

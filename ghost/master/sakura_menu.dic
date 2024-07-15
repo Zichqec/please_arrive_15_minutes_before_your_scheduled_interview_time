@@ -11,7 +11,7 @@ SakuraMenuGreetings : nonoverlap
 //Because there is an all modifier here, you don't need to write -- between menu options
 OnSakuraMenu : all
 {
-	"\0\b[2]\s[0]\![set,autoscroll,disable]\![no-pause]\![close,inputbox,OnAnswerQuestion]"
+	"\0\b[2]%(forward)%(neutral)\![set,autoscroll,disable]\![no-pause]\![close,inputbox,OnAnswerQuestion]"
 	"\n"
 	
 	"\n\n\_q"
@@ -51,10 +51,10 @@ OnAskBossAQuestion
 {
 	"\0\b[4]\![open,inputbox,OnAskQuestion,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]\t\*"
 	--
-	"%(neutral)%(forward)Yes yes, question for me? Ask, ask!"
-	"%(neutral)%(forward)Yes, question, ask!"
-	"%(tie)%(nervous)Question?"
-	"%(paper)%(processing)Oh? Questions?? %(neutral)%(pet)Yes yes yes, ask, ask."
+	"%(forward)%(neutral)Yes yes, question for me? Ask, ask!"
+	"%(forward)%(neutral)Yes, question, ask!"
+	"%(nervous)%(tie)Question?"
+	"%(processing)%(paper)Oh? Questions?? %(pet)%(neutral)Yes yes yes, ask, ask."
 	--
 	"\_q\n\n\![*]\__q[OnCancelQuestion]Actually,\_w[0] nevermind...\__q\*"
 }
@@ -63,12 +63,12 @@ OnCancelQuestion
 {
 	"\0\b[4]\![close,inputbox,OnAskQuestion]"
 	--
-	"%(paper)%(scowl)%(DragonNoisePrefix)..."
+	"%(scowl)%(paper)%(DragonNoisePrefix)..."
 }
 
 OnChangeTie : nonoverlap
 {
-	"\0\b[0]%(agitated)%(happy)Yes, yes! Have many ties, special co-\w4llec-\w4tion. %(tie)%(forward)You would like to see another? Wait moment!"
+	"\0\b[0]%(happy)%(agitated)Yes, yes! Have many ties, special co-\w4llec-\w4tion. %(forward)%(tie)You would like to see another? Wait moment!"
 	--
 	"\s[700]\i[4]"
 	--
@@ -76,8 +76,8 @@ OnChangeTie : nonoverlap
 	--
 	"\![bind,Tie,,0]\![bind,Tie,%(ANY(TiesAvailable)),1]"
 	--
-	"%(neutral)%(forward)\n\nNew pattern, see? Favorite of mine!"
-	"%(neutral)%(forward)\n\nThis is good pattern, yes, yes!"
+	"%(forward)%(neutral)\n\nNew pattern, see? Favorite of mine!"
+	"%(forward)%(neutral)\n\nThis is good pattern, yes, yes!"
 }
 
 OnCustomizeBalloon : all

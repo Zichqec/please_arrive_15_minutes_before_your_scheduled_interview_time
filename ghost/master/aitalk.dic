@@ -59,4 +59,31 @@ RandomTalk : nonoverlap_pool
 	"\0\b[4]%(smile)%(speak)Have ac-\w4tiv-\w4i-\w4ties to help you relax; %(forward)%(neutral)you can stack gold pieces, or sort gems!"
 	"\0\b[4]%(smile)%(speak)I hope you will enjoy your em-\w4ploy-\w4ment here, %(name)! %(nervous)%(tie)If in-\w4ter-\w4view goes well..."
 	"\0\b[4]%(ceiling)%(neutral)%(name)... %(name)...? \n\n%(narration)%(italic)He's mumbling... %(italicoff)"
+	
+	if LightsOn
+	{
+		
+	}
+	else
+	{
+		
+	}
+	
+	if interviewscore == "positive"
+	{
+		
+	}
+	elseif interviewscore == "negative"
+	{
+		
+	}
+	else //neutral
+	{
+		
+	}
+	
+	if TotalResponses > 20 //just for funsies...?
+	{
+		
+	}
 }

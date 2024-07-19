@@ -369,6 +369,24 @@ DetermineSliderResponse
 	_response
 }
 
+interviewscore
+{
+	if TotalResponses > 10
+	{
+		if PositiveResponses - NegativeResponses > 10
+		{
+			"positive"
+			return
+		}
+		elseif NegativeResponses - PositiveResponses > 10
+		{
+			"negative"
+			return
+		}
+	}
+	"neutral"
+}
+
 name
 {
 	_name = TempNames

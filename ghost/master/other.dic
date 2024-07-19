@@ -718,3 +718,105 @@ MakePatternDescripts : all
 		_num++
 	}
 }
+
+GetDragonTime : all
+{
+	_cycle = 1000 + (year / 5)
+	_cycleplace = year % 5
+	
+	//Get what day of the cycle it is, including leap years
+	_totalday = GETTIME[7]
+	for _i = 0; _i < _cycleplace; _i++
+	{
+		_totalday += 365
+		if leapyear(year - _i - 1) //The extra -1 here is because we need n+1, basically... i think...
+		{
+			_totalday += 1
+		}
+	}
+	
+	//Calculate how many moons it has been
+	_totalmoon = 0
+	_sun = _totalday
+	while _sun > 30
+	{
+		_sun -= 30
+		_totalmoon++
+		if _sun <= 29; break
+		_sun -= 29
+		_totalmoon++
+	}
+	
+	//get what season it is, and which season in the cycle it is (first frost and second frost are different). also get what moon of that season it is
+	_season = (_totalmoon / 3) % 4
+	_seasonnum = ((_totalmoon / 3) / 4) + 1
+	_moon = (_totalmoon % 3) + 1
+	
+	
+	// "\_q\b[2]\![no-autopause]"
+	// "Cycle: %(_cycle)\n"
+	// "Season: %(('Frost','Melt','Blaze','Wind')[_season])\n"
+	// "Moon: %(_moon)\n"
+	// "Sun: %(_sun)\n"
+	// "\n\n"
+	// "_totalday: %(_totalday)"
+	// "\x"
+	
+	(_cycle,_seasonnum,_season,_moon,_sun,_totalmoon,_totalday)
+}
+
+leapyear
+{
+    _year = year; if _argv[0] != ""; _year = _argv[0]
+	
+    if _year % 4 != 0; 0
+    elseif _year % 100 != 0; 1
+    elseif _year % 400 != 0; 0
+    else; 1
+}
+
+//Sets the appropriate suffix for whatever number you pass in
+NumSuffix : all
+{
+	_str = TOSTR(_argv[0])
+	_last = SUBSTR(_str,STRLEN(_str) - 1,1)
+	_last2 = SUBSTR(_str,STRLEN(_str) - 2,2)
+	CVINT(_last2)
+	
+	_str //Add the number, suffixes added below
+	
+	//Handle teen numbers
+	if _last2 >= 11 && _last2 <= 13
+	{
+		"th"
+		return
+	}
+	
+	//Everything else
+	case TOINT(_last)
+	{
+		when 1; "st"
+		when 2; "nd"
+		when 3; "rd"
+		others; "th"
+	}
+}
+
+DragonCalendarDate
+{
+	//cycle, seasonnum, season, moon, sun, totalmoon, totalday
+	
+	_date = GetDragonTime
+	_cycle = _date[0]
+	_seasonnum = _date[1]
+	_i = _date[2]
+	_season = "Frost"
+	if _i == 1; _season = "Melt"
+	elseif _i == 2; _season = "Blaze"
+	elseif _i == 3; _season = "Wind"
+	//_season = ("Frost","Melt","Blaze","Wind")[_i]
+	_moon = _date[3]
+	_sun = _date[4]
+	
+	"%(NumSuffix(_sun)) sun of the %(NumSuffix(_moon)) moon of the %(NumSuffix(_seasonnum)) %(_season) of the %(NumSuffix(_cycle)) cycle"
+}

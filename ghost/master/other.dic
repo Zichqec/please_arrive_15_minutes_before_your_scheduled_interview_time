@@ -26,7 +26,7 @@ OnTranslate
 			_2 = "0"
 			_4 = "0"
 		}
-		LOGGING("====================================================================")
+		
 		while "\0\b[0]" _in_ _talk
 		{
 			LOGGING("_talk: %(_talk)")
@@ -288,19 +288,6 @@ multiplechoice : all
 	}
 }
 
-OnAnswerMultipleChoice
-{
-	if reference0 == "Something custom"
-	{
-		
-	}
-	
-	//Generic
-	if reference2 == "positive"; GenericPositive(reference0)
-	elseif reference2 == "negative"; GenericNegative(reference0)
-	else; GenericNeutral(reference0)
-}
-
 //\![open,sliderinput,(ID),(display time),(current value),(minimum),(maximum),(option)]
 agreeslider
 {
@@ -316,72 +303,6 @@ agreeslider
 	_preferred = _argv[2]
 	
 	"\![open,sliderinput,OnAnswerAgreeSlider,-1,50,0,100,--reference=""%(_name)"",--reference=""%(_thresholds)"",--reference=""%(_preferred)""]"
-}
-
-OnAnswerAgreeSlider
-{	
-	_answer = reference0
-	_bottom = 0
-	_top = 100
-	_middle = 50
-	_name = reference2
-	_thresholds = reference3
-	_preferred = reference4
-
-	_response = DetermineSliderResponse(_answer,_middle,_thresholds)
-	
-	//MUST return from these if a response is given, otherwise continue down...
-	if _name == "something"
-	{
-		//Custom behavior
-	}
-	
-	if _preferred == ""; SliderAgree.GenericNeutral //None specified
-	elseif _preferred == "medium" //separate here otherwise we lose the neutral responses in between
-	{
-		if _response == "medium"; SliderAgree.GenericPositive
-		elseif "very" _in_ _response; SliderAgree.GenericNegative
-		else; SliderAgree.GenericNeutral
-	}
-	else
-	{
-		if _preferred _in_ _response //high and high, high and very high, low and low, low and very low, medium and medium...
-		{
-			if ARRAYSIZE(_thresholds) > 2 && "very" _in_ _response; SliderAgree.GenericVeryPositive
-			else; SliderAgree.GenericPositive
-		}
-		elseif _response == "medium"; SliderAgree.GenericNeutral //Medium and high, medium and low...
-		else //high and low, high and very low, low and high, low and very high...
-		{
-			if ARRAYSIZE(_thresholds) > 2 && "very" _in_ _response; SliderAgree.GenericVeryNegative
-			else; SliderAgree.GenericNegative
-		}
-	}
-}
-
-SliderAgree.GenericVeryPositive
-{
-	"very positive!!!!! yes yes yes yes yes!!!"
-}
-
-SliderAgree.GenericPositive
-{
-	"good! good good"
-}
-
-SliderAgree.GenericNeutral
-{
-	"i see..."
-}
-
-SliderAgree.GenericNegative
-{
-	"hmm, concerning"
-}
-
-SliderAgree.GenericVeryNegative
-{
-	"NO! BAD BAD! GRRR BITE BITE BAD FIRED"
 }
 
 amountslider
@@ -401,72 +322,6 @@ amountslider
 	_middle = ((_top - _bottom) / 2) + _bottom
 	
 	"\![open,sliderinput,OnAnswerAmountSlider,-1,%(_middle),%(_bottom),%(_top),--reference=""%(_name)"",--reference=""%(_thresholds)"",--reference=""%(_preferred)""]"
-}
-
-OnAnswerAmountSlider : all
-{
-	_answer = reference0
-	_bottom = TOINT(reference1[0])
-	_top = TOINT(reference1[1])
-	_middle = ((_top - _bottom) / 2) + _bottom
-	_name = reference2
-	_thresholds = reference3
-	_preferred = reference4
-	
-	_response = DetermineSliderResponse(_answer,_middle,_thresholds)
-	
-	//MUST return from these if a response is given, otherwise continue down...
-	if _name == "something"
-	{
-		//Custom behavior
-	}
-	
-	if _preferred == ""; SliderAmount.GenericNeutral //None specified
-	elseif _preferred == "medium" //separate here otherwise we lose the neutral responses in between
-	{
-		if _response == "medium"; SliderAmount.GenericPositive
-		elseif "very" _in_ _response; SliderAmount.GenericNegative
-		else; SliderAmount.GenericNeutral
-	}
-	else
-	{
-		if _preferred _in_ _response //high and high, high and very high, low and low, low and very low, medium and medium...
-		{
-			if ARRAYSIZE(_thresholds) > 2 && "very" _in_ _response; SliderAmount.GenericVeryPositive
-			else; SliderAmount.GenericPositive
-		}
-		elseif _response == "medium"; SliderAmount.GenericNeutral //Medium and high, medium and low...
-		else //high and low, high and very low, low and high, low and very high...
-		{
-			if ARRAYSIZE(_thresholds) > 2 && "very" _in_ _response; SliderAmount.GenericVeryNegative
-			else; SliderAmount.GenericNegative
-		}
-	}
-}
-
-SliderAmount.GenericVeryPositive
-{
-	"very positive!!!!! yes yes yes yes yes!!!"
-}
-
-SliderAmount.GenericPositive
-{
-	"good! good good"
-}
-
-SliderAmount.GenericNeutral
-{
-	"i see..."
-}
-
-SliderAmount.GenericNegative
-{
-	"hmm, concerning"
-}
-
-SliderAmount.GenericVeryNegative
-{
-	"NO! BAD BAD! GRRR BITE BITE BAD FIRED"
 }
 
 DetermineSliderResponse

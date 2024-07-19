@@ -35,6 +35,7 @@
 //User's response to Boss asking a question
 OnAnswerQuestion
 {
+	TotalResponses++
 	_input = TOLOWER(reference0)
 	_type = TOAUTO(reference.raw[0])
 	_intents = ProcessQuestion(reference0)
@@ -108,6 +109,8 @@ OnAnswerQuestion
 //Resoponses to yes/no questions
 OnAnswerYesNo
 {
+	TotalResponses++
+	
 	"\0\b[0]"
 	--
 	if reference1 == "worked with dragon"
@@ -192,8 +195,25 @@ OnAnswerYesNo
 	}
 }
 
+
+OnAnswerMultipleChoice
+{
+	TotalResponses++
+	if reference0 == "Something custom"
+	{
+		
+	}
+	
+	//Generic
+	if reference2 == "positive"; GenericPositive(reference0)
+	elseif reference2 == "negative"; GenericNegative(reference0)
+	else; GenericNeutral(reference0)
+}
+
 GenericNeutral
 {
+	NeutralResponses++
+	
 	"\0\b[4]%(scowl)%(neutral)I see, I see..."
 	"\0\b[4]%(scowl)%(neutral)Good in-\w4for-\w4ma-\w4tion..."
 	"\0\b[4]%(read)%(paper)Hmm... %(forward)%(paper)I see? %(nervous)%(paper) I see!"
@@ -201,11 +221,14 @@ GenericNeutral
 
 GenericPositive : pool
 {
+	PositiveResponses++
+	
 	_opposite = "no"
 	if _argv[0] == "no"; _opposite = "yes"
 	
 	"\0\b[4]%(smile)%(neutral)Oh, good good good good. %(happy)%(agitated)Yes, very good to know about %(name)!"
 	"\0\b[4]%(smile)%(neutral)Good! %(forward)%(neutral)Good good good. Good to know. %(forward)%(speak)Important, you know."
+	
 	if _argv[0] == "yes" || _argv[0] == "no"
 	{
 		"\0\b[4]%(forward)%(speak)Ex-\w4cel-\w4lent! %(nervous)%(tie)Would be bad if %(_opposite)."
@@ -214,11 +237,165 @@ GenericPositive : pool
 
 GenericNegative
 {
+	NegativeResponses++
+	
 	"\0\b[4]%(scowl)%(paper)Hmm, this concerning..."
 	"\0\b[4]%(squint)%(paper)I see... %(serious)%(paper)Reconsider."
 }
 
+OnAnswerAgreeSlider
+{
+	TotalResponses++
+	_answer = reference0
+	_bottom = 0
+	_top = 100
+	_middle = 50
+	_name = reference2
+	_thresholds = reference3
+	_preferred = reference4
 
+	_response = DetermineSliderResponse(_answer,_middle,_thresholds)
+	
+	//MUST return from these if a response is given, otherwise continue down...
+	if _name == "something"
+	{
+		//Custom behavior
+	}
+	
+	if _preferred == ""; SliderAgree.GenericNeutral //None specified
+	elseif _preferred == "medium" //separate here otherwise we lose the neutral responses in between
+	{
+		if _response == "medium"; SliderAgree.GenericPositive
+		elseif "very" _in_ _response; SliderAgree.GenericNegative
+		else; SliderAgree.GenericNeutral
+	}
+	else
+	{
+		if _preferred _in_ _response //high and high, high and very high, low and low, low and very low, medium and medium...
+		{
+			if ARRAYSIZE(_thresholds) > 2 && "very" _in_ _response; SliderAgree.GenericVeryPositive
+			else; SliderAgree.GenericPositive
+		}
+		elseif _response == "medium"; SliderAgree.GenericNeutral //Medium and high, medium and low...
+		else //high and low, high and very low, low and high, low and very high...
+		{
+			if ARRAYSIZE(_thresholds) > 2 && "very" _in_ _response; SliderAgree.GenericVeryNegative
+			else; SliderAgree.GenericNegative
+		}
+	}
+}
+
+SliderAgree.GenericVeryPositive
+{
+	PositiveResponses++
+	
+	"very positive!!!!! yes yes yes yes yes!!!"
+}
+
+SliderAgree.GenericPositive
+{
+	PositiveResponses++
+	
+	"good! good good"
+}
+
+SliderAgree.GenericNeutral
+{
+	NegativeResponses++
+	
+	"i see..."
+}
+
+SliderAgree.GenericNegative
+{
+	NeutralResponses++
+	
+	"hmm, concerning"
+}
+
+SliderAgree.GenericVeryNegative
+{
+	NeutralResponses++
+	
+	"NO! BAD BAD! GRRR BITE BITE BAD FIRED"
+}
+
+OnAnswerAmountSlider : all
+{
+	TotalResponses++
+	_answer = reference0
+	_bottom = TOINT(reference1[0])
+	_top = TOINT(reference1[1])
+	_middle = ((_top - _bottom) / 2) + _bottom
+	_name = reference2
+	_thresholds = reference3
+	_preferred = reference4
+	
+	_response = DetermineSliderResponse(_answer,_middle,_thresholds)
+	
+	//MUST return from these if a response is given, otherwise continue down...
+	if _name == "something"
+	{
+		//Custom behavior
+	}
+	
+	if _preferred == ""; SliderAmount.GenericNeutral //None specified
+	elseif _preferred == "medium" //separate here otherwise we lose the neutral responses in between
+	{
+		if _response == "medium"; SliderAmount.GenericPositive
+		elseif "very" _in_ _response; SliderAmount.GenericNegative
+		else; SliderAmount.GenericNeutral
+	}
+	else
+	{
+		if _preferred _in_ _response //high and high, high and very high, low and low, low and very low, medium and medium...
+		{
+			if ARRAYSIZE(_thresholds) > 2 && "very" _in_ _response; SliderAmount.GenericVeryPositive
+			else; SliderAmount.GenericPositive
+		}
+		elseif _response == "medium"; SliderAmount.GenericNeutral //Medium and high, medium and low...
+		else //high and low, high and very low, low and high, low and very high...
+		{
+			if ARRAYSIZE(_thresholds) > 2 && "very" _in_ _response; SliderAmount.GenericVeryNegative
+			else; SliderAmount.GenericNegative
+		}
+	}
+}
+
+SliderAmount.GenericVeryPositive
+{
+	PositiveResponses++
+	
+	"very positive!!!!! yes yes yes yes yes!!!"
+}
+
+SliderAmount.GenericPositive
+{
+	PositiveResponses++
+	
+	"good! good good"
+}
+
+SliderAmount.GenericNeutral
+{
+	NeutralResponses++
+	
+	"i see..."
+}
+
+SliderAmount.GenericNegative
+{
+	NegativeResponses++
+	
+	"hmm, concerning"
+}
+
+SliderAmount.GenericVeryNegative
+{
+	NegativeResponses++
+	
+	"NO! BAD BAD! GRRR BITE BITE BAD FIRED"
+}
 
 
 
@@ -237,6 +414,7 @@ GenericNegative
 //Boss's response to the user asking a question
 OnAskQuestion
 {
+	TotalBossQuestions++
 	_intents = ProcessQuestion(reference0)
 	_input = TOLOWER(reference0)
 	
@@ -299,6 +477,9 @@ OnUserInputCancel
 		}
 		else
 		{
+			TotalResponses++
+			NegativeResponses++
+			
 			"\0\b[4]%(scowl)%(paper)Hmmm, refusing to answer..."
 			"\0\b[4]%(scowl)%(paper)A-\w4voi-\w4ding question..."
 			"\0\b[4]%(serious)%(paper)I see, you refuse..."

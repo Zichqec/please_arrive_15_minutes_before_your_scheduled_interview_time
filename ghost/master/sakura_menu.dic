@@ -11,7 +11,7 @@ SakuraMenuGreetings : nonoverlap
 //Because there is an all modifier here, you don't need to write -- between menu options
 OnSakuraMenu : all
 {
-	"\0\b[2]%(forward)%(neutral)\![set,autoscroll,disable]\![no-pause]\![close,inputbox,OnAnswerQuestion]"
+	"\0\b[2]%(forward)%(neutral)\![set,autoscroll,disable]\![no-autopause]\![close,inputbox,OnAnswerQuestion]"
 	"\n"
 	
 	"\n\n\_q"
@@ -167,7 +167,7 @@ OnTalkRateMenu : all
 	elseif aitalkinterval == 300; _talkrate = "5 minutes"
 	elseif aitalkinterval == 600; _talkrate = "10 minutes"
 	
-	"\C\![lock,balloonrepaint]\c\0\b[2]\s[0]\![set,autoscroll,disable]\_q\![no-pause]"
+	"\C\![lock,balloonrepaint]\c\0\b[2]%(forward)\![set,autoscroll,disable]\_q\![no-autopause]"
 	"Current interval: \f[color,default.anchor]%(_talkrate)\f[color,default]\n\n"
 	
 	"\![*]\q[Off,OnTalkRateChange,0]\n"

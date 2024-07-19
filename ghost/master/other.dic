@@ -56,7 +56,7 @@ OnTranslate
 		//TODO make sure input boxes also get randomized
 	}
 	
-	if "\![no-pause]" !_in_ _talk
+	if "\![no-autopause]" !_in_ _talk
 	{
 		_talk = REPLACE(_talk,". ",".\w8\w8\w8 ")
 		_talk = REPLACE(_talk,", ",",\w8 ")

@@ -12,6 +12,11 @@ OnFirstBoot
 	LightsOn = 0
 	HasToggledLights = 0
 	TalkTopic = "both"
+	TotalResponses = 0
+	NegativeResponses = 0
+	PositiveResponses = 0
+	NeutralResponses = 0
+	TotalBossQuestions = 0
 	
 	"\t\*%(noboss)\![bind,Tie,,0]\![bind,Tie,%(ANY(TiesAvailable)),1]"
 	--

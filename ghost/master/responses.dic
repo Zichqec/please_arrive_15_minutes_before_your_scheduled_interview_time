@@ -143,7 +143,7 @@ OnAnswerYesNo
 		}
 		else
 		{
-			GenericPositive
+			GenericPositive(reference0)
 		}
 	}
 	elseif reference1 == "after my ties"
@@ -161,7 +161,7 @@ OnAnswerYesNo
 	{
 		if reference0 == "yes"
 		{
-			GenericPositive
+			GenericPositive(reference0)
 		}
 		else
 		{
@@ -445,7 +445,7 @@ OnAskQuestion
 	}
 	elseif "your birthday" _in_ _input
 	{
-		"\0\b[4]%(forward)%(tie)My birthday? %(happy)%(agitated)May 18th, of course!"
+		"\0\b[4]%(forward)%(tie)My birthday? %(happy)%(agitated)May 18th, of course!" //TODO change this to a date in dragon calendar
 	}
 	elseif "accidental death" _in_ _input
 	{

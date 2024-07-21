@@ -301,21 +301,21 @@ SliderAgree.GenericPositive
 
 SliderAgree.GenericNeutral
 {
-	NegativeResponses++
+	NeutralResponses++
 	
 	"i see..."
 }
 
 SliderAgree.GenericNegative
 {
-	NeutralResponses++
+	NegativeResponses++
 	
 	"hmm, concerning"
 }
 
 SliderAgree.GenericVeryNegative
 {
-	NeutralResponses++
+	NegativeResponses++
 	
 	"NO! BAD BAD! GRRR BITE BITE BAD FIRED"
 }

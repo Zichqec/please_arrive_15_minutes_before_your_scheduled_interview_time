@@ -47,8 +47,19 @@ OnAnswerQuestion
 	if _input == ""
 	{
 		"\0\b[4]%(forward)%(paper)Oh, %(DragonNoiseSuffix), %(nervous)%(paper)nothing to say... oh no..."
+		return
 	}
-	elseif GETTYPE(_type) == 1 || GETTYPE(_type) == 2 //If the response is a number, with or without decimal point
+	elseif reference2 != ""
+	{
+		_output = OnAnswerQuestion.Custom(reference2,_input)
+		if _output != ""
+		{
+			_output
+			return
+		}
+	}
+	
+	if GETTYPE(_type) == 1 || GETTYPE(_type) == 2 //If the response is a number, with or without decimal point
 	{
 		"\0\b[4]%(processing)%(paper)Hmmm. \w8\w8%(ceiling)%(paper)Sounds like real number..."
 	}
@@ -103,6 +114,29 @@ OnAnswerQuestion
 	else //Didn't match any intents
 	{
 		"\0\b[4]%(squint)%(tie)I see... %(nervous)%(tie)I not see."
+	}
+}
+
+//Custom processing for special input boxes
+OnAnswerQuestion.Custom
+{
+	_ID = _argv[0]
+	_input = _argv[1]
+	
+	if _ID == "example"
+	{
+		if "test" _in_ _input
+		{
+			"test complete!"
+		}
+		else
+		{
+			"yay ID"
+		}
+	}
+	elseif _ID == "health screening"
+	{
+		"\0\b[0]%(processing)%(paper)Grrm... %(nervous)%(paper)Never heard this kind before...\n\n \w8\w8%(plead)%(paper)You... can still perform job, yes? %(forward)%(paper)Yes, if you here, you must agree. %(happy)Good. Good good. %(smile)%(speak)You pass health screening."
 	}
 }
 
@@ -177,6 +211,83 @@ OnAnswerYesNo
 		else
 		{
 			"\0\b[4]%(tired)%(neutral)Me neither... %(look)%(neutral)Need more kobolds..."
+		}
+	}
+	elseif reference1 == "been scarecrow"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[4]%(smile)%(paper)Good, good good! %(pet)%(speak)Crows like shiny objects, need someone vi-gi-lant to keep them away while I am not here."
+		}
+		else
+		{
+			GenericNeutral(reference0)
+		}
+	}
+	elseif reference1 == "managed treasure before"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[4]%(input)%(plead)%(speak)What made you leave treasure job?"
+		}
+		else
+		{
+			GenericNeutral(reference0)
+		}
+	}
+	elseif reference1 == "alphabetical order"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[4]%(smile)%(paper)Good! Like hoard sorted alphabetically every third moon. Very good."
+		}
+		else
+		{
+			GenericNegative(reference0)
+		}
+	}
+	elseif reference1 == "health screening"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[4]%(smile)%(paper)Good! Good. %(forward)%(paper)Healthy em- ploy- ee work better."
+		}
+		else
+		{
+			"\0\b[4]%(input('health screening'))%(serious)%(paper)%(Capitalize(DragonNoisePrefix))... Diseased? %(processing)%(paper)What disease? May consider a- ccom- o- da- tion..."
+		}
+	}
+	elseif reference1 == "rinse food"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[4]%(read)%(neutral)I see... %(happy)Then, I make sure puny human em- ploy- ee's food is cleaned!"
+		}
+		else
+		{
+			"\0\b[4]%(nervous)%(tie)No? Then... %(look)%(tie)Perhaps ancient ri- tu- al...?"
+		}
+	}
+	elseif reference1 == "ready for question"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[0]%(smile)%(paper)Ex- cell- ent!\n\n ... %(look)%(paper)Grrm... \w8\w8%(nervous)%(paper)I tell you when I have prepared it."
+		}
+		else
+		{
+			"\0\b[4]%(scowl)%(paper)%(Capitalize(DragonNoisePrefix))... %(serious)%(paper)I give you few minutes. No more."
+		}
+	}
+	elseif reference1 == "creature threat"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[0]%(serious)%(neutral)I see... %(scowl)%(speak)Then consider this re- min- der to keep watch for them.\n\n %(processing)%(neutral)Like to steal from hoard, might eat human em- ploy- ee..."
+		}
+		else
+		{
+			"\0\b[0]%(forward)%(neutral)I see!\n\n %(narration)%(italic)That sounds concerning...%(italicoff)\n\n %(smile)%(speak)Not worry about them now, we go over it later.\n\n %(narration)%(italic)Hmmm...%(italicoff)"
 		}
 	}
 	
@@ -334,9 +445,37 @@ OnAnswerAmountSlider : all
 	_response = DetermineSliderResponse(_answer,_middle,_thresholds)
 	
 	//MUST return from these if a response is given, otherwise continue down...
-	if _name == "something"
+	if _name == "travel time"
 	{
-		//Custom behavior
+		"\0\b[4]%(smile)%(paper)Good! Good. %(forward)%(paper)Won't need reimbursed for travel."
+		return
+	}
+	elseif _name == "words per minute"
+	{
+		case _answer
+		{
+			when 10-50
+			{
+				"\0\b[4]%(tired)%(neutral)Boss, too. %(look)%(paper)Human words hard..."
+			}
+			when 51-100
+			{
+				"\0\b[4]%(look)%(paper)Faster than %(good) boss..."
+			}
+			when 101-200
+			{
+				"\0\b[4]%(forward)%(paper)Good to know. %(smile)%(paper)Reading skills helpful."
+			}
+			when 201-400
+			{
+				"\0\b[4]%(smile)%(paper)Very fast reader! Im- press- ive."
+			}
+			others
+			{
+				"\0\b[4]%(nervous)%(paper)Im- poss- i- ble... Such speed... %(serious)%(paper)You not lying to %(good) boss, yes?"
+			}
+		}
+		return
 	}
 	
 	if _preferred == ""; SliderAmount.GenericNeutral //None specified

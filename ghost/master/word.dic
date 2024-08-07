@@ -271,3 +271,20 @@ object
 	"paperweight"
 	"iron"
 }
+
+creature
+{
+	"goblin"
+	"orc"
+}
+
+dragonfood
+{
+	"sheep"
+	"goat"
+	"mammoth"
+	"bear"
+	"tiger"
+	"lion"
+	"elephant"
+}

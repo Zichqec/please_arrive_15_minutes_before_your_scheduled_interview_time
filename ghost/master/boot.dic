@@ -47,7 +47,7 @@ OnJobTime : all
 	"\0\b[4]\t\*%(darkboss)%(narration)%(italic)...\w8 It's dark.\w8 Very dark.\w8 You don't see much when you look around,\w4 except—\w8\w8%(italicoff)\n\n[half]AH!\x"
 	"\0\b[0]\t\*%(forward)%(neutral)Oh, grrm, you must be- %(processing)%(tie)must be... %(smile)%(speak)my %(TempNames)! \n\n%(behind)%(neutral)... What time now? \w8\w8%(forward)%(neutral)Oh! \n\n%(serious)%(neutral)You early. I said be here 15 minutes before your interview, you here 20 minutes before... %(happy)%(agitated)Must be very excited to start! \x"
 	"\0\b[2]\t\*%(forward)%(neutral)Good, good, we'll get right into it. \n\n%(look)%(speak)Now, your %(resume)... where... Ah, here! \n\n%(read)%(paper)Yes, yes, yes, good, good... %(squint)%(paper)Grrm... hmm! %(scowl)%(paper)Everything looks in order... \n\n%(squint)%(paper)... %(TempNames). \n\n%(nervous)%(paper)I have couple quick questions to ask! And, %(forward)%(neutral)if you have questions, you ask, too. Okay? Okay.\x"
-	"\0\b[4]\t\*%(forward)%(speak)Firstly, first! %(input('firstboot'))How did you find my limited edition Help Wanted pro-\w4mot-\w4ional adver-\w4tising poster for job gaining?\_l[-10000]\q[timeoutprevention,blank]\e:chain=firstinterview"
+	"\0\b[4]\t\*%(forward)%(speak)Firstly, first! %(input('firstboot'))How did you find my limited edition Help Wanted pro- mot- ional adver- tising poster for job gaining?\_l[-10000]\q[timeoutprevention,blank]\e:chain=firstinterview"
 }
 
 firstinterview

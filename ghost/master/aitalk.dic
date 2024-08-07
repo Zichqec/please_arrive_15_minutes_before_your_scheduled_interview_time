@@ -40,7 +40,6 @@ QuestionTalk : nonoverlap_pool
 	"\0\b[4]%(processing)%(neutral)Do you need to chew your food?%(yesno)"
 	"\0\b[4]%(plead)%(tie)Do you like my tie?%(yesno('yes'))"
 	"\0\b[4]%(forward)%(speak)Do you know how to work microwave?%(yesno('work a microwave'))"
-	"\0\b[4]%(scowl)%(neutral)Have you ever kept sen-\w4ti-\w4ent reptile as pet?%(yesno('no'))"
 	"\0\b[4]%(ceiling)%(neutral)Do you believe in dinosaurs?%(yesno)"
 	"\0\b[4]%(processing)%(speak)Have you ever considered work as %(job) before?%(yesno)"
 }
@@ -56,7 +55,6 @@ RandomTalk : nonoverlap_pool
 	"\0\b[4]%(smile)%(speak)Always have access to water, to meet regulation! %(forward)%(neutral)Drips into cave at all times!"
 	"\0\b[4]%(forward)%(speak)Have good view from cave entrance! %(forward)%(speak)Good for relaxing lunch break!"
 	"\0\b[4]%(forward)%(speak)Have good human resources. %(happy)%(agitated)Whole town nearby!"
-	"\0\b[4]%(smile)%(speak)Have ac-\w4tiv-\w4i-\w4ties to help you relax; %(forward)%(neutral)you can stack gold pieces, or sort gems!"
 	"\0\b[4]%(smile)%(speak)I hope you will enjoy your em-\w4ploy-\w4ment here, %(name)! %(nervous)%(tie)If in-\w4ter-\w4view goes well..."
 	"\0\b[4]%(ceiling)%(neutral)%(name)... %(name)...? \n\n%(narration)%(italic)He's mumbling... %(italicoff)"
 	

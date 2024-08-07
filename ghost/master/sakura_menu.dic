@@ -71,7 +71,7 @@ OnCancelQuestion
 
 OnChangeTie : nonoverlap
 {
-	"\0\b[0]%(happy)%(agitated)Yes, yes! Have many ties, special co-\w4llec-\w4tion. %(forward)%(tie)You would like to see another? Wait moment!"
+	"\0\b[0]%(happy)%(agitated)Yes, yes! Have many ties, special co- llec- tion. %(forward)%(tie)You would like to see another? Wait moment!"
 	--
 	"\s[700]\i[4]"
 	--

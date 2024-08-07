@@ -66,11 +66,11 @@ OnAnswerQuestion
 	}
 	elseif Intent("hesitant",_intents)
 	{
-		"\0\b[4]%(serious)%(paper)Hmm, not con-\w4fi-\w4dent, I see..."
+		"\0\b[4]%(serious)%(paper)Hmm, not con- fi- dent, I see..."
 	}
 	elseif Intent("excited",_intents)
 	{
-		"\0\b[4]%(happy)%(agitated)Yes yes yes good good good, good en-\w4thu-\w4si-\w4as-\w4m!"
+		"\0\b[4]%(happy)%(agitated)Yes yes yes good good good, good en- thu- si- as- m!"
 	}
 	elseif Intent("inquisitive",_intents)
 	{
@@ -78,7 +78,7 @@ OnAnswerQuestion
 	}
 	elseif Intent("thoughtful",_intents)
 	{
-		"\0\b[4]%(forward)%(neutral)I see, I see. %(smile)%(neutral)Thinking care-\w4ful-\w4ly. Good."
+		"\0\b[4]%(forward)%(neutral)I see, I see. %(smile)%(neutral)Thinking care- ful- ly. Good."
 	}
 	elseif Intent("confused",_intents)
 	{
@@ -215,7 +215,7 @@ GenericNeutral
 	NeutralResponses++
 	
 	"\0\b[4]%(scowl)%(neutral)I see, I see..."
-	"\0\b[4]%(scowl)%(neutral)Good in-\w4for-\w4ma-\w4tion..."
+	"\0\b[4]%(scowl)%(neutral)Good in- for- ma- tion..."
 	"\0\b[4]%(read)%(paper)Hmm... %(forward)%(paper)I see? %(nervous)%(paper) I see!"
 }
 
@@ -231,7 +231,7 @@ GenericPositive : pool
 	
 	if _argv[0] == "yes" || _argv[0] == "no"
 	{
-		"\0\b[4]%(forward)%(speak)Ex-\w4cel-\w4lent! %(nervous)%(tie)Would be bad if %(_opposite)."
+		"\0\b[4]%(forward)%(speak)Ex- cel- lent! %(nervous)%(tie)Would be bad if %(_opposite)."
 	}
 }
 
@@ -459,7 +459,7 @@ OnAskQuestion
 	{
 		"\0\b[4]%(squint)%(tie)Hmm, I see I see... %(forward)%(neutral)I will consider this. Get back to you later."
 		"\0\b[4]%(processing)%(neutral)Um... yes. %(ceiling)%(neutral)Yes? %(forward)%(neutral)Yes."
-		"\0\b[4]%(processing)%(neutral).\w8.\w8.\w8\w8\w8\w8\w8 %(nervous)%(tie) Prob-\w4ab-\w4ly?"
+		"\0\b[4]%(processing)%(neutral).\w8.\w8.\w8\w8\w8\w8\w8 %(nervous)%(tie) Prob- ab- ly?"
 	}
 }
 
@@ -481,9 +481,9 @@ OnUserInputCancel
 			NegativeResponses++
 			
 			"\0\b[4]%(scowl)%(paper)Hmmm, refusing to answer..."
-			"\0\b[4]%(scowl)%(paper)A-\w4voi-\w4ding question..."
+			"\0\b[4]%(scowl)%(paper)A- voi- ding question..."
 			"\0\b[4]%(serious)%(paper)I see, you refuse..."
-			"\0\b[4]%(serious)%(paper)Ig-\w4nor-\w4ing question..."
+			"\0\b[4]%(serious)%(paper)Ig- nor- ing question..."
 		}
 	}
 }

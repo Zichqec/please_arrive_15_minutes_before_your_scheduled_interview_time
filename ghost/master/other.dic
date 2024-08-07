@@ -399,6 +399,42 @@ name
 	else; _name
 }
 
+an
+{
+	_word = _argv[0]
+	_vowels = ("a","e","i","o","u")
+	foreach _vowels; _vowel
+	{
+		if StartsWith(_word,_vowel)
+		{
+			"an %(_word)"
+			return
+		}
+	}
+	"a %(_word)"
+}
+
+//Searches the start of a string for the requested substring.
+//Argument 0 is the source string to search, argument 1 is the substring to search for.
+//Returns 1 if true, 0 if false.
+//Usage example:
+//StartsWith("Testing","Test")
+StartsWith
+{
+	SUBSTR(_argv[0],0,STRLEN(_argv[1])) == _argv[1]
+}
+
+//Searches the end of a string for the requested substring.
+//Argument 0 is the source string to search, argument 1 is the substring to search for.
+//Returns 1 if true, 0 if false.
+//Usage example:
+//EndsWith("Testing","ing")
+EndsWith
+{
+	_len = STRLEN(_argv[1])
+	SUBSTR(_argv[0],STRLEN(_argv[0]) - _len,_len) == _argv[1]
+}
+
 OnQuestionName
 {
 	_index = NameIndex
@@ -474,6 +510,12 @@ boldoff
 	"\f[bold,0]"
 }
 
+br
+{
+	if SHIORI3FW.BalloonName == "Stuck to a Filing Cabinet"; "\n"
+	else; " "
+}
+
 noboss
 {
 	"\s[-1]"
@@ -487,7 +529,6 @@ darkboss : all
 		"\![set,alpha,%(_i)]\w1"
 	}
 	"\![set,alpha,100]"
-	
 }
 
 //Bodies

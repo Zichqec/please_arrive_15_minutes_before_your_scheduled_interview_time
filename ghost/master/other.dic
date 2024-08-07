@@ -255,7 +255,7 @@ input : all
 {
 	if _argv[0] != "firstboot"; "\_l[-10000]\q[timeoutprevention,OnAnswerYesNo]\_l[0,0]"
 	
-	"\![set,choicetimeout,%(aitalkinterval * 1000)]\![open,inputbox,OnAnswerQuestion,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__]"
+	"\![set,choicetimeout,%(aitalkinterval * 1000)]\![open,inputbox,OnAnswerQuestion,-1,--balloon=__INPUT%(C_BYTE1)BALLOON__,--reference=%(_argv[0])]"
 }
 
 yesno : all

@@ -20,43 +20,207 @@ OnAiTalk
 
 QuestionTalk : nonoverlap_pool
 {
-	"\0\b[4]%(input)%(forward)%(speak)%(doyou)... %(nervous)%(neutral)consider yourself edible?"
-	"\0\b[4]%(input)%(plead)%(speak)On scale of %(scale), how would you rate this interview?"
-	"\0\b[4]%(input)%(processing)%(neutral)How long would you say your teeth are?"
-	"\0\b[4]%(input)%(processing)%(neutral)Do you keep your claws sharpened?"
-	"\0\b[0]%(input)%(processing)%(speak)On scale of %(scale), what would you say %(ceiling)%(speak)your chances of surviving a 500 ft.\w4 fall? \w8\w8%(forward)%(neutral)Or, 152 m., if that's better for you."
-	"\0\b[0]%(input)%(squint)%(paper)Would you say that you're more comfortable working alone, or alongside kobolds? %(nervous)%(paper)And if with kobolds, do you have any I can borrow?"
-	"\0\b[4]%(input)%(forward)%(speak)What's the highest number you can count to?"
-	"\0\b[0]%(input)%(forward)%(neutral)Let's pretend that I have brought home company of a royal persuasion, %(serious)%(neutral)completely with their consent, %(forward)%(speak)and one of their relatives sends a warrior to retrieve them... %(processing)%(neutral)How would you handle the situation?"
-	"\0\b[4]%(input)%(look)%(paper)What is your preferred type of nesting material?"
-	"\0\b[4]%(input)%(look)%(paper)How many times in month would you say you need to be fed?"
-	"\0\b[4]%(input)%(forward)%(speak)How many magic spells do you know?"
-	"\0\b[4]%(input)%(forward)%(speak)How much ex-\w4per-\w4i-\w4ence you have pol-\w4ish-\w4ing %(metal) objects?"
-	"\0\b[4]%(input)%(forward)%(speak)What sort of co-\w4llec-\w4tions you have in your hoard?"
-	
+	//Yes/no
+	/*
+		%(yesno('yes'))
+		%(yesno('ID'))
+		Write with no argument for him to respond neutrally no matter what
+		Write 'yes' for him to respond positively if the user says yes, and 'no' for him to respond positively if the user says no
+		Write an ID to have a custom response
+	*/
+	/*
+	Have you ever
+	Will you
+	Can you
+	Do you
+	*/
 	"\0\b[0]%(serious)%(neutral)Have you ever worked with dragon before?%(yesno('worked with dragon'))"
 	"\0\b[0]%(forward)%(speak)Have you ever fought off armored knight before?%(yesno('yes'))" //TODO wrong bloon?
 	"\0\b[0]%(look)%(neutral)Do you have any pets, and %(processing)%(paper)would you be upset if they... %(nervous)%(paper)disappeared...?%(yesno)"
 	"\0\b[4]%(processing)%(neutral)Do you need to chew your food?%(yesno)"
 	"\0\b[4]%(plead)%(tie)Do you like my tie?%(yesno('yes'))"
 	"\0\b[4]%(forward)%(speak)Do you know how to work microwave?%(yesno('work a microwave'))"
+	"\0\b[4]%(scowl)%(neutral)Have you ever kept sen- ti- ent reptile as pet?%(yesno('no'))"
 	"\0\b[4]%(ceiling)%(neutral)Do you believe in dinosaurs?%(yesno)"
 	"\0\b[4]%(processing)%(speak)Have you ever considered work as %(job) before?%(yesno)"
+	//"\0\b[4]%(processing)%(speak)You... have good counting skills?%(yesno('yes'))" -- want a unique branch off this, maybe
+	"\0\b[4]%(processing)%(neutral)You have trophies from previous kills?%(yesno)"
+	"\0\b[4]%(plead)%(neutral)You good at na- vi- ga- tion?%(yesno)"
+	"\0\b[4]%(processing)%(paper)Have you ever been scarecrow?%(yesno('been scarecrow'))"
+	"\0\b[4]%(serious)%(speak)You drop po- sess- ions often?%(yesno('no'))"
+	"\0\b[4]%(scowl)%(neutral)Can you withstand sudden tem- per- a- ture changes?%(yesno('yes'))"
+	"\0\b[4]%(forward)%(speak)You enjoying interview, %(name)?%(yesno('yes'))"
+	"\0\b[0]%(serious)%(paper)Would you be willing to train replacement in future if your employment is to be... %(nervous)%(paper)terminated?%(yesno('yes'))"
+	"\0\b[4]%(forward)%(speak)Have you ever ap- praised %(metal) %(object)?%(yesno('yes'))"
+	"\0\b[4]%(forward)%(neutral)Have you managed treasure before?%(yesno('managed treasure before'))"
+	"\0\b[4]%(forward)%(speak)Have you ever studied alchemy?%(yesno)"
+	"\0\b[4]%(scowl)%(paper)You familiar with%(br)alpha- bet- i- cal order?%(yesno('alphabetical order'))"
+	"\0\b[4]%(processing)%(neutral)Have good reading skills?%(yesno)"
+	"\0\b[4]%(plead)%(speak)You good at solving riddles?%(yesno)"
+	"\0\b[0]%(processing)%(neutral)Man- da- tor- y health screening. %(processing)%(paper)You... healthy?%(yesno('health screening'))"
+	"\0\b[0]%(plead)%(neutral)Personal cu- ri- o- si- ty... %(nervous)%(neutral)Why humans rinse food? %(forward)%(speak)Help with di- ges- tion?%(yesno('rinse food'))"
+	"\0\b[0]%(scowl)%(paper)You know how to prop- er- ly tie tie? %(serious)%(paper)Dress code taken very ser- i- ous- ly here.%(yesno('yes'))"
+	"\0\b[4]%(forward)%(speak)You ready for next question?%(yesno('ready for question'))"
+	"\0\b[0]%(processing)%(neutral)You able to maintain working con- di- tion in cold%(br)en- vi- ron- ment?%(yesno('yes'))"
+	"\0\b[4]%(plead)%(speak)Have I men- tioned %(creature) threat nearby?%(yesno('creature threat'))"
+    
+	/*
+	"You... have good counting skills?" (Yes) //Goes to unique question asking how high you can count (number lower than 100 is disappointed, 100-999,999 is satisfied, 1,000,000+ is SO impressed)
+	"This your first life?"
+		(If no) "What creature were you before?" (Input, potential for keywords here?)
+	"You willing to eat food 3 months past expiration date? (Yes)" //it would be REALLY funny if this number increases over time until you say no -- or possibly if it was a chain!
+	*/
+	
+	
+	//Multiple choice
+	/*
+		%(multiplechoice('ID',+Sheep','Rabbits','-Lizards'))"
+		ID is an ID for custom responses
+		After that is a list of an arbitrary length. Each of these will be made into a clickable option
+		Prepend a + to make him respond positively to that option
+		Prepend a - to make him respond negatively to that option
+		All other options will get neutral responses
+		Note that there is potential to use word groups for this...
+	*/
+	/*
+	If given the choice of
+	Would you prefer
+	*/
+	_metalobject1 = "%(metal) %(object)"
+	_metalobject2 = "%(metal) %(object)"
+	"\0\b[0]%(forward)%(neutral)I give you option of po- li- shing %(_metalobject1) or %(_metalobject2). Which you prefer?%(multiplechoice(,Capitalize(_metalobject1),Capitalize(_metalobject2)))"
+	"\0\b[0]%(serious)%(paper)You would prefer short but fre- quent va- ca- tions, or long but in- fre- quent va- ca- tions?%(multiplechoice(,'-Short but frequent','+Long but infrequent'))"
+	
+	//Input box
+	/*
+		%(input('ID'))
+		Add an ID for custom keyword checking/other processing, otherwise, leave blank for a normal input box
+	*/
+	/*
+	Describe a time when
+	How would you handle a situation where
+	Consider the following situation
+	What sort of
+	*/
+	"\0\b[4]%(input)%(forward)%(speak)%(doyou)... %(nervous)%(neutral)consider yourself edible?" //yes/no
+	"\0\b[4]%(input)%(plead)%(speak)On scale of %(scale), how would you rate this interview?" //amount slider
+	"\0\b[4]%(input)%(processing)%(neutral)How long would you say your teeth are?" //amount slider
+	"\0\b[4]%(input)%(processing)%(neutral)Do you keep your claws sharpened?" //yes/no
+	"\0\b[0]%(input)%(processing)%(speak)On scale of %(scale), what would you say %(ceiling)%(speak)your chances of surviving a 500 ft.\_w[0] fall? \w8\w8%(forward)%(neutral)Or, 152 m., if that's better for you." //amount slider
+	"\0\b[0]%(input)%(squint)%(paper)Would you say that you're more comfortable working alone, or alongside kobolds? %(nervous)%(paper)And if with kobolds, do you have any I can borrow?"
+	"\0\b[4]%(input)%(forward)%(speak)What's the highest number you can count to?" //amount slider
+	"\0\b[0]%(input)%(forward)%(neutral)Let's pretend that I have brought home company of a royal persuasion, %(serious)%(neutral)completely with their consent, %(forward)%(speak)and one of their relatives sends a warrior to retrieve them... %(processing)%(neutral)How would you handle the situation?"
+	"\0\b[4]%(input)%(look)%(paper)What is your preferred type of nesting material?"
+	"\0\b[4]%(input)%(look)%(paper)How many times in month would you say you need to be fed?" //amount slider
+	"\0\b[4]%(input)%(forward)%(speak)How many magic spells do you know?" //amount slider
+	"\0\b[4]%(input)%(forward)%(speak)How much ex- per- i- ence you have pol- ish- ing %(metal) objects?" //amount slider
+	"\0\b[4]%(input)%(forward)%(speak)What sort of co- llec- tions you have in your hoard?"
+	"\0\b[4]%(input)%(serious)%(neutral)You drop and break priceless %(metal) %(object). %(scowl)%(speak)How severe you expect your dis- ci- pline will be?" //this could be slider amount...
+	"\0\b[4]%(input)%(forward)%(speak)You counting large pile of coins, and cannot reach top of pile. How do you resolve situation?"
+	"\0\b[4]%(input)%(forward)%(paper)What skill you consider yourself most proficient at?"
+	"\0\b[4]%(input)%(processing)%(speak)What is largest beast you have van- quished on your own?"
+	"\0\b[0]%(input)%(plead)%(speak)Consider the following: %(an(creature)) was seen exiting cave two hours ago, and now you find %(metal) %(object) missing. %(scowl)%(paper)How do you handle situation?"
+	"\0\b[4]%(input)%(scowl)%(paper)You at bottom of mountain, and among bushes find %(metal) %(object) with no markings. %(serious)%(paper)What do you do?"
+	"\0\b[0]%(input)%(serious)%(neutral)You on leave to visit your family, when you overhear knights in nearby tavern talking about slaying mighty dragon. %(serious)%(speak)What is correct course of action?"
+	"\0\b[0]%(input)%(scowl)%(neutral)You approached by other dragon while traveling with family members.\n\n %(smile)%(speak)He demands to know location of back entrance to hoard, or he will eat entire family.\n\n %(serious)%(neutral)What is appropriate response?"
+	"\0\b[0]%(input)I am away on trip, and you left to protect hoard. Two hu- mans from nearby town approach cave entrance, request to come inside. How quickly you make them flee, and how you ensure they not return?"
+	"\0\b[4]%(input)%(plead)%(neutral)You given gold necklace as gift from family. %(plead)%(speak)What you do with it?"
+	"\0\b[0]%(input)%(ceiling)%(neutral)You at home, it raining heavily.\n\n %(nervous)%(neutral)There thunder, too.\n\n %(forward)%(speak)How you travel to cave in these con- di- tions?"
+	"\0\b[0]%(input)%(scowl)%(neutral)You surrounded by goblins, and they demand you will become spy for them, or they will tear your flesh apart.\n\n %(serious)%(speak)How you defeat goblins?"
+	"\0\b[4]%(input)%(forward)%(speak)Describe your experience with %(metal) objects."
+	"\0\b[4]%(input)%(forward)%(speak)Describe your previous job."
+	"\0\b[4]%(input)%(processing)%(speak)Describe a dispute you had with a previous coworker, and how you resolved it. %(forward)%(neutral)More fire better."
+	
+	/*
+		"\0\b[4]%(input)Find remnants of %(creature) on side of road while traveling in area. What steps should you take to as- cer- tain if there is threat to hoard?" //May be better if we can specify big things that a dragon would eat, like sheep, horses, goats, etc.
+	*/
+	
+	//Agree slider
+	/*
+		%(agreeslider('ID','3','high'))"
+		ID is the ID for custom responses, can be blank
+		3 is the number of "chunks" the slider will be broken into, from 2-5
+		high is the desired response. can also be low or medium. omit and he will always respond neutrally
+	*/
+	
+	/*
+	Would you say that you
+	You good at
+	Would you consider X to be
+	*/
+	"\0\b[4]%(agreeslider(,'3','high'))%(forward)%(speak)You spend a lot of time fishing?"
+	"\0\b[4]%(agreeslider(,'5','high'))%(scowl)%(speak)How good your or- ga- ni- za- tion skills?"
+	"\0\b[4]%(agreeslider(,'3','high'))%(processing)%(paper)You consider yourself good at tracking prey?"
+	"\0\b[4]%(agreeslider(,'3','high'))%(forward)%(paper)You able to withstand dampness well?"
+	"\0\b[4]%(agreeslider(,'5','low'))%(processing)%(paper)You would say that you... fleet of foot?"
+	
+	//Amount slider
+	/*
+		%(amountslider('ID','2,2000','20,1500','high'))
+		ID is the ID for custom responses, can be blank
+		2,2000 is the range of the slider
+		20,1500 is the "thresholds", where his responses will change at. You can add up to 4 thresholds. 2 thresholds means 3 chunks.
+		high is the desired response. can also be low. omit and he will always respond neutrally
+	*/
+	/*
+	How many
+	How much
+	*/
+	"\0\b[4]%(amountslider(,'0,500','10,32,100,300','high'))%(processing)%(neutral)How many teeth you have? %(processing)%(speak)Your own included."
+	"\0\b[4]%(amountslider('travel time','1,50'))%(processing)%(speak)How many hours it take you to travel to cave?"
+	"\0\b[4]%(amountslider(,'0,365','1,10,50,100','high'))%(forward)%(paper)What is longest number of days in a row you have gone without seeing sun?"
+	"\0\b[4]%(amountslider(,'10,50000','1000,5000,10000,25000','low'))%(smile)%(speak)How high in air could human go before becoming unable to breathe air?"
+	"\0\b[4]%(amountslider('words per minute','10,500','50,100,200,400','high'))%(plead)%(speak)How many words you can read in one minute?"
+}
+
+TestTalk
+{
+	_metalobject1 = "%(metal) %(object)"
+	_metalobject2 = "%(metal) %(object)"
+	"\0\b[0]%(forward)%(neutral)I give you option of po- li- shing %(_metalobject1) or %(_metalobject2). Which you prefer?%(multiplechoice(,Capitalize(_metalobject1),Capitalize(_metalobject2)))"
 }
 
 RandomTalk : nonoverlap_pool
 {
 	"\0\b[4]%(ceiling)%(tie)%(narration)%(italic)He seems like he'd make a good boss.\w8.\w8.\w8\w8?%(italicoff)"
-	"\0\b[4]%(behind)%(agitated)%(narration)%(italic)Oh! He noticed a %(bug) crawling on the wall...%(italicoff)"
-	"\0\b[4]%(squint)%(paper)%(narration)%(italic)He keeps squinting at the %(resume)...%(italicoff)"
-	"\0\b[4]%(squint)%(paper)%(narration)%(italic)He's checking the details again... How many times is this now?%(italicoff)"
-	"\0\b[4]%(forward)%(neutral)You good in-\w4ter-\w4view-\w4ee. %(happy)%(agitated)Best so far!"
+	"\0\b[4]%(behind)%(agitated)%(narration)%(italic)Oh! He noticed a %(bug) crawling on the wall...%(italicoff)" //lights on
+	"\0\b[4]%(squint)%(paper)%(narration)%(italic)He keeps squinting at the%(br)%(resume)...%(italicoff)" //lights on?
+	"\0\b[4]%(squint)%(paper)%(narration)%(italic)He's checking the details again... How many times is this now?%(italicoff)" //lights on?
+	"\0\b[4]%(forward)%(neutral)You good in- ter- view- ee. %(happy)%(agitated)Best so far!"
 	"\0\b[4]%(forward)%(neutral)There lots of bugs in cave, will have no shortage of snacks here."
 	"\0\b[4]%(smile)%(speak)Always have access to water, to meet regulation! %(forward)%(neutral)Drips into cave at all times!"
 	"\0\b[4]%(forward)%(speak)Have good view from cave entrance! %(forward)%(speak)Good for relaxing lunch break!"
 	"\0\b[4]%(forward)%(speak)Have good human resources. %(happy)%(agitated)Whole town nearby!"
-	"\0\b[4]%(smile)%(speak)I hope you will enjoy your em-\w4ploy-\w4ment here, %(name)! %(nervous)%(tie)If in-\w4ter-\w4view goes well..."
+	"\0\b[4]%(smile)%(speak)Have ac- tiv- i- ties to help you relax; %(forward)%(neutral)you can stack gold pieces, or sort gems!"
+	"\0\b[4]%(smile)%(speak)I hope you will enjoy your em- ploy- ment here, %(name)! %(nervous)%(tie)If in- ter- view goes well..."
 	"\0\b[4]%(ceiling)%(neutral)%(name)... %(name)...? \n\n%(narration)%(italic)He's mumbling... %(italicoff)"
+	"\0\b[4]%(ceiling)%(paper)Pitter patter. %(plead)%(neutral)Sound of rain dripping into cave. %(smile)%(neutral)Make nice ambience! \w8\w8%(serious)%(paper)But must stop, causing damage."
+	"\0\b[4]%(smile)%(speak)I think we will make good team. %(nervous)%(neutral)Perhaps."
+	"\0\b[4]%(look)%(paper)Have to find place to file all this paperwork. %(nervous)%(paper)Is piling up!"
+	"\0\b[4]%(forward)%(neutral)Relaxing job. %(smile)%(speak)No customers!"
+	"\0\b[4]%(smile)%(neutral)Lot of room to move upwards in your position. %(pet)%(speak)Can go all the way to peak of mountain, or higher!"
+	"\0\b[4]%(smile)%(speak)Not have an- noy- ing coworkers. %(forward)%(neutral)Only me!"
+	"\0\b[4]%(serious)%(speak)Strict dress code, must wear tie at all times. %(processing)%(neutral)Only requirement, means very important."
+	"\0\b[0]%(plead)%(paper)People skills necessary for this job. %(forward)%(paper)Must know how to efficiently un- limb.\n\n %(narration)%(italic)Dismember...?%(italicoff)"
+	"\0\b[4]%(forward)%(paper)Such neat hand- wri- ting on%(br)%(resume)! %(smile)%(paper)im- press- ive.\n\n %(narration)%(italic)It's printed...%(italicoff)"
+	"\0\b[4]%(forward)%(neutral)Have good re- tire- ment packages to choose from. %(smile)%(speak)Rare, medium, and well done!"
+	"\0\b[0]%(processing)%(neutral)Have bag check policy. %(processing)%(speak)You leave cave, I check bag. %(serious)%(speak)No thief.\n\n %(processing)%(neutral)Watching you..."
+	"\0\b[0]%(forward)%(neutral)Can learn many skills at treasure job. %(forward)%(speak)Counting, po- lish- ing, sorting, \w8%(ceiling)%(speak)se- cur- i- ty,\w8%(br)put out fires, ad- mi- ra- tion...\n\n %(happy)Not that you will need other job.\w8\w8\w8%(br)%(smile)%(neutral)This job all you need."
+	"\0\b[4]%(serious)%(neutral)Strict non- com- pete policy. %(scowl)%(speak)No work for other dragon, only me."
+	"\0\b[0]%(forward)%(neutral)May have to consider adding second hoard main- ten- ance position in future. %(nervous)%(neutral)Hoard growing all the time."
+	
+	"\0\b[4]%(processing)%(neutral)I hear human town is planning to hold fes- ti- val soon. %(smile)%(neutral)Good opp- or- tun- i- ty to grow hoard..."
+	"\0\b[0]%(scowl)%(neutral)Hunting for rare co- llec- tion of %(metal) %(object). %(processing)%(neutral)For- mer- ly in poss- ess- ion of human noble.\n\n %(serious)%(speak)Human died, co- llec- tion spread across con- ti- nent... %(plead)%(speak)You hear word of co- llec- tion, you tell Boss. %(plead)%(neutral)Yes? %(smile)%(neutral)Yes."
+	"\0\b[4]%(processing)%(neutral)Keep watch for dan- ger- ous wild %(dragonfood) when traveling to cave. \w8\w8%(happy)Make for good meal."
+	"\0\b[0]%(forward)%(neutral)Not need to worry about running out of food during frost. %(smile)%(speak)Have stash of beetle husks saved. %(happy)Plenty for human em- ploy- ee to eat." //TODO potential name adjustment later
+	"\0\b[0]%(processing)%(neutral)Did you know, humans can dis- app- ear? %(scowl)%(neutral)Special power, vanish without trace. %(scowl)%(speak)Happens if you steal treasure."
+	"\0\b[0]%(smile)%(neutral)Human heart go pitter-patter. %(smile)%(speak)I hear it, fast like rabbit. %(happy)So small and weak.\n\n %(forward)%(speak)Should relax. Not dan- ger- ous here."
+	//I kind of want to put narration at the end, "Apart from the giant man-eating lizard", but it may be better implied...
+	"\0\b[0]%(smile)%(neutral)I come from long line of Star Scales. %(scowl)%(neutral)Not know what that is? %(happy)Human his- to- ry so short. %(smile)%(speak)And flam- ma- ble.\n\n %(pet)%(speak)It means I am de- scend- ed from the great dragons of... \w8\w8%(ceiling)%(speak)Grrm... \w8\w8%(nervous)%(neutral)You know, maybe I explain later."
+	"\0\b[0]%(plead)%(speak)Im- por- tant to appraise new additions to hoard before getting attached.\n\n %(serious)%(neutral)Finding out that %(metal) piece is not real, or %(gem) inlay is fake... %(nervous)%(neutral)Up- sett- ing."
+	"\0\b[0]%(serious)%(neutral)Strong wind outside cave sometimes. %(serious)%(speak)Must ensure no part of hoard is outside, or will be blown away. %(processing)%(neutral)Im- por- tant part of job."
+
+
 	
 	if LightsOn
 	{

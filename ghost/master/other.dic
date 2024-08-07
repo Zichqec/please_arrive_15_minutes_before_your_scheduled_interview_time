@@ -317,8 +317,8 @@ amountslider
 		_top = TOINT(_argv[1][1])
 	}
 	_thresholds = "33,66"
-	if _argv[1] != ""; _thresholds = _argv[1]
-	_preferred = _argv[2]
+	if _argv[2] != ""; _thresholds = _argv[2]
+	_preferred = _argv[3]
 	
 	_middle = ((_top - _bottom) / 2) + _bottom
 	

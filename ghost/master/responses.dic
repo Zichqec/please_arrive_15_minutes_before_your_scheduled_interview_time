@@ -44,19 +44,20 @@ OnAnswerQuestion
 	LOGGING("_input: %(_input)")
 	LOGGING("_intents: %(_intents)")
 	//This can be set up like the if/else structure in OnAskQuestion below
-	if _input == ""
+	
+	if reference2 != ""
 	{
-		"\0\b[4]%(forward)%(paper)Oh, %(DragonNoiseSuffix), %(nervous)%(paper)nothing to say... oh no..."
-		return
-	}
-	elseif reference2 != ""
-	{
-		_output = OnAnswerQuestion.Custom(reference2,_input)
+		_output = OnAnswerQuestion.Custom(reference2,reference0)
 		if _output != ""
 		{
 			_output
 			return
 		}
+	}
+	if _input == ""
+	{
+		"\0\b[4]%(forward)%(paper)Oh, %(DragonNoiseSuffix), %(nervous)%(paper)nothing to say... oh no..."
+		return
 	}
 	
 	if GETTYPE(_type) == 1 || GETTYPE(_type) == 2 //If the response is a number, with or without decimal point
@@ -121,7 +122,8 @@ OnAnswerQuestion
 OnAnswerQuestion.Custom
 {
 	_ID = _argv[0]
-	_input = _argv[1]
+	_input = TOLOWER(_argv[1])
+	_intents = ProcessQuestion(_argv[1])
 	
 	if _ID == "example"
 	{
@@ -137,6 +139,22 @@ OnAnswerQuestion.Custom
 	elseif _ID == "health screening"
 	{
 		"\0\b[0]%(processing)%(paper)Grrm... %(nervous)%(paper)Never heard this kind before...\n\n \w8\w8%(plead)%(paper)You... can still perform job, yes? %(forward)%(paper)Yes, if you here, you must agree. %(happy)Good. Good good. %(smile)%(speak)You pass health screening."
+	}
+	elseif _ID == "dropped by boss"
+	{
+		//screaming or multiple exclamation marks, etc
+		if _input == ""
+		{
+			"\0\b[4]%(serious)%(speak)If you say nothing, you die. %(processing)%(paper)Perhaps you need prac- tice..."
+		}
+		elseif (Intent("screaming",_intents) || Intent("loud",_intents) || Intent("excited",_intents) || Intent("demanding",_intents) || Intent("stressed",_intents)) && !(Intent("soft",_intents))
+		{
+			"\0\b[4]%(forward)%(neutral)Good! %(smile)%(speak)Loud scream good in si- tu- a- tion."
+		}
+		elseif Intent("soft",_intents) || Intent("short",_intents) || Intent("one word",_intents) || Intent("hesitant",_intents)
+		{
+			"\0\b[4]%(serious)%(neutral)Hm... %(processing)%(neutral)Voice so small, will be lost in sky. %(processing)%(paper)Will need to work on this..."
+		}
 	}
 }
 
@@ -290,6 +308,28 @@ OnAnswerYesNo
 			"\0\b[0]%(forward)%(neutral)I see!\n\n %(narration)%(italic)That sounds concerning...%(italicoff)\n\n %(smile)%(speak)Not worry about them now, we go over it later.\n\n %(narration)%(italic)Hmmm...%(italicoff)"
 		}
 	}
+	elseif reference1 == "have hustle"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[4]%(forward)%(neutral)Good! %(smile)%(speak)Supply of hustle will be useful. %(ceiling)%(speak)Just have to figure out how it eaten."
+		}
+		else
+		{
+			GenericNeutral(reference0)
+		}
+	}
+	elseif reference1 == "allergic to seeds"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[0]%(scowl)%(paper)%(Capitalize(DragonNoiseSuffix))... %(look)%(paper)Will... %(nervous)%(paper)keep this in mind."
+		}
+		else
+		{
+			"\0\b[0]%(smile)%(paper)Good! %(pet)%(speak)Would not want em- ploy- ee with weak di- ges- tion."
+		}
+	}
 	
 	//Generic responses
 	elseif reference0 == "yes"
@@ -310,13 +350,28 @@ OnAnswerYesNo
 OnAnswerMultipleChoice
 {
 	TotalResponses++
-	if reference0 == "Something custom"
+	if reference0 == "town on fire"
 	{
-		
+		if reference1 == "A"
+		{
+			"\0\b[4]%(smile)%(paper)Making note of this..."
+		}
+		elseif reference1 == "B"
+		{
+			"\0\b[0]%(scowl)%(paper)%(Capitalize(DragonNoiseSuffix))... More concerned with human town, I see.\n\n %(serious)%(paper)Human town fleeting. Re- mem- ber this."
+		}
+		elseif reference1 == "3"
+		{
+			"\0\b[4]%(smile)%(speak)De- di- ca- ted! %(smile)%(paper)Very good."
+		}
+		elseif reference1 == "4"
+		{
+			"\0\b[4]%(processing)%(neutral)%(Capitalize(DragonNoiseSuffix))... %(processing)%(paper)Good in- stinct... %(smile)%(paper)Can work with this, yes."
+		}
 	}
 	
 	//Generic
-	if reference2 == "positive"; GenericPositive(reference0)
+	elseif reference2 == "positive"; GenericPositive(reference0)
 	elseif reference2 == "negative"; GenericNegative(reference0)
 	else; GenericNeutral(reference0)
 }
@@ -473,6 +528,56 @@ OnAnswerAmountSlider : all
 			others
 			{
 				"\0\b[4]%(nervous)%(paper)Im- poss- i- ble... Such speed... %(serious)%(paper)You not lying to %(good) boss, yes?"
+			}
+		}
+		return
+	}
+	elseif _name == "breathe fire"
+	{
+		case _answer
+		{
+			when 0
+			{
+				"\0\b[4]%(processing)%(paper)No fire? %(smile)%(paper)In- ter- est- ing..."
+			}
+			when 1-25
+			{
+				"\0\b[4]%(read)%(paper)Short flames, I see... %(forward)%(paper)Good."
+			}
+			when 26-75
+			{
+				SliderAmount.GenericNeutral
+			}
+			when 76-100
+			{
+				SliderAmount.GenericNegative
+			}
+			others
+			{
+				"\0\b[4]%(nervous)%(paper)Long dis- tance..."
+			}
+		}
+		return
+	}
+	elseif _name == "jump height"
+	{
+		case _answer
+		{
+			when 1-2
+			{
+				SliderAmount.GenericNeutral
+			}
+			when 3-4
+			{
+				"\0\b[4]%(smile)%(neutral)Im- press- ive. %(smile)%(speak)Will be useful for na- vi- ga- ting hoard."
+			}
+			when 5-7
+			{
+				"\0\b[4]%(processing)%(neutral)Long way up for human.\n\n \w8\w8%(ceiling)%(neutral)... I think."
+			}
+			others
+			{
+				"\0\b[4]%(nervous)%(paper)Such a- gi- li- ty... %(processing)%(neutral)You... use a- gi- li- ty to perform well at job, not steal. Yes? %(forward)%(neutral)Yes."
 			}
 		}
 		return

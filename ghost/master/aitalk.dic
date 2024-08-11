@@ -20,6 +20,15 @@ OnAiTalk
 
 QuestionTalk : nonoverlap_pool
 {
+	parallel Questions.yesno
+	parallel Questions.multiplechoice
+	parallel Questions.input
+	parallel Questions.agreeslider
+	parallel Questions.amountslider
+}
+
+Questions.yesno : array
+{
 	//Yes/no
 	/*
 		%(yesno('yes'))
@@ -63,6 +72,9 @@ QuestionTalk : nonoverlap_pool
 	"\0\b[4]%(forward)%(speak)You ready for next question?%(yesno('ready for question'))"
 	"\0\b[0]%(processing)%(neutral)You able to maintain working con- di- tion in cold%(br)en- vi- ron- ment?%(yesno('yes'))"
 	"\0\b[4]%(plead)%(speak)Have I men- tioned %(creature) threat nearby?%(yesno('creature threat'))"
+	"\0\b[0]%(scowl)%(neutral)Have heard of human cre- a- tion called ""hustle""... %(processing)%(neutral)You... %(processing)%(speak)have hustle?%(yesno('have hustle'))"
+	"\0\b[0]%(smile)%(neutral)Have heard that some humans are al- ler- gic to seeds. %(pet)%(speak)Puny humans, so easily de- feat- ed by something so small.\n\n %(scowl)%(neutral)%(Capitalize(DragonNoiseSuffix))... %(scowl)%(paper)You do not have such weak- ness- es, do you?%(yesno('allergic to seeds'))"
+	"\0\b[4]%(plead)%(paper)Have you ever lived in %(area) area?%(yesno)"
     
 	/*
 	"You... have good counting skills?" (Yes) //Goes to unique question asking how high you can count (number lower than 100 is disappointed, 100-999,999 is satisfied, 1,000,000+ is SO impressed)
@@ -70,8 +82,10 @@ QuestionTalk : nonoverlap_pool
 		(If no) "What creature were you before?" (Input, potential for keywords here?)
 	"You willing to eat food 3 months past expiration date? (Yes)" //it would be REALLY funny if this number increases over time until you say no -- or possibly if it was a chain!
 	*/
-	
-	
+}
+
+Questions.multiplechoice : array
+{
 	//Multiple choice
 	/*
 		%(multiplechoice('ID',+Sheep','Rabbits','-Lizards'))"
@@ -90,7 +104,12 @@ QuestionTalk : nonoverlap_pool
 	_metalobject2 = "%(metal) %(object)"
 	"\0\b[0]%(forward)%(neutral)I give you option of po- li- shing %(_metalobject1) or %(_metalobject2). Which you prefer?%(multiplechoice(,Capitalize(_metalobject1),Capitalize(_metalobject2)))"
 	"\0\b[0]%(serious)%(paper)You would prefer short but fre- quent va- ca- tions, or long but in- fre- quent va- ca- tions?%(multiplechoice(,'-Short but frequent','+Long but infrequent'))"
-	
+	"\0\b[0]%(scowl)%(neutral)Scratch scratch. Sound of rats. %(threaten)De- stroy- ing po- sess- ions... %(processing)%(neutral)You... %(processing)%(speak)good at tracking rats? %(serious)%(speak)Finding rat hideouts,\w8%(br)%(serious)%(tie)ex- ter- min- a- ting rats?%(multiplechoice(,'+I can do all of those','I''m good at tracking rats','I''m good at finding rat hideouts','I''m good at exterminating rats','-I can''t do any of those'))"
+	"\0\b[2]%(forward)%(speak)Consider situation. You wake up one day, %(smile)%(speak)find half of town on fire.\n\n %(forward)%(neutral)Do you...\n\n A: Accept fiery fate.\n\w8\w8%(serious)%(neutral)B: Help put fires out.\n\w8\w8%(smile)%(neutral)3: Come to work as sched- uled.\n\w8\w8%(ceiling)%(speak)... Grrm...\n\w8\w8\w8\w8%(forward)%(neutral)4: Check that per- son- al hoard is not damaged.%(multiplechoice('town on fire','A','B','3','4'))"
+}
+
+Questions.input : array
+{
 	//Input box
 	/*
 		%(input('ID'))
@@ -130,11 +149,16 @@ QuestionTalk : nonoverlap_pool
 	"\0\b[4]%(input)%(forward)%(speak)Describe your experience with %(metal) objects."
 	"\0\b[4]%(input)%(forward)%(speak)Describe your previous job."
 	"\0\b[4]%(input)%(processing)%(speak)Describe a dispute you had with a previous coworker, and how you resolved it. %(forward)%(neutral)More fire better."
+	"\0\b[0]%(input('dropped by boss'))%(forward)%(neutral)You being carried by %(good) Boss, 1000 feet in air, when sud- den- ly you dropped. %(processing)%(speak)What you say to alert Boss of si- tu- a- tion?"
+	"\0\b[0]%(input)%(pet)%(speak)%(Capitalize(metal)) %(object) is prime example of precious hoard item that %(name) must maintain if hired.\n\n %(serious)%(neutral)Describe what measures you would take to avoid item becoming damaged by water."
 	
 	/*
 		"\0\b[4]%(input)Find remnants of %(creature) on side of road while traveling in area. What steps should you take to as- cer- tain if there is threat to hoard?" //May be better if we can specify big things that a dragon would eat, like sheep, horses, goats, etc.
 	*/
-	
+}
+
+Questions.agreeslider : array
+{
 	//Agree slider
 	/*
 		%(agreeslider('ID','3','high'))"
@@ -152,8 +176,13 @@ QuestionTalk : nonoverlap_pool
 	"\0\b[4]%(agreeslider(,'5','high'))%(scowl)%(speak)How good your or- ga- ni- za- tion skills?"
 	"\0\b[4]%(agreeslider(,'3','high'))%(processing)%(paper)You consider yourself good at tracking prey?"
 	"\0\b[4]%(agreeslider(,'3','high'))%(forward)%(paper)You able to withstand dampness well?"
-	"\0\b[4]%(agreeslider(,'5','low'))%(processing)%(paper)You would say that you... fleet of foot?"
-	
+	"\0\b[4]%(agreeslider(,'5','medium'))%(processing)%(paper)You would say that you... fleet of foot?"
+	"\0\b[0]%(agreeslider(,'5','high'))%(scowl)%(paper)Necessary to have quick re- ac- tions in this job, in case of %(creature) attack. %(processing)%(paper)You... have quick re- ac- tion time?"
+	"\0\b[0]%(agreeslider(,'3','high'))%(pet)%(speak)Hoard must be dusted re- gu- lar- ly%(br)to stay shiny. %(processing)%(speak)You would say you are good at dusting?"
+}
+
+Questions.amountslider : array
+{
 	//Amount slider
 	/*
 		%(amountslider('ID','2,2000','20,1500','high'))
@@ -169,8 +198,10 @@ QuestionTalk : nonoverlap_pool
 	"\0\b[4]%(amountslider(,'0,500','10,32,100,300','high'))%(processing)%(neutral)How many teeth you have? %(processing)%(speak)Your own included."
 	"\0\b[4]%(amountslider('travel time','1,50'))%(processing)%(speak)How many hours it take you to travel to cave?"
 	"\0\b[4]%(amountslider(,'0,365','1,10,50,100','high'))%(forward)%(paper)What is longest number of days in a row you have gone without seeing sun?"
-	"\0\b[4]%(amountslider(,'10,50000','1000,5000,10000,25000','low'))%(smile)%(speak)How high in air could human go before becoming unable to breathe air?"
+	"\0\b[4]%(amountslider(,'10,50000','1000,5000,10000,25000','low'))%(smile)%(speak)How high in air could human go before becoming unable to breathe?"
 	"\0\b[4]%(amountslider('words per minute','10,500','50,100,200,400','high'))%(plead)%(speak)How many words you can read in one minute?"
+	"\0\b[4]%(amountslider('breathe fire','0,200'))%(forward)%(speak)When you breathe fire, how much dis- tance is jet of flames?"
+	"\0\b[4]%(amountslider('jump height','1,10'))%(plead)%(speak)How high in air can %(name) jump?"
 }
 
 TestTalk
@@ -219,6 +250,12 @@ RandomTalk : nonoverlap_pool
 	"\0\b[0]%(smile)%(neutral)I come from long line of Star Scales. %(scowl)%(neutral)Not know what that is? %(happy)Human his- to- ry so short. %(smile)%(speak)And flam- ma- ble.\n\n %(pet)%(speak)It means I am de- scend- ed from the great dragons of... \w8\w8%(ceiling)%(speak)Grrm... \w8\w8%(nervous)%(neutral)You know, maybe I explain later."
 	"\0\b[0]%(plead)%(speak)Im- por- tant to appraise new additions to hoard before getting attached.\n\n %(serious)%(neutral)Finding out that %(metal) piece is not real, or %(gem) inlay is fake... %(nervous)%(neutral)Up- sett- ing."
 	"\0\b[0]%(serious)%(neutral)Strong wind outside cave sometimes. %(serious)%(speak)Must ensure no part of hoard is outside, or will be blown away. %(processing)%(neutral)Im- por- tant part of job."
+	"\0\b[0]%(smile)%(neutral)Re- cent- ly, have chosen human name for myself, %(smile)%(speak)so that humans can un- der- stand my power.\n\n %(pet)%(speak)The name ""Boss"" will fill them with dread, strike fear into hearts of most cour- a- geous war- ri- ors."
+	"\0\b[0]%(forward)%(speak)Have you ever— \w8\w8\w8%(look)%(speak)\_w[1500] %(nervous)%(tie)Itch... \w8\w8%(wings)Itch!! %(ceiling)%(tie)%(wings)Reach reach reach %(ceiling)%(tie)reach around, %(behind)%(speak)reach around!!\n\n %(nervous)%(speak)Itch!! %(ceiling)%(speak)AAAAAAAAAA!! \s[700]\n\n \_w[3000]%(pet)%(neutral)Ahh. %(forward)%(neutral)That better. %(forward)%(paper)Where we were?"
+	"\0\b[0]%(serious)%(neutral)Get attacked by human archers when near town. %(pet)%(speak)Puny humans and their puny arrows. They cannot pierce Boss's mag- ni- fi- cent scales."
+	"\0\b[0]%(processing)%(neutral)Hmmm... \w8\w8\w8\w8%(smile)%(neutral)You would look best in %(colortie). %(pet)%(speak)Would suit puny human form. %(ceiling)%(tie)Will have to find tie in suit- a- ble size..."
+	"\0\b[0]%(serious)%(neutral)Must tread care- ful- ly near %(creature) caves on way to in- ter- view. %(serious)%(speak)Dis- turb them and they follow you, put hoard in danger."
+	"\0\b[0]%(forward)%(neutral)Will treat human em- ploy- ee well here. %(pet)%(speak)Make sure %(name) never wants to leave treasure job.\n\n %(nervous)%(tie)If hired. Not guar- an- teed yet."
 
 
 	

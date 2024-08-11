@@ -82,6 +82,10 @@ OnInitialize
 	if !ISVAR("CurrentName"); CurrentName = TempNames
 	if !ISVAR("SavedUsername"); SavedUsername = username
 	if !ISVAR("TalkTopic"); TalkTopic = "both"
+	if !ISVAR("NegativeResponses"); NegativeResponses = 0
+	if !ISVAR("PositiveResponses"); PositiveResponses = 0
+	if !ISVAR("NeutralResponses"); NeutralResponses = 0
+	if !ISVAR("TotalBossQuestions"); TotalBossQuestions = 0
 	
 	if ISVAR("SavedChain")
 	{

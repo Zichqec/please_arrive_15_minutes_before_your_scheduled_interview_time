@@ -288,3 +288,63 @@ dragonfood
 	"lion"
 	"elephant"
 }
+
+colortie
+{
+	_rand = RAND(3)
+	if _rand == 0 || _rand == 2
+	{
+		"red"
+		"orange"
+		"yellow"
+		"green"
+		"blue"
+		"purple"
+		"pink"
+		"brown"
+		"black"
+		"gray"
+		"white"
+		--
+		" "
+	}
+	--
+	"tie"
+	--
+	if _rand == 1 || _rand == 2
+	{
+		" with "
+		--
+		"ver- ti- cal stripes"
+		"di- ag- on- al stripes"
+		"hor- i- zon- tal stripes"
+		"polka dot"
+		"checker pattern"
+		"hound- tooth pattern"
+		"bubble pattern"
+		"coin pattern"
+		"starry pattern"
+		"flames"
+		"splatter pattern"
+		"%(name) stitched into fab- ric"
+		"bowtie pattern"
+	}
+	//"dual-color tie"
+}
+
+area
+{
+	"tro- pi- cal"
+	"moun- tain- ous"
+	"rocky"
+	"flat"
+	"for- est- ed"
+	"sandy"
+	"urban"
+	"rural"
+	"haunted"
+	"empty"
+	"burned down"
+	"icy"
+	"arc- tic"
+}

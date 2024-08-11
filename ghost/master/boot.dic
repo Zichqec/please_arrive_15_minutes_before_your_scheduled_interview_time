@@ -1,7 +1,5 @@
 OnFirstBoot
 {
-	//If you add variables, make sure to initialize them here!
-	//Note - I haven't added anything about username or pronouns here because it's all handled by the SSP prefs
 	stroke = 0
 	LastTalk = ""
 	BalloonColors = (1,1,1,1,1,1,0,0,0,0)
@@ -77,10 +75,7 @@ OnDiscoverName : all
 }
 
 OnInitialize
-{
-	//If you want some variables to reset on boot, put them here. This event will happen even if you add other events like OnGhostChanged
-	//OnInitialize is a NOTIFY event! That means it cannot return scripts. This event is only meant for things like variable changes. See this page on Ukadoc for more info: https://ukagakadreamteam.github.io/ukadoc/manual/spec_shiori3.html
-	
+{	
 	if !ISVAR("BalloonColors"); BalloonColors = (1,1,1,1,1,1,0,0,0,0)
 	if !ISVAR("NameIndex"); NameIndex = 7
 	if !ISVAR("NameDiscovered"); NameDiscovered = 0
@@ -97,7 +92,7 @@ OnInitialize
 		ERASEVAR("SavedChain")
 	}
 	
-	if reference0 != "reload" //For things you want to reset EXCEPT when just reloading; a convenience for you the dev, basically
+	if reference0 != "reload" //To reset EXCEPT when just reloading
 	{
 		LastTalk = ""
 	}
@@ -118,8 +113,8 @@ OnDestroy
 OnBoot
 {
 	_temp = SHIORI3FW.UserBirthday
-	_user_birthday = "%(_temp[1])/%(_temp[2])" //M/D, if you want it D/M you can switch it around
-	_today = "%(month)/%(day)" //Again, switch this around if using D/M
+	_user_birthday = "%(_temp[1])/%(_temp[2])"
+	_today = "%(month)/%(day)"
 	
 	"\1\s[-1]\0\b[0]\s[0]"
 	--
@@ -136,5 +131,5 @@ OnClose
 	"\0\b[4]%(processing)%(neutral)Ah, time to go? %(smile)%(speak)We'll schedule another meeting soon! %(forward)%(neutral)I look forward to it."
 	"\0\b[4]%(ceiling)%(tie)Grrm... is about time I count my ties. %(look)%(tie)You find your way out fine, yes? %(smile)%(tie)Good."
 	--
-	"\w8\w8\-" //This is what makes the ghost close (after a short pause), do not remove the \- , and MAKE SURE you don't use a \e before this point or it won't work
+	"\w8\w8\-"
 }

@@ -862,3 +862,19 @@ DragonCalendarDate
 	
 	"%(NumSuffix(_sun)) sun of the %(NumSuffix(_moon)) moon of the %(NumSuffix(_seasonnum)) %(_season) of the %(NumSuffix(_cycle)) cycle"
 }
+
+On_getaistate : all
+{
+	_randomtalk = OUTPUTNUM('RandomTalk')
+	_allquestions = OUTPUTNUM('QuestionTalk')
+	_yesno = ARRAYSIZE(Questions.yesno)
+	_multiplechoice = ARRAYSIZE(Questions.multiplechoice)
+	_input = ARRAYSIZE(Questions.input)
+	_agreeslider = ARRAYSIZE(Questions.agreeslider)
+	_amountslider = ARRAYSIZE(Questions.amountslider)
+	
+	"%(_randomtalk),%(_allquestions),%(_yesno),%(_multiplechoice),%(_input),%(_agreeslider),%(_amountslider)"
+	C_BYTE1
+	"RandomTalk,Total questions,Yes/no Qs,Multiple choice Qs,Input Qs,Agree slider Qs,Amount slider Qs"
+
+}

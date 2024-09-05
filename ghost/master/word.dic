@@ -278,6 +278,12 @@ creature
 	"orc"
 }
 
+creatures
+{
+	"goblins"
+	"orcs"
+}
+
 dragonfood
 {
 	"sheep"
@@ -347,4 +353,52 @@ area
 	"burned down"
 	"icy"
 	"arc- tic"
+}
+
+subp
+{
+	"sup- er- i- or- i- ty"
+	"sub- stan- dard"
+	"sup- press- ion"
+	"sub- scip- tion"
+	"sup- po- si- tion"
+	"sub- ma- rine"
+	"sub- li- mi- nal"
+	"sup- er- he- ro"
+}
+
+jobthing
+{
+	"Get paid at re- gu- lar intervals"
+	"Have 30 minute lunch break every day"
+	"Earn 1 second of va- ca- tion time for each hour worked"
+	"Possibility to earn end-of-cycle bonus"
+}
+
+strangefood
+{
+	"flower buds"
+	"worms"
+	"crystals"
+	"moss"
+	"%(metal) %(object)"
+	"paper"
+	"feathers"
+	"rocks"
+	"stickynotes"
+	"scales"
+}
+
+distanceunits
+{
+	"miles"
+	"furlongs"
+	"hours of dragon flight"
+	"inches"
+	"feet"
+	"meters"
+	"kilometers"
+	"centimeters"
+	"days of travel on foot"
+	"days of travel on horseback"
 }

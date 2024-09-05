@@ -138,7 +138,10 @@ OnAnswerQuestion.Custom
 	}
 	elseif _ID == "health screening"
 	{
-		"\0\b[0]%(processing)%(paper)Grrm... %(nervous)%(paper)Never heard this kind before...\n\n \w8\w8%(plead)%(paper)You... can still perform job, yes? %(forward)%(paper)Yes, if you here, you must agree. %(happy)Good. Good good. %(smile)%(speak)You pass health screening."
+		if _input != ""
+		{
+			"\0\b[0]%(processing)%(paper)Grrm... %(nervous)%(paper)Never heard this kind before...\n\n \w8\w8%(plead)%(paper)You... can still perform job, yes? %(forward)%(paper)Yes, if you here, you must agree. %(happy)Good. Good good. %(smile)%(speak)You pass health screening."
+		}
 	}
 	elseif _ID == "dropped by boss"
 	{
@@ -154,6 +157,20 @@ OnAnswerQuestion.Custom
 		elseif Intent("soft",_intents) || Intent("short",_intents) || Intent("one word",_intents) || Intent("hesitant",_intents)
 		{
 			"\0\b[4]%(serious)%(neutral)Hm... %(processing)%(neutral)Voice so small, will be lost in sky. %(processing)%(paper)Will need to work on this..."
+		}
+	}
+	elseif _ID == "why windows"
+	{
+		if _input != ""
+		{
+			"\0\b[4]%(look)%(neutral)Not un- der- stand... Strange prac- tice..."
+		}
+	}
+	elseif _ID == "left in snow"
+	{
+		if _input != ""
+		{
+			"\0\b[0]%(processing)%(neutral)Trick question. You let hoard items freeze in snow, %(scowl)%(neutral)I make sure you freeze too."
 		}
 	}
 }
@@ -330,6 +347,39 @@ OnAnswerYesNo
 			"\0\b[0]%(smile)%(paper)Good! %(pet)%(speak)Would not want em- ploy- ee with weak di- ges- tion."
 		}
 	}
+	elseif reference1 == "tie twisted"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[0]%(nervous)%(tie).\w8.\w8. One moment.\n\n \s[700]\i[4]\![bind,Tie,,0]\![bind,Tie,%(ANY(TiesAvailable)),1]Fix tie, fix fix fix tie... Can't be seen like this...!\n\n %(Capitalize(DragonNoiseSuffix))... New tie.\n\n %(forward)%(tie)Ah. %(smile)%(speak)Better now, yes? %(forward)%(neutral)Yes."
+		}
+		else
+		{
+			"\0\b[4]%(forward)%(neutral)Oh, good. %(happy)Good good. %(nervous)%(neutral)False alarm then."
+		}
+	}
+	elseif reference1 == "creature enter cave"
+	{
+		if reference0 == "yes"
+		{
+			GenericPositive(reference0)
+		}
+		else
+		{
+			"\0\b[0]%(serious)%(speak)It simple. %(processing)%(speak)Bite. Rip. %(processing)%(neutral)Tear. %(threaten)Shred. %(wings)Ex- ter- min- ate.\n\n \_w[1500]%(forward)%(speak)You can do all that?%(yesno('yes'))"
+		}
+	}
+	elseif reference1 == "stung by bee"
+	{
+		if reference0 == "yes"
+		{
+			"\0\b[4]%(nervous)%(tie)Human has felt grueling pain and lived to tell tale. Im- press- ive..."
+		}
+		else
+		{
+			GenericNeutral(reference0)
+		}
+	}
 	
 	//Generic responses
 	elseif reference0 == "yes"
@@ -350,30 +400,101 @@ OnAnswerYesNo
 OnAnswerMultipleChoice
 {
 	TotalResponses++
-	if reference0 == "town on fire"
+	
+	_response = MultipleChoiceCustom(reference0,reference1,reference2)
+	if _response == ""
 	{
-		if reference1 == "A"
+		if reference2 == "positive"; GenericPositive(reference0)
+		elseif reference2 == "negative"; GenericNegative(reference0)
+		else; GenericNeutral(reference0)
+	}
+	else; _response
+}
+
+MultipleChoiceCustom
+{
+	_ID = _argv[0]
+	_choice = _argv[1]
+	_feeling = _argv[2] //positive/negative/neutral
+	
+	if _ID == "town on fire"
+	{
+		if _choice == "A"
 		{
 			"\0\b[4]%(smile)%(paper)Making note of this..."
 		}
-		elseif reference1 == "B"
+		elseif _choice == "B"
 		{
 			"\0\b[0]%(scowl)%(paper)%(Capitalize(DragonNoiseSuffix))... More concerned with human town, I see.\n\n %(serious)%(paper)Human town fleeting. Re- mem- ber this."
 		}
-		elseif reference1 == "3"
+		elseif _choice == "3"
 		{
 			"\0\b[4]%(smile)%(speak)De- di- ca- ted! %(smile)%(paper)Very good."
 		}
-		elseif reference1 == "4"
+		elseif _choice == "4"
 		{
 			"\0\b[4]%(processing)%(neutral)%(Capitalize(DragonNoiseSuffix))... %(processing)%(paper)Good in- stinct... %(smile)%(paper)Can work with this, yes."
 		}
 	}
-	
-	//Generic
-	elseif reference2 == "positive"; GenericPositive(reference0)
-	elseif reference2 == "negative"; GenericNegative(reference0)
-	else; GenericNeutral(reference0)
+	elseif "breathe too hard," _in_ _ID
+	{
+		_metalobject1 = _ID[1]
+		_i = TOINT(reference0[2])
+		
+		if _choice == "I understand"
+		{
+			if _i >= 3
+			{
+				"\0\b[4]%(scowl)%(paper)Good... %(processing)%(paper)Good."
+			}
+			else; GenericPositive
+		}
+		elseif _choice == "I don't understand"
+		{
+			if _i >= 3
+			{
+				"\0\b[4]%(scowl)%(paper)%(Capitalize(DragonNoiseSuffix))%(DragonNoiseSuffix)... %(processing)%(paper)We go over this in detail later."
+			}
+			else; GenericNegative
+		}
+		else
+		{
+			switch _i
+			{
+				"\0\b[0]%(processing)%(neutral)Must not breathe too hard on %(_metalobject1). %(serious)%(neutral)Can cause damage. %(serious)%(speak)Understand now?"
+				"\0\b[0]%(serious)%(neutral)Must. Not. Breathe. On. %(Capitalize(_metalobject1)). %(processing)%(speak)Understand?"
+				"\0\b[0]%(tired)%(neutral)... %(Capitalize(DragonNoiseSuffix))... %(serious)%(neutral)Trying my pa- ti- ence...\n\n %(scowl)%(speak)Must be careful with %(_metalobject1). Do not breathe on. Can damage. %(serious)%(speak)Understand?"
+				"\0\b[0]%(serious)%(neutral)%(Capitalize(DragonNoiseSuffix))... %(threaten)%(TOUPPER(DragonNoiseSuffix))%(TOUPPER(DragonNoiseSuffix))...\n\n %(wings)LISTEN. CARE- FUL- LY.\n\n NO BREATHE ON %(TOUPPER(_metalobject1)). CAN DAMAGE.\n\n %(threaten)%(Capitalize(DragonNoiseSuffix))... UN- DER- STAND?"
+				"\0\b[0]%(threaten)%(wings)AAAAAAAAAAAAAAAA%(ceiling)%(speak)AAAAAAAAAAAAAAAA%(behind)%(tie)%(wings)AAAAAAAAAAAAAAAAAAAAAAAAA%(ceiling)%(tie)AAAAAAAAAAAAAAAAAAAAAAA%(threaten)%(wings)AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n\n %(desk)%(Capitalize(DragonNoiseSuffix))%(DragonNoiseSuffix)%(DragonNoiseSuffix)... %(Capitalize(DragonNoiseSuffix))%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)%(DragonNoiseSuffix)...\n\n \w8\w8\w8%(processing)%(neutral)We... \w8\w8%(scowl)%(neutral)will return to this.\e"
+			}
+			--
+			multiplechoice("breathe too hard,%(_metalobject1),%(_i + 1)",'+I understand','-I don''t understand','Can you explain again?')
+		}
+	}
+	elseif _ID == "score with claws"
+	{
+		if _choice == "I don't have claws"
+		{
+			"\0\b[4]%(threaten)NO SCORE WITH CLAWS. NOT NE- GO- TIA- BLE."
+		}
+	}
+	elseif "shoved by creature" _in_ _ID
+	{
+		_creature = _ID[1]
+		
+		if _choice == "Treat injury"
+		{
+			"\0\b[0]%(serious)%(neutral)%(DragonNoisePrefix)... %(threaten)Poor in- stinct... %(serious)%(speak)Treat injury while %(_creature) still in cave, means %(_creature) can steal treasure. %(processing)%(neutral)Top priority stop invader. %(serious)%(neutral)Remember this."
+		}
+		elseif _choice == "Check for damaged treasure"
+		{
+			"\0\b[0]%(processing)%(neutral)Treasure important, yes. %(processing)%(speak)But if not deal with invader, other treasure will be stolen.\n\n %(threaten)Must handle %(_creature) threat first. %(serious)%(neutral)Then can assess treasure to ensure is all there, and not damaged."
+		}
+		else //Neutralise %(_creature) threat
+		{
+			"\0\b[0]%(smile)%(neutral)Good! Good instinct. %(smile)%(speak)After %(_creature) threat is handled, then treasure can be checked to ensure is all there and not damaged. %(forward)%(neutral)Very good."
+		}
+	}
 }
 
 GenericNeutral
@@ -579,6 +700,18 @@ OnAnswerAmountSlider : all
 			{
 				"\0\b[4]%(nervous)%(paper)Such a- gi- li- ty... %(processing)%(neutral)You... use a- gi- li- ty to perform well at job, not steal. Yes? %(forward)%(neutral)Yes."
 			}
+		}
+		return
+	}
+	elseif _name == "blink each sun"
+	{
+		if _answer == 0
+		{
+			"\0\b[4]%(forward)%(paper)Not blink at all! %(smile)%(paper)Im- press- ive, good hoard watcher."
+		}
+		else
+		{
+			"\0\b[4]%(processing)%(paper)Time spent blinking is time not watching hoard. %(ceiling)%(paper)Will have to factor this into salary..."
 		}
 		return
 	}

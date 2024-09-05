@@ -58,8 +58,11 @@ OnTranslate
 	
 	if "\![no-autopause]" !_in_ _talk
 	{
+		_talk = REPLACE(_talk,"—\f[name,default] ","—\f[name,default]\w8\w8 ")
 		_talk = REPLACE(_talk,"\n\n ","\n\n\w8\w8\w8\w8")
+		_talk = REPLACE(_talk,".\n",".\w8\w8\w8\n")
 		_talk = REPLACE(_talk,". ",".\w8\w8\w8 ")
+		_talk = REPLACE(_talk,",\n",",\w8\n")
 		_talk = REPLACE(_talk,", ",",\w8 ")
 		_talk = REPLACE(_talk,"? ","?\w8\w8\w8\w8 ")
 		_talk = REPLACE(_talk,"! ","!\w8\w8 ")
@@ -285,7 +288,7 @@ multiplechoice : all
 			_response = "negative"
 			_arg = ERASE(_arg,0,1)
 		}
-		"\![*]\q[%(_arg),OnAnswerMultipleChoice,%(_id),%(_arg),%(_response)]\n"
+		"\![*]\__q[OnAnswerMultipleChoice,""%(_id)"",""%(_arg)"",%(_response)]%(_arg)\__q\n"
 	}
 }
 
@@ -338,6 +341,7 @@ DetermineSliderResponse
 	}
 	_count = ARRAYSIZE(_thresholds)
 	
+	//TODO this is busted for ones where the division isn't straight down the middle...
 	_response = "medium"
 	if _answer == _middle; _response = "medium" //It's awkward if you don't move the slider at all and the response isn't neutral
 	elseif _count == 1
@@ -516,6 +520,11 @@ br
 	else; " "
 }
 
+emdash
+{
+	"\f[name,Lucida Console]—\f[name,default]"
+}
+
 noboss
 {
 	"\s[-1]"
@@ -664,6 +673,11 @@ processing
 tired
 {
 	"\s[215]"
+}
+
+desk
+{
+	"\s[700]\i[4]"
 }
 
 resume
@@ -877,4 +891,9 @@ On_getaistate : all
 	C_BYTE1
 	"RandomTalk,Total questions,Yes/no Qs,Multiple choice Qs,Input Qs,Agree slider Qs,Amount slider Qs"
 
+}
+
+dragonword
+{
+	
 }

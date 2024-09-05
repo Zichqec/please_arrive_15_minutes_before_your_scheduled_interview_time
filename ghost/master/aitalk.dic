@@ -25,6 +25,14 @@ QuestionTalk : nonoverlap_pool
 	parallel Questions.input
 	parallel Questions.agreeslider
 	parallel Questions.amountslider
+	
+	{
+		"\0\b[0]%(forward)%(speak) if I ask you about about sub- ... %(look)%(speak)Subs... %(ceiling)%(neutral)Grrm... S... sub... %(DragonNoisePrefix)... Word... %(look)%(neutral)\n\n "
+		--
+		"\w[2000].\w8.\w8. %(nervous)%(neutral)Forgot word. %(nervous)%(tie)Maybe ask again later..."
+		"Subss... Sups... %(pet)%(speak)%(subp)! %(forward)%(neutral)Got it. ... %(ceiling)%(speak)What was question again...?"
+	}
+	"\0\b[0]%(forward)%(speak)How your wings handle%(emdash)\n\n %(processing)%(speak)... Grrm... %(ceiling)%(neutral)Question... perhaps not apply to human. %(nervous)%(paper)Maybe we skip that one."
 }
 
 Questions.yesno : array
@@ -75,6 +83,14 @@ Questions.yesno : array
 	"\0\b[0]%(scowl)%(neutral)Have heard of human cre- a- tion called ""hustle""... %(processing)%(neutral)You... %(processing)%(speak)have hustle?%(yesno('have hustle'))"
 	"\0\b[0]%(smile)%(neutral)Have heard that some humans are al- ler- gic to seeds. %(pet)%(speak)Puny humans, so easily de- feat- ed by something so small.\n\n %(scowl)%(neutral)%(Capitalize(DragonNoiseSuffix))... %(scowl)%(paper)You do not have such weak- ness- es, do you?%(yesno('allergic to seeds'))"
 	"\0\b[4]%(plead)%(paper)Have you ever lived in %(area) area?%(yesno)"
+	//"\0\b[4]%(plead)%(neutral)You... give %(good) Boss your tie?%(yesno('givetie'))" //TODO it would be really funny to use a flag to track if you've given him a tie that day, and also count up how many in total you've given him
+	"\0\b[4]%(processing)%(paper)You... bring extra tie in case of e- mer- gen- cy?%(yesno('yes'))"
+	"\0\b[4]%(nervous)%(tie)Is my tie twisted?%(yesno('tie twisted'))"
+	"\0\b[4]%(serious)%(neutral)You know what to do if you see %(creature) enter cave, yes?%(yesno('creature enter cave'))"
+	"\0\b[0]%(plead)%(neutral)Human has been stung by bee before?%(yesno('stung by bee'))"
+	"\0\b[4]%(processing)%(paper)You able to eat %(strangefood)?%(yesno)"
+	"\0\b[0]%(processing)%(neutral)%(Capitalize(metal)) %(object)... \w8%(processing)%(speak)Human strong enough to hold something that heavy?%(yesno)"
+	
     
 	/*
 	"You... have good counting skills?" (Yes) //Goes to unique question asking how high you can count (number lower than 100 is disappointed, 100-999,999 is satisfied, 1,000,000+ is SO impressed)
@@ -102,10 +118,34 @@ Questions.multiplechoice : array
 	*/
 	_metalobject1 = "%(metal) %(object)"
 	_metalobject2 = "%(metal) %(object)"
+	while _metalobject2 == _metalobject1
+	{
+		_metalobject2 = "%(metal) %(object)"
+	}
 	"\0\b[0]%(forward)%(neutral)I give you option of po- li- shing %(_metalobject1) or %(_metalobject2). Which you prefer?%(multiplechoice(,Capitalize(_metalobject1),Capitalize(_metalobject2)))"
 	"\0\b[0]%(serious)%(paper)You would prefer short but fre- quent va- ca- tions, or long but in- fre- quent va- ca- tions?%(multiplechoice(,'-Short but frequent','+Long but infrequent'))"
 	"\0\b[0]%(scowl)%(neutral)Scratch scratch. Sound of rats. %(threaten)De- stroy- ing po- sess- ions... %(processing)%(neutral)You... %(processing)%(speak)good at tracking rats? %(serious)%(speak)Finding rat hideouts,\w8%(br)%(serious)%(tie)ex- ter- min- a- ting rats?%(multiplechoice(,'+I can do all of those','I''m good at tracking rats','I''m good at finding rat hideouts','I''m good at exterminating rats','-I can''t do any of those'))"
 	"\0\b[2]%(forward)%(speak)Consider situation. You wake up one day, %(smile)%(speak)find half of town on fire.\n\n %(forward)%(neutral)Do you...\n\n A: Accept fiery fate.\n\w8\w8%(serious)%(neutral)B: Help put fires out.\n\w8\w8%(smile)%(neutral)3: Come to work as sched- uled.\n\w8\w8%(ceiling)%(speak)... Grrm...\n\w8\w8\w8\w8%(forward)%(neutral)4: Check that per- son- al hoard is not damaged.%(multiplechoice('town on fire','A','B','3','4'))"
+	
+	_metal = metal
+	_object = object
+	_metalchoice = REPLACE(_metal,"- ","")
+	"\0\b[2]%(serious)%(neutral)New addition to hoard. %(serious)%(speak)%(Capitalize(_metal)) %(_object). %(processing)%(neutral)You have experience with this item?" + multiplechoice(,"+I have %(_metalchoice) %(_object) experience","I have experience with %(_metalchoice) items,\![] but not %(_object) experience","I have %(_object) experience,\![] but not when made of %(_metalchoice)","-I do not have %(_metalchoice) %(_object) experience")
+	"\0\b[0]%(processing)%(paper)If human does well, may consider giving bonus... %(ceiling)%(paper)Perhaps bag of leaves? %(ceiling)%(neutral)Petals may be possible also...\n\n %(forward)%(paper)Which you prefer?%(multiplechoice(,'+Leaves','+Petals','A mixture of both','-Something else'))"
+	"\0\b[0]%(scowl)%(neutal)Not breathe too hard on %(_metalobject1). Can cause damage. %(scowl)%(speak)You understand?" + multiplechoice("breathe too hard,%(_metalobject1),0",'+I understand','-I don''t understand','Can you explain again?')
+	"\0\b[2]%(processing)%(paper)If you go on one vacation each cycle, where you would want to go?\n\n %(read)%(paper)The sea, the forest, %(squint)%(paper)the mountains, the city, %(forward)%(paper)or stay at home?%(multiplechoice(,'The sea','The forest','+The mountains','-The city','+Stay at home'))"
+	"\0\b[0]%(scowl)%(neutral)Must handle all %(metal) items carefully, not score them with claws. Understand?%(multiplechoice('score with claws','+I understand','-I don''t understand','I don''t have claws'))"
+	"\0\b[0]%(processing)%(paper)You have pref- er- ence for sweet or bitter foods?%(multiplechoice(,'Sweet foods','Bitter foods','-Neither'))"
+	"\0\b[0]%(processing)%(paper)Human... float on water? Or sink like stone? %(forward)%(paper)Or, perhaps able to swim?%(multiplechoice(,'Float on water','+Sink like stone','-Able to swim'))"
+	
+	_creature = creature
+	"\0\b[0]%(scowl)%(neutral)You are shoved by %(_creature), fall into pile of treasure and become injured. %(serious)%(neutral)What is first priority? %(serious)%(speak)Treat injury, check for damaged treasure, or neu- tral- ize %(_creature) threat?" + multiplechoice("shoved by creature,%(_creature)","Treat injury","Check for damaged treasure","Neutralize %(_creature) threat")
+}
+
+testthing
+{
+	_creature = creature
+	"\0\b[0]%(scowl)%(neutral)You are shoved by %(_creature), fall into pile of treasure and become injured. %(serious)%(neutral)What is first priority? %(serious)%(speak)Treat injury, check for damaged treasure, or neu- tral- ize %(_creature) threat?" + multiplechoice("shoved by creature,%(_creature)","Treat injury","Check for damaged treasure","Neutralize %(_creature) threat")
 }
 
 Questions.input : array
@@ -151,10 +191,35 @@ Questions.input : array
 	"\0\b[4]%(input)%(processing)%(speak)Describe a dispute you had with a previous coworker, and how you resolved it. %(forward)%(neutral)More fire better."
 	"\0\b[0]%(input('dropped by boss'))%(forward)%(neutral)You being carried by %(good) Boss, 1000 feet in air, when sud- den- ly you dropped. %(processing)%(speak)What you say to alert Boss of si- tu- a- tion?"
 	"\0\b[0]%(input)%(pet)%(speak)%(Capitalize(metal)) %(object) is prime example of precious hoard item that %(name) must maintain if hired.\n\n %(serious)%(neutral)Describe what measures you would take to avoid item becoming damaged by water."
+	"\0\b[0]%(input('why windows'))%(processing)%(neutral)Not un- der- stand human win- dows... %(processing)%(speak)Keep wind out and let sun in? %(plead)%(speak)Why?"
+	"\0\b[0]%(input)%(processing)%(speak)I leave you in charge of cave while I go on trip. %(serious)I not return on ex- pec- ted date. %(serious)%(speak)How you handle si- tu- a- tion?"
+	"\0\b[0]%(input('left in snow'))%(serious)%(neutral)%(Capitalize(metal)) %(object) is left out in snow, becomes frozen. %(serious)%(paper)Describe how you thaw item without causing damage."
 	
 	/*
 		"\0\b[4]%(input)Find remnants of %(creature) on side of road while traveling in area. What steps should you take to as- cer- tain if there is threat to hoard?" //May be better if we can specify big things that a dragon would eat, like sheep, horses, goats, etc.
 	*/
+	
+	_counting = ""
+	for _i = 1; _i < 100; _i++
+	{
+		_counting += "\__q[OnGoldCounting,%(_i)]%(_i)\__q..."
+		if SHIORI3FW.BalloonName == "Stuck to a Filing Cabinet"
+		{
+			if (_i > 7 && (_i - 1) % 6 == 0) || _i == 7; _counting += "\n"
+			else; _counting += " "
+		}
+		else; _counting += " "
+	}
+	"\0\b[2]%(squint)%(paper)It im-\w4por-\w4tant to know how many coins human hands can hold. %(scowl)%(neutral)I give coin. You hold. We count. Tell me when to stop. \n\n%(look)%(speak)%(_counting)100... 1... %(DragonNoisePrefix)... %(scowl)%(speak)%(DragonNoiseSuffix)... %(nervous)%(paper)Yes. Very good. Give coins back now, thank you. \n\n%(narration)He lost count, didn't he..."
+	"\0\b[0]%(input)%(forward)%(paper)Let's say I task you with adjusting sundial at top of mountain. %(processing)%(paper)Describe tools you would use to get job done."
+	_metal = metal
+	"\0\b[0]%(input)%(scowl)%(neutral)%(Capitalize(_metal)) items prone to warping if not handled care- ful- ly... %(scowl)%(speak)Tell me 2 things you know about working with %(_metal) item."
+	"\0\b[0]%(input)%(processing)%(neutral)If trip over rock and fall while carrying %(metal) %(object), what actions you take to ensure no damage to item?"
+}
+
+OnGoldCounting
+{
+	"\0\b[4]%(look)%(speak)%(reference0)... %(processing)%(neutral)I see... %(processing)%(paper)Writing this down for later."
 }
 
 Questions.agreeslider : array
@@ -179,6 +244,8 @@ Questions.agreeslider : array
 	"\0\b[4]%(agreeslider(,'5','medium'))%(processing)%(paper)You would say that you... fleet of foot?"
 	"\0\b[0]%(agreeslider(,'5','high'))%(scowl)%(paper)Necessary to have quick re- ac- tions in this job, in case of %(creature) attack. %(processing)%(paper)You... have quick re- ac- tion time?"
 	"\0\b[0]%(agreeslider(,'3','high'))%(pet)%(speak)Hoard must be dusted re- gu- lar- ly%(br)to stay shiny. %(processing)%(speak)You would say you are good at dusting?"
+	"\0\b[4]%(agreeslider(,'3','high'))%(processing)%(paper)Will need to use brush to clean de- li- cate items. How qualified you to use brush?"
+	"\0\b[0]%(processing)%(neutral)Hear metrics im- por- tant for making business de- cis- ions... %(processing)%(paper)You... good at in- ter- pret- ing metrics?%(agreeslider(,'3','high'))"
 }
 
 Questions.amountslider : array
@@ -189,26 +256,23 @@ Questions.amountslider : array
 		ID is the ID for custom responses, can be blank
 		2,2000 is the range of the slider
 		20,1500 is the "thresholds", where his responses will change at. You can add up to 4 thresholds. 2 thresholds means 3 chunks.
-		high is the desired response. can also be low. omit and he will always respond neutrally
+		high is the desired response. can also be low or medium. omit and he will always respond neutrally
 	*/
 	/*
 	How many
 	How much
 	*/
 	"\0\b[4]%(amountslider(,'0,500','10,32,100,300','high'))%(processing)%(neutral)How many teeth you have? %(processing)%(speak)Your own included."
-	"\0\b[4]%(amountslider('travel time','1,50'))%(processing)%(speak)How many hours it take you to travel to cave?"
+	"\0\b[4]%(amountslider('travel time','1,50'))%(processing)%(speak)How many hours it take you to travel to cave?" //TODO maybe i should make it days/suns instead of hours lol
 	"\0\b[4]%(amountslider(,'0,365','1,10,50,100','high'))%(forward)%(paper)What is longest number of days in a row you have gone without seeing sun?"
 	"\0\b[4]%(amountslider(,'10,50000','1000,5000,10000,25000','low'))%(smile)%(speak)How high in air could human go before becoming unable to breathe?"
 	"\0\b[4]%(amountslider('words per minute','10,500','50,100,200,400','high'))%(plead)%(speak)How many words you can read in one minute?"
 	"\0\b[4]%(amountslider('breathe fire','0,200'))%(forward)%(speak)When you breathe fire, how much dis- tance is jet of flames?"
 	"\0\b[4]%(amountslider('jump height','1,10'))%(plead)%(speak)How high in air can %(name) jump?"
-}
-
-TestTalk
-{
-	_metalobject1 = "%(metal) %(object)"
-	_metalobject2 = "%(metal) %(object)"
-	"\0\b[0]%(forward)%(neutral)I give you option of po- li- shing %(_metalobject1) or %(_metalobject2). Which you prefer?%(multiplechoice(,Capitalize(_metalobject1),Capitalize(_metalobject2)))"
+	"\0\b[0]%(amountslider(,'1,100','3,10,30,50','low'))%(scowl)%(paper)How long your fangs, in cen- ti- me- ters?" //TODO this is similar to "how long would you say your teeth are"
+	"\0\b[0]%(amountslider(,'1,100','10,30,50,75','medium'))%(processing)%(paper)How far you can reach with arms? In inches."
+	"\0\b[4]%(amountslider('blink each sun','0,19200'))%(serious)%(paper)How many times you blink each sun?"
+	"\0\b[0]%(amountslider(,'0,1000','50,100,400,700','high'))%(scowl)%(neutral)How far you willing to travel if needed? %(scowl)%(paper)In %(distanceunits)."
 }
 
 RandomTalk : nonoverlap_pool
@@ -256,16 +320,51 @@ RandomTalk : nonoverlap_pool
 	"\0\b[0]%(processing)%(neutral)Hmmm... \w8\w8\w8\w8%(smile)%(neutral)You would look best in %(colortie). %(pet)%(speak)Would suit puny human form. %(ceiling)%(tie)Will have to find tie in suit- a- ble size..."
 	"\0\b[0]%(serious)%(neutral)Must tread care- ful- ly near %(creature) caves on way to in- ter- view. %(serious)%(speak)Dis- turb them and they follow you, put hoard in danger."
 	"\0\b[0]%(forward)%(neutral)Will treat human em- ploy- ee well here. %(pet)%(speak)Make sure %(name) never wants to leave treasure job.\n\n %(nervous)%(tie)If hired. Not guar- an- teed yet."
-
-
+	"\0\b[0]%(smile)%(neutral)Like this human in- ven- tion; meat on skewer. %(happy)%(good) Boss use %(good) skewer, hold much meat."
+	"\0\b[4]%(smile)%(neutral)Is important to have dream, you know. %(pet)%(speak)Dream like working for %(good) Boss for rest of your life."
+	"\0\b[4]%(scowl)%(neutral)Heard humans seek out sweet food... %(smile)%(neutral)Like bees, seeking flowers. %(happy)Must be trait shared by weak creatures."
+	"\0\b[4]%(processing)%(neutral)Human claws not look very dan- ger- ous. %(processing)%(paper)Will have to work on this..."
+	"\0\b[0]%(serious)%(neutral)I catch you with gold in hands, I kick you out of cave. %(processing)%(neutral)No touch gold until hired. %(processing)%(speak)And if hired, only for main- ten- ance pur- po- ses..."
+	"\0\b[4]%(processing)%(neutral)All hoard items must be treated well. %(scowl)%(speak)Even %(metal) %(object). %(scowl)%(neutral)Precious part of co- llec- tion..."
+	"\0\b[0]%(smile)%(neutral)Learning about your human customs. %(smile)%(speak)""Waving"" custom very in- ter- es- ting.\n\n %(pet)%(speak)Weak creatures have such strange ways to show dom- i- nance."
+	"\0\b[0]%(smile)%(neutral)Health benefits good at this job.%(br)%(happy)You stay healthy, you benefit!"
+	"\0\b[0]%(scowl)%(neutral)Flying over human town once, overhear human knight spouting lies about Boss... %(threaten)Said Boss is not %(good), and that Boss's hoard has no %(metal) pieces...\n\n %(serious)%(neutral)Brought knight to hoard, showed him error of his ways... %(processing)%(speak)Took his armor as trophy.\n\n %(scowl)%(neutral)It im- por- tant not to lie about %(good) Boss..."
+	"\0\b[0]%(processing)%(neutral)Pro- tec- ting hoard is diff- i- cult task. %(scowl)%(neutral)%(Capitalize(creatures)) always trying to sneak in and take pieces, must be vi- gi- lant at all times.\n\n %(smile)%(speak)But not need to worry, %(pet)%(speak)as long as Boss is here, hoard is safe."
+	"\0\b[0]%(processing)%(neutral)Humans think they can outsmart Boss. %(processing)%(speak)Get upper hand with dirty tricks. %(serious)%(speak)Like human inv- ven- tion called ""kite"", used to trap flying dragons.\n\n %(nervous)%(tie)... Became en- tan- gled in kite once. %(serious)%(neutral)Very serious in- ci- dent, whole village had to burn."
+	"\0\b[0]%(processing)%(neutral)Gets cold on mountaintop during frost. Do not freeze while traveling to and from cave. %(nervous)%(paper)Would be waste of in- ter- view time."
+	"\0\b[0]%(scowl)%(neutral)Dragon not for riding. %(processing)%(neutral)May... carry em- ploy- ee if necessary. %(processing)%(paper)With hands. No ride."
+	"\0\b[0]%(smile)%(speak)Hoard job not like other job. %(happy)%(jobthing)!\n\n \_w[1500]%(processing)%(neutral)... Other job do that too? %(look)%(paper).\w8.\w8. \_w[1000]%(ceiling)%(paper)Grrm...\n\n %(forward)%(paper)I think of new thing and get back to you later."
+	"\0\b[0]%(forward)%(neutral)Got sage advice from old dragon, many cycles ago. %(smile)%(speak)Have always kept that in mind, use as guiding prin- ci- ple.\n\n %(ceiling)%(speak)If only could remember what advice was..."
+	"\0\b[0]%(look)%(neutral)... \_w[1000]%(tired)%(neutral)\_w[5000]\n\n %(narration)Did he fall asleep...?\n\n \_w[1000]%(look)%(neutral)Grrm... \_w[1000]%(ceiling)%(neutral)%(DragonNoisePrefix)...?\n\n \_w[1000]%(processing)%(neutral)Ah, still here. %(nervous)%(speak)Sorry, feeling little tired. %(forward)%(speak)You say something?"
+	"\0\b[0]%(serious)%(speak)Must be careful not to jump to con- clu- sions. %(processing)%(neutral)Just because %(object) looks golden does not mean it is gold. %(scowl)%(neutral)A trick by humans, try to fool %(good) Boss..." //TODO %(object) has some things that don't work with "looks"...
+	"\0\b[0]%(read)%(paper)I see you have several ref- renc- es listed. %(forward)%(paper)Good! %(forward)%(neutral)I call on them soon. %(smile)%(neutral)They tell me if you have good taste."
+	"\0\b[0]%(ceiling)%(paper)Is time to wrap up...?\n\n %(behind)%(paper)\_w[2500]%(look)%(paper)No, no, still have questions..."
+	"\0\b[0]%(smile)%(neutral)Humans in trade caravan good for ac- quir- ing treasure from. %(pet)%(speak)Long trek, worn down and not want trouble.\n\n %(look)%(neutral)Now humans use metal beasts to travel. Not work as well..."
+	"\0\b[0]%(behind)%(neutral)Someone there? \_w[1500]%(forward)%(neutral)Sorry, thought I%(emdash) \w8%(behind)%(neutral)Who there!? \_w[1500]%(scowl)%(neutral)%(DragonNoisePrefix)... someone playing tricks on%(emdash) \w8%(behind)%(tie)%(wings)WHO THERE!?\n\n \_w[1500]%(threaten)Hoard in \w6%(wings)danger...\n\n %(threaten)%(DragonNoisesPrefix)... \_w[1500]%(nervous)%(neutral)Rrr... Cave spinning... Maybe... %(nervous)%(tie)Maybe check on later, probably just %(bug)..."
+	"\0\b[0]%(ceiling)%(neutral)Maybe should mark out clearer trail up mountain... %(look)%(neutral)But, %(DragonNoiseSuffix)... Make it easier for %(creature) to spy. %(ceiling)%(speak)Perhaps if teach human to fly..."
+	"\0\b[0]%(smile)%(neutral)Sometimes watch humans as they try to cross mountain. %(pet)%(speak)Effortless task for %(good) Boss, wings make journey easy.\n\n %(smile)%(speak)Tiny humans have to scramble over rocks. %(smile)%(neutral)Takes long time."
+	"\0\b[0]%(forward)%(speak)Received special letter of re- comm- en- da- tion from your previous em- ploy- er. %(forward)%(paper)I read it. %(read)%(paper)Ahem.\n\n ""Dear Boss,""\_w[2000] ... \_w[2000]%(squint)%(paper) Grrm... \_w[2000]%(DragonNoisePrefix)... \_w[2000]%(nervous)%(paper)Squiggles so small...\n\n .\w8\w8.\w8\w8. %(forward)%(neutral)What nice letter!"
+	"\0\b[0]%(processing)%(neutral)Should have good read of human at this point of in- ter- view. %(processing)%(paper)%(DragonNoisePrefix)... \_w[2000]%(read)%(paper)Grrm... Says here... %(squint)%(paper)%(Capitalize(DragonNoiseSuffix))...\n\n %(ceiling)%(paper)%(DragonNoisePrefix)%(DragonNoiseSuffix)... \_w[2000]%(nervous)%(neutral)Maybe take bit longer."
+	"\0\b[0]%(scowl)%(neutral)Boss good at firing em- ploy- ee if mis- be- ha- ving. %(serious)%(speak)Good at firing many things. %(processing)%(neutral)Re- mem- ber this."
+	"\0\b[0]%(processing)%(neutral)Next frost going to be long and cold. %(processing)%(speak)Can taste it in air.\n\n %(smile)%(speak)All humans will wish they work for %(good) Boss who can produce fire and find food. \_w[2000]%(ceiling)%(neutral)When not busy sleeping."
+	"\0\b[0]%(scowl)%(neutral)Must never touch co- llec- tion of ties. %(serious)%(speak)Get em- ploy- ee instantly fired."
+	"\0\b[0]%(ceiling)%(neutral)%(DragonNoisePrefix)... Need to build up stock of feathers for paying em- ploy- ee... %(ceiling)%(speak)Rocks easy, always have lot of rocks..."
+	"\0\b[0]%(processing)%(neutral)Water dripping into cave is pressing issue. %(processing)%(speak)Moisture... causing mold, mildew. %(serious)%(neutral)Need to find and stop leaks."
+	"\0\b[0]%(ceiling)%(speak)Perhaps should try putting treasure in chests, could lock with keys to keep safe...\n\n %(look)%(neutral)But, then can't see treasure... %(nervous)%(neutral)What point of having treasure if can't see it...?"
+	"\0\b[4]%(forward)%(neutral)Sometimes when pick up human, they go limp. %(happy)Makes easier to carry. %(smile)%(speak)You should keep in mind."
+	"\0\b[0]%(scowl)%(neutral)Rain getting into cave, making iron %(object) rust. %(serious)%(speak)May need to find way to banish rain from mountain.\n\n %(ceiling)%(neutral)Maybe if flap wings hard enough, blow away clouds..."
+	"\0\b[0]%(serious)%(neutral)Dragon caves picked very carefully, you know. %(scowl)%(neutral)Must pick entrance that not face sun. %(scowl)%(speak)If sunbeams get in, can ruin treasure over time.\n\n %(nervous)%(neutral)Main- tain- ing good hoard lot of work."
 	
-	if LightsOn
+	if HasToggledLights //This check will reset the dialogue pool the first time you play... but it's probably fine?
 	{
-		
-	}
-	else
-	{
-		
+		if LightsOn
+		{
+			"\0\b[0]%(smile)%(neutral)Lights are to human's sa- tis- fac- tion? %(pet)%(speak)Had them installed recently,%(br)ac- com- o- date weak human vision."
+		}
+		else
+		{
+			"\0\b[0]%(forward)%(speak)Good to see that human is com- for- ta- ble in darkness. %(ceiling)%(neutral)Perhaps stronger eyes than average human...?\n\n %(smile)%(neutral)Will be useful. %(happy)%(Capitalize(good)) Boss prefers dark cave."
+		}
 	}
 	
 	if interviewscore == "positive"
@@ -283,6 +382,32 @@ RandomTalk : nonoverlap_pool
 	
 	if TotalResponses > 20 //just for funsies...?
 	{
-		
+		"\0\b[0]%(squint)%(paper)%(DragonNoisePrefix)... List of questions, how many more... %(read)%(paper)Ah, \w4%(forward)%(paper)making good progress! %(smile)%(neutral)Make decision about em- ploy- ment soon.\n\n %(ceiling)%(neutral)%(DragonNoisePrefix)... Though, have come up with few more questions... %(ceiling)%(paper)Want to go over few of them again... %(look)%(paper)Maybe take a while longer...?"
+	}
+}
+
+testtest
+{
+	//_metalobject1 = "%(metal) %(object)"
+	//"\0\b[0]%(scowl)%(neutal)Not breathe too hard on %(_metalobject1). Can cause damage. %(scowl)%(speak)You understand?" + multiplechoice("breathe too hard,%(_metalobject1),0",'+I understand','-I don''t understand','Can you explain again?')
+	
+	// _counting = ""
+	// for _i = 1; _i < 100; _i++
+	// {
+		// _counting += "\__q[OnGoldCounting,%(_i)]%(_i)\__q..."
+		// if SHIORI3FW.BalloonName == "Stuck to a Filing Cabinet"
+		// {
+			// if (_i > 7 && (_i - 1) % 6 == 0) || _i == 7; _counting += "\n"
+			// else; _counting += " "
+		// }
+		// else; _counting += " "
+	// }
+	// "\0\b[2]%(squint)%(paper)It im-\w4por-\w4tant to know how many coins human hands can hold. %(scowl)%(neutral)I give coin. You hold. We count. Tell me when to stop. \n\n%(look)%(speak)%(_counting)100... 1... %(DragonNoisePrefix)... %(scowl)%(speak)%(DragonNoiseSuffix)... %(nervous)%(paper)Yes. Very good. Give coins back now, thank you. \n\n%(narration)He lost count, didn't he..."
+	
+	{
+		"\0\b[0]%(forward)%(speak)If I ask you about about sub-\w8\w8\w8 ...%(br)%(look)%(speak)Subs... %(ceiling)%(neutral)Grrm... S... sub... %(DragonNoisePrefix)... Word... %(look)%(neutral)\n\n "
+		--
+		"\w[2000].\w8.\w8. %(nervous)%(neutral)Forgot word. %(nervous)%(tie)Maybe ask again later..."
+		"Subss... Sups... %(pet)%(speak)%(subp)! %(forward)%(neutral)Got it. ... %(ceiling)%(speak)What was question again...?"
 	}
 }

@@ -897,3 +897,28 @@ dragonword
 {
 	
 }
+OnSpectrePlugin.ConfirmCalibration
+{
+	"\![raiseplugin,Spectre,OnCustomCalibrationConfirm]"
+}
+
+OnSpectrePlugin.Surface
+{
+	if reference0 == "normal"; "%(forward)%(neutral)"
+	elseif reference0 == "embarrassed"; "%(look)%(tie)"
+	elseif reference0 == "surprised"; "%(nervous)%(tie)%(wings)"
+	elseif reference0 == "anxious"; "%(plead)%(neutral)"
+	elseif reference0 == "discouraged"; "%(tired)%(neutral)"
+	elseif reference0 == "smile"; "%(happy)"
+	elseif reference0 == "relieved"; "%(smile)%(neutral)"
+	elseif reference0 == "angry"; "%(serious)%(neutral)"
+	elseif reference0 == "sweat"; "%(nervous)%(neutral)"
+	elseif reference0 == "indignant"; "%(threaten)"
+	elseif reference0 == "thinking"; "%(ceiling)%(speak)"
+	elseif reference0 == "unamused"; "%(scowl)%(neutral)"
+}
+
+OnSpectrePlugin.Possession
+{
+	
+}
